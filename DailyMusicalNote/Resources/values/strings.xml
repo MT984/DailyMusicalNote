@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">DailyMusicalNote</string>
     <string name="action_settings">Settings</string>
+    <string name="app_title_string">Daily Musical Note</string>
+    <string name="button_start_string">Start game</string>
+    <string name="button_history_string">History</string>
+    <string name="author_name_string">Designed and created by Maciej Trocha</string>
 </resources>
+
