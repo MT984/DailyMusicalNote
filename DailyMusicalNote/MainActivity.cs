@@ -31,7 +31,6 @@ namespace DailyMusicalNote
             View buttonStart = FindViewById<View>(Resource.Id.button_start);
             View buttonHistory = FindViewById<View>(Resource.Id.button_history);
 
-
             //Buttons events handlers
             buttonStart.Click += (s, e) => StartActivity(typeof(DifficultyActivity));
             buttonHistory.Click += (s, e) => StartActivity(typeof(HistoryActivity));

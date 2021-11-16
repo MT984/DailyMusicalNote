@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayout1" >
     <TextView
-        android:text="Choose difficulty here"
+        android:text="@string/choose_difficulty_string"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/textView1" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:id="@+id/difficulty_page_name" />
+    <Button
+        android:text="@string/easy_string"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/difficulty_page_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:id="@+id/button_easy" />
+    <Button
+        android:text="@string/medium_string"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/button_easy"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:id="@+id/button_medium" />
+    <Button
+        android:text="@string/hard_string"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/button_medium"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:id="@+id/button_hard" />
+    <TextView
+        android:text="@string/author_name_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/author_text2" />
 
-</LinearLayout>
+</RelativeLayout>

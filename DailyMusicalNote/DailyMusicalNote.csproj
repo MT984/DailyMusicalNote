@@ -62,8 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DifficultyActivity.cs" />
+    <Compile Include="GameActivity.cs" />
     <Compile Include="HistoryActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MyEnums.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -113,6 +115,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\history.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\game.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

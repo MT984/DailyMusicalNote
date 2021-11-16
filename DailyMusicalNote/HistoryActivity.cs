@@ -19,7 +19,8 @@ namespace DailyMusicalNote
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.history);
 
-            // Create your application here
+            //Full screen
+            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
         }
     }
 }
