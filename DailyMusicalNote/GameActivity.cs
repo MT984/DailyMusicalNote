@@ -24,30 +24,31 @@ namespace DailyMusicalNote
             //Full screen
             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
-            TextView tekst = FindViewById<TextView>(Resource.Id.textView11);
+            ////Demo below
+            //TextView tekst = FindViewById<TextView>(Resource.Id.textView1);
 
-            string testChoosing;
+            //string testChoosing;
 
-            switch(MyEnums.ChoseDifficulty)
-            {
-                case MyEnums.DifficultyMode.Easy:
-                    testChoosing = "Easy";
-                    break;
+            //switch(MyEnums.ChoseDifficulty)
+            //{
+            //    case MyEnums.DifficultyMode.Easy:
+            //        testChoosing = "Easy";
+            //        break;
     
-                case MyEnums.DifficultyMode.Medium:
-                    testChoosing = "Medium";
-                    break;
+            //    case MyEnums.DifficultyMode.Medium:
+            //        testChoosing = "Medium";
+            //        break;
 
-                case MyEnums.DifficultyMode.Hard:
-                    testChoosing = "Hard";
-                    break;
+            //    case MyEnums.DifficultyMode.Hard:
+            //        testChoosing = "Hard";
+            //        break;
 
-                default:
-                    testChoosing = "There is an error";
-                    break;
-            }
+            //    default:
+            //        testChoosing = "There is an error";
+            //        break;
+            //}
 
-            tekst.Text = testChoosing;
+            //tekst.Text = testChoosing;
         }
     }
 }
