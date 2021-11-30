@@ -64,6 +64,26 @@ namespace DailyMusicalNote
                 FindViewById<ImageView>(Resource.Id.bassB),
                 FindViewById<ImageView>(Resource.Id.bassF),
             };
+            ImageView[] keys =
+            {
+                 FindViewById<ImageView>(Resource.Id.a2),
+                 FindViewById<ImageView>(Resource.Id.b2),
+                 FindViewById<ImageView>(Resource.Id.c3),
+                 FindViewById<ImageView>(Resource.Id.d3),
+                 FindViewById<ImageView>(Resource.Id.e3),
+                 FindViewById<ImageView>(Resource.Id.f3),
+                 FindViewById<ImageView>(Resource.Id.g3),
+                 FindViewById<ImageView>(Resource.Id.a3),
+                 FindViewById<ImageView>(Resource.Id.b3),
+                 FindViewById<ImageView>(Resource.Id.c4),
+                 FindViewById<ImageView>(Resource.Id.d4),
+                 FindViewById<ImageView>(Resource.Id.e4),
+                 FindViewById<ImageView>(Resource.Id.f4),
+                 FindViewById<ImageView>(Resource.Id.g4),
+                 FindViewById<ImageView>(Resource.Id.a4),
+                 FindViewById<ImageView>(Resource.Id.b4),
+                 FindViewById<ImageView>(Resource.Id.c5)
+            };
 
             Button testButton = FindViewById<Button>(Resource.Id.button1);
 
@@ -75,10 +95,15 @@ namespace DailyMusicalNote
             {
                 Random randomNumbers = new Random();
 
-                if(noteCounter <= 15)
+                if(noteCounter <= 50)
                 {
                     //Hide all unnecessary elements
                     foreach (ImageView im in musicKeys)
+                    {
+                        im.Visibility = Android.Views.ViewStates.Gone;
+                    }
+
+                    foreach (ImageView im in keys)
                     {
                         im.Visibility = Android.Views.ViewStates.Gone;
                     }
@@ -117,9 +142,10 @@ namespace DailyMusicalNote
                             break;
                     }
 
-                    //notes
+                    keys[randomNumbers.Next(0,keys.Length)].Visibility = Android.Views.ViewStates.Visible;
 
-                    topBarNotesLeftValue.Text = noteCounter + "/15";
+                    //ifa dodac na wyglad
+                    topBarNotesLeftValue.Text = noteCounter + "/50";
                     noteCounter++;
                 }
                 else
