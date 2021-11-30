@@ -8,5 +8,6 @@
     <string name="easy_string">Łatwy</string>
     <string name="medium_string">Średni</string>
     <string name="hard_string">Trudny</string>
+    <string name="emptyStaff_string">Pięciolinia</string>
 </resources>
 

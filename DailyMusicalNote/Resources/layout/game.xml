@@ -24,13 +24,358 @@
         android:background="#f9f9f9"
         android:layout_weight="4"
         android:id="@+id/staffLayout">
-        
+
         <ImageView
-        android:src="@drawable/emptystaff"
-        android:layout_width="450dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/emptyStaff" />
+            android:src="@drawable/emptystaff"
+            android:layout_width="550dp"
+            android:layout_height="145dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/emptyStaff"
+            android:contentDescription="@string/emptyStaff_string" />
+
+        <ImageView
+            android:src="@drawable/trebleclef"
+            android:layout_width="65dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:layout_centerVertical="true"
+            android:translationZ="1000dp"
+            android:id="@+id/trebleClef"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:src="@drawable/bassclef"
+            android:layout_width="65dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassClef"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/timesign"
+            android:layout_width="30dp"
+            android:layout_marginLeft="280dp"
+            android:layout_height="145dp"
+            android:translationZ="10000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/timeSign"
+            android:contentDescription="@string/emptyStaff_string"/>
+
+ <!-- /////////// treble clef keys -->
+
+        <ImageView
+            android:src="@drawable/trebleG"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleG"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleD"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleD"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleA"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleA"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleE"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleE"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleH"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleH"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleFsh"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleFsh"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleCsh"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleCsh"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleCb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleCb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleGb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleGb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleDb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleDb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleAb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleAb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleEb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleEb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleB"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleB"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/trebleF"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/trebleF"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+<!-- /////////// bass clef keys -->
+
+        <ImageView
+            android:src="@drawable/bassG"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassG"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassD"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassD"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassA"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassA"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassE"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassE"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassH"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassH"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassFsh"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassFsh"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassCsh"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassCsh"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassCb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassCb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassGb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassGb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassDb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassDb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassAb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassAb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassEb"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassEb"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassB"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassB"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:src="@drawable/bassF"
+            android:layout_width="180dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="145dp"
+            android:translationZ="1000dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bassF"
+            android:contentDescription="@string/emptyStaff_string"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -42,5 +387,11 @@
         android:layout_weight="5"
         android:background="#ddd"
         android:id="@+id/pianoKeyboardLayout" />
+    <Button
+        android:text="TestButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
+
 
 </LinearLayout>
