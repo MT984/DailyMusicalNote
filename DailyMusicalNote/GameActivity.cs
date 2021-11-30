@@ -25,62 +25,109 @@ namespace DailyMusicalNote
             //Full screen
             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
+            TextView topBarNotesLeftValue = FindViewById<TextView>(Resource.Id.topBar_notesLeft_value);
+
             ImageView trebleClef = FindViewById<ImageView>(Resource.Id.trebleClef);
             ImageView bassClef = FindViewById<ImageView>(Resource.Id.bassClef);
 
+            ImageView[] musicKeys =
+            {
+                trebleClef,
+                FindViewById<ImageView>(Resource.Id.trebleG),
+                FindViewById<ImageView>(Resource.Id.trebleD),
+                FindViewById<ImageView>(Resource.Id.trebleA),
+                FindViewById<ImageView>(Resource.Id.trebleE),
+                FindViewById<ImageView>(Resource.Id.trebleH),
+                FindViewById<ImageView>(Resource.Id.trebleFsh),
+                FindViewById<ImageView>(Resource.Id.trebleCsh),
+                FindViewById<ImageView>(Resource.Id.trebleCb),
+                FindViewById<ImageView>(Resource.Id.trebleGb),
+                FindViewById<ImageView>(Resource.Id.trebleDb),
+                FindViewById<ImageView>(Resource.Id.trebleAb),
+                FindViewById<ImageView>(Resource.Id.trebleEb),
+                FindViewById<ImageView>(Resource.Id.trebleB),
+                FindViewById<ImageView>(Resource.Id.trebleF),
+
+                bassClef,
+                FindViewById<ImageView>(Resource.Id.bassG),
+                FindViewById<ImageView>(Resource.Id.bassD),
+                FindViewById<ImageView>(Resource.Id.bassA),
+                FindViewById<ImageView>(Resource.Id.bassE),
+                FindViewById<ImageView>(Resource.Id.bassH),
+                FindViewById<ImageView>(Resource.Id.bassFsh),
+                FindViewById<ImageView>(Resource.Id.bassCsh),
+                FindViewById<ImageView>(Resource.Id.bassCb),
+                FindViewById<ImageView>(Resource.Id.bassGb),
+                FindViewById<ImageView>(Resource.Id.bassDb),
+                FindViewById<ImageView>(Resource.Id.bassAb),
+                FindViewById<ImageView>(Resource.Id.bassEb),
+                FindViewById<ImageView>(Resource.Id.bassB),
+                FindViewById<ImageView>(Resource.Id.bassF),
+            };
+
             Button testButton = FindViewById<Button>(Resource.Id.button1);
 
-            testButton.Click += (s, e) => Finish();
+            byte noteCounter = 1;
+            nextNote();
+            testButton.Click += (s, e) => nextNote();
 
-            void randomClef()
+            void nextNote()
             {
                 Random randomNumbers = new Random();
-                int randomTest = randomNumbers.Next(0, 2);
 
-                switch (randomTest)
+                if(noteCounter <= 15)
                 {
-                    case 0:
-                        trebleClef.Visibility = Android.Views.ViewStates.Visible;
-                        break;
+                    //Hide all unnecessary elements
+                    foreach (ImageView im in musicKeys)
+                    {
+                        im.Visibility = Android.Views.ViewStates.Gone;
+                    }
 
-                    case 1:
-                        bassClef.Visibility = Android.Views.ViewStates.Visible;
-                        break;
+                    //Show random elements. It is ependence of chosen dificulty
+                    switch (MyEnums.ChoseDifficulty)
+                    {
+                        //Only treble clef
+                        case MyEnums.DifficultyMode.Easy:
+                            trebleClef.Visibility = Android.Views.ViewStates.Visible;
+                            break;
+
+                        //Treble and bass clef
+                        case MyEnums.DifficultyMode.Medium:
+
+                            switch (randomNumbers.Next(0, 2))
+                            {
+                                case 0:
+                                    trebleClef.Visibility = Android.Views.ViewStates.Visible;
+                                    break;
+
+                                case 1:
+                                    bassClef.Visibility = Android.Views.ViewStates.Visible;
+                                    break;
+                            }
+
+                            break;
+
+                        //All clefs and all music keys
+                        case MyEnums.DifficultyMode.Hard:
+
+                            //MyEnums.MusicKey musicKey = (MyEnums.MusicKey)randomNumbers.Next(0, musicKeys.Length + 1);
+                            //musicKeys[(byte)musicKey].Visibility = Android.Views.ViewStates.Visible;
+
+                            musicKeys[randomNumbers.Next(0, musicKeys.Length)].Visibility = Android.Views.ViewStates.Visible;
+                            break;
+                    }
+
+                    //notes
+
+                    topBarNotesLeftValue.Text = noteCounter + "/15";
+                    noteCounter++;
+                }
+                else
+                {
+                    topBarNotesLeftValue.Text = "KONIEC";
+                    testButton.Click += (s, e) => Finish();
                 }
             }
-
-            switch (MyEnums.ChoseDifficulty)
-            {
-                case MyEnums.DifficultyMode.Easy:
-                    trebleClef.Visibility = Android.Views.ViewStates.Visible;
-                    break;
-
-                case MyEnums.DifficultyMode.Medium:
-                    randomClef();
-                    break;
-
-                case MyEnums.DifficultyMode.Hard:
-                    randomClef();
-                    break;
-            }
-
-            //int x = 5;
-
-            //MyEnums.currentKey = (MyEnums.MusicKey)x;
-
-            //if((int)MyEnums.currentKey == 5)
-            //{
-
-            //}
-
-            ////Demo below
-            //TextView tekst = FindViewById<TextView>(Resource.Id.textView1);
-
-            //string testChoosing;
-
-            //tekst.Text = testChoosing;
-
-
         }
     }
 }

@@ -9,5 +9,7 @@
     <string name="medium_string">Średni</string>
     <string name="hard_string">Trudny</string>
     <string name="emptyStaff_string">Pięciolinia</string>
+    <string name="topBar_notesLeft_string">Nuta: </string>
+    <string name="topBar_notesLeft_value_string">0/15</string>
 </resources>
 

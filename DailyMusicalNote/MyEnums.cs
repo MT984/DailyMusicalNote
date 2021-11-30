@@ -31,24 +31,41 @@ namespace DailyMusicalNote
             //Csh -> C sharp
             //Cb - C flat
             //etc.
-            C,
-            G,
-            D,
-            A,
-            E,
-            H,
-            Fsh,
-            Csh,
-            Cb,
-            Gb,
-            Db,
-            Ab,
-            Eb,
-            B,
-            F
+            //treble: 0 -> 14
+            //bass: 15 -> 29
+            trebleC,
+            trebleG,
+            trebleD,
+            trebleA,
+            trebleE,
+            trebleH,
+            trebleFsh,
+            trebleCsh,
+            trebleCb,
+            trebleGb,
+            trebleDb,
+            trebleAb,
+            trebleEb,
+            trebleB,
+            trebleF,
+            bassC,
+            bassG,
+            bassD,
+            bassA,
+            bassE,
+            bassH,
+            bassFsh,
+            bassCsh,
+            bassCb,
+            bassGb,
+            bassDb,
+            bassAb,
+            bassEb,
+            bassB,
+            bassF
         }
 
         //Initializaton of MusicKey enum variable. Default (easy mode) is key C
-        static public MusicKey currentKey = MusicKey.C;
+        static public MusicKey currentKey = MusicKey.trebleC;
     }
 }

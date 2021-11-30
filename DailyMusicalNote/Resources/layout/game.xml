@@ -15,7 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="0.01dp"
         android:layout_weight="1"
-        android:id="@+id/menuBar" />
+        android:id="@+id/menuBar" >
+        <TextView
+            android:text="@string/topBar_notesLeft_string"
+            android:textColorHighlight="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:textSize="20sp"
+            android:id="@+id/topBar_noteLeft" />
+
+        <TextView
+            android:text="@string/topBar_notesLeft_value_string"
+            android:textColorHighlight="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:paddingRight="5dp"
+            android:textSize="20sp"
+            android:id="@+id/topBar_notesLeft_value" />
+    </LinearLayout>
     <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"
@@ -42,7 +63,7 @@
             android:translationZ="1000dp"
             android:id="@+id/trebleClef"
             android:contentDescription="@string/emptyStaff_string"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
         <ImageView
             android:src="@drawable/bassclef"
@@ -57,7 +78,7 @@
 
         <ImageView
             android:src="@drawable/timesign"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_marginLeft="280dp"
             android:layout_height="145dp"
             android:translationZ="10000dp"
@@ -69,7 +90,7 @@
 
         <ImageView
             android:src="@drawable/trebleG"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -80,7 +101,7 @@
 
         <ImageView
             android:src="@drawable/trebleD"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -91,7 +112,7 @@
 
         <ImageView
             android:src="@drawable/trebleA"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -102,7 +123,7 @@
 
         <ImageView
             android:src="@drawable/trebleE"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -113,7 +134,7 @@
 
         <ImageView
             android:src="@drawable/trebleH"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -124,7 +145,7 @@
 
         <ImageView
             android:src="@drawable/trebleFsh"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -135,7 +156,7 @@
 
         <ImageView
             android:src="@drawable/trebleCsh"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -146,7 +167,7 @@
 
         <ImageView
             android:src="@drawable/trebleCb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -157,7 +178,7 @@
 
         <ImageView
             android:src="@drawable/trebleGb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -168,7 +189,7 @@
 
         <ImageView
             android:src="@drawable/trebleDb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -179,7 +200,7 @@
 
         <ImageView
             android:src="@drawable/trebleAb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -190,7 +211,7 @@
 
         <ImageView
             android:src="@drawable/trebleEb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -201,7 +222,7 @@
 
         <ImageView
             android:src="@drawable/trebleB"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -212,7 +233,7 @@
 
         <ImageView
             android:src="@drawable/trebleF"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -225,7 +246,7 @@
 
         <ImageView
             android:src="@drawable/bassG"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -236,7 +257,7 @@
 
         <ImageView
             android:src="@drawable/bassD"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -247,7 +268,7 @@
 
         <ImageView
             android:src="@drawable/bassA"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -258,7 +279,7 @@
 
         <ImageView
             android:src="@drawable/bassE"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -269,7 +290,7 @@
 
         <ImageView
             android:src="@drawable/bassH"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -280,7 +301,7 @@
 
         <ImageView
             android:src="@drawable/bassFsh"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -291,7 +312,7 @@
 
         <ImageView
             android:src="@drawable/bassCsh"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -302,7 +323,7 @@
 
         <ImageView
             android:src="@drawable/bassCb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -313,7 +334,7 @@
 
         <ImageView
             android:src="@drawable/bassGb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -324,7 +345,7 @@
 
         <ImageView
             android:src="@drawable/bassDb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -335,7 +356,7 @@
 
         <ImageView
             android:src="@drawable/bassAb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -346,7 +367,7 @@
 
         <ImageView
             android:src="@drawable/bassEb"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -357,7 +378,7 @@
 
         <ImageView
             android:src="@drawable/bassB"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
@@ -368,7 +389,7 @@
 
         <ImageView
             android:src="@drawable/bassF"
-            android:layout_width="180dp"
+            android:layout_width="200dp"
             android:layout_marginLeft="100dp"
             android:layout_height="145dp"
             android:translationZ="1000dp"
