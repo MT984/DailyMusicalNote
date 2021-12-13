@@ -25,11 +25,11 @@ namespace DailyMusicalNote
             //Full screen
             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
+            //Finding elements by id
             TextView topBarNotesLeftValue = FindViewById<TextView>(Resource.Id.topBar_notesLeft_value);
 
             ImageView trebleClef = FindViewById<ImageView>(Resource.Id.trebleClef);
             ImageView bassClef = FindViewById<ImageView>(Resource.Id.bassClef);
-
             ImageView[] musicKeys =
             {
                 trebleClef,
@@ -85,18 +85,27 @@ namespace DailyMusicalNote
                  FindViewById<ImageView>(Resource.Id.c5)
             };
 
+            //KeyMechanism myKey1 = new KeyMechanism("c4_key", "c4");
+            //myKey1.ClickHander();
+            int foo = Resources.GetIdentifier("c5_key", "id", PackageName);
+
+            KeyMechanism myKey2 = new KeyMechanism("c5_key", "c5");
+            myKey2.ClickHander();
+
             //Button testButton = FindViewById<Button>(Resource.Id.button1);
             Button a0 = FindViewById<Button>(Resource.Id.a4_key);
-            ImageButton a0sh = FindViewById<ImageButton>(Resource.Id.a4sh_key);
-            Button b0 = FindViewById<Button>(Resource.Id.b4_key);
+                ImageButton a0sh = FindViewById<ImageButton>(Resource.Id.a4sh_key);
+                Button b0 = FindViewById<Button>(Resource.Id.b4_key);
 
+                a0.Click += (s, e) => topBarNotesLeftValue.Text = "a0";
+                a0sh.Click += (s, e) => topBarNotesLeftValue.Text = "a0sh";
+                b0.Click += (s, e) => topBarNotesLeftValue.Text = "b0";
+
+            //Variable to count how many notes on the sheet has been shown
             byte noteCounter = 1;
-            nextNote();
-            //testButton.Click += (s, e) => nextNote();
 
-            a0.Click += (s, e) => topBarNotesLeftValue.Text = "a0";
-            a0sh.Click += (s, e) => topBarNotesLeftValue.Text = "a0sh";
-            b0.Click += (s, e) => topBarNotesLeftValue.Text = "b0";
+            //Initialize game mechanism
+            nextNote();
 
             void nextNote()
             {
@@ -118,12 +127,12 @@ namespace DailyMusicalNote
                     //Show random elements. It is ependence of chosen dificulty
                     switch (MyEnums.ChoseDifficulty)
                     {
-                        //Only treble clef
+                        //Easy - Only treble clef
                         case MyEnums.DifficultyMode.Easy:
                             trebleClef.Visibility = Android.Views.ViewStates.Visible;
                             break;
 
-                        //Treble and bass clef
+                        //Medium - Treble and bass clef
                         case MyEnums.DifficultyMode.Medium:
 
                             switch (randomNumbers.Next(0, 2))
@@ -139,7 +148,7 @@ namespace DailyMusicalNote
 
                             break;
 
-                        //All clefs and all music keys
+                        //Hard - All clefs and all music keys
                         case MyEnums.DifficultyMode.Hard:
 
                             musicKeys[randomNumbers.Next(0, musicKeys.Length)].Visibility = Android.Views.ViewStates.Visible;

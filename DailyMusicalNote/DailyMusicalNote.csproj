@@ -75,6 +75,7 @@
     <Compile Include="DifficultyActivity.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="HistoryActivity.cs" />
+    <Compile Include="KeyMechanism.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyEnums.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
