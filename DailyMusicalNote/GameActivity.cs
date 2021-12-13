@@ -85,11 +85,18 @@ namespace DailyMusicalNote
                  FindViewById<ImageView>(Resource.Id.c5)
             };
 
-            Button testButton = FindViewById<Button>(Resource.Id.button1);
+            //Button testButton = FindViewById<Button>(Resource.Id.button1);
+            Button a0 = FindViewById<Button>(Resource.Id.a4_key);
+            ImageButton a0sh = FindViewById<ImageButton>(Resource.Id.a4sh_key);
+            Button b0 = FindViewById<Button>(Resource.Id.b4_key);
 
             byte noteCounter = 1;
             nextNote();
-            testButton.Click += (s, e) => nextNote();
+            //testButton.Click += (s, e) => nextNote();
+
+            a0.Click += (s, e) => topBarNotesLeftValue.Text = "a0";
+            a0sh.Click += (s, e) => topBarNotesLeftValue.Text = "a0sh";
+            b0.Click += (s, e) => topBarNotesLeftValue.Text = "b0";
 
             void nextNote()
             {
@@ -135,13 +142,11 @@ namespace DailyMusicalNote
                         //All clefs and all music keys
                         case MyEnums.DifficultyMode.Hard:
 
-                            //MyEnums.MusicKey musicKey = (MyEnums.MusicKey)randomNumbers.Next(0, musicKeys.Length + 1);
-                            //musicKeys[(byte)musicKey].Visibility = Android.Views.ViewStates.Visible;
-
                             musicKeys[randomNumbers.Next(0, musicKeys.Length)].Visibility = Android.Views.ViewStates.Visible;
                             break;
                     }
 
+                    //enuma dodac
                     keys[randomNumbers.Next(0,keys.Length)].Visibility = Android.Views.ViewStates.Visible;
 
                     //ifa dodac na wyglad
@@ -151,7 +156,7 @@ namespace DailyMusicalNote
                 else
                 {
                     topBarNotesLeftValue.Text = "KONIEC";
-                    testButton.Click += (s, e) => Finish();
+                    //testButton.Click += (s, e) => Finish();
                 }
             }
         }

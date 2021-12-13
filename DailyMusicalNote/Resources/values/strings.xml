@@ -11,5 +11,11 @@
     <string name="emptyStaff_string">Pięciolinia</string>
     <string name="topBar_notesLeft_string">Nuta: </string>
     <string name="topBar_notesLeft_value_string">0/15</string>
+    <string name="default_string">ERR</string>
+    <string name="c2_string">C2</string>
+    <string name="c3_string">C3</string>
+    <string name="c4_string">C4</string>
+    <string name="c5_string">C5</string>
+    <string name="c6_string">C6</string>
 </resources>
 

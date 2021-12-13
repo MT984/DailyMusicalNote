@@ -605,12 +605,288 @@
         android:layout_height="0.01dp"
         android:layout_weight="5"
         android:background="#ddd"
-        android:id="@+id/pianoKeyboardLayout" />
-    <Button
+        android:id="@+id/pianoKeyboardLayout" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/pianoKeyboardLayoutCentered">
+
+        <Button
+            android:id="@+id/a3_key"
+            android:translationZ="1dp"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/a3sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="24dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/b3_key"
+            android:layout_toRightOf="@id/a3_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <Button
+            android:text="@string/c4_string"
+            android:paddingTop="150dp"
+            android:translationZ="1dp"
+            android:id="@+id/c4_key"
+            android:layout_toRightOf="@id/b3_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/c4sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="88dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/d4_key"
+            android:layout_toRightOf="@id/c4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/d1sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="120dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/e4_key"
+            android:layout_toRightOf="@id/d4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/f4_key"
+            android:layout_toRightOf="@id/e4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/f4sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="184dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/g4_key"
+            android:layout_toRightOf="@id/f4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/g4sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="216dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"
+            android:id="@+id/a4_key"
+            android:layout_toRightOf="@id/g4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/a4sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="248dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/b4_key"
+            android:layout_toRightOf="@id/a4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <Button
+            android:text="@string/c5_string"
+            android:paddingTop="150dp"
+            android:translationZ="1dp"       
+            android:id="@+id/c5_key"
+            android:layout_toRightOf="@id/b4_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/c5sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="312dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/d5_key"
+            android:layout_toRightOf="@id/c5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/d5sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="344dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/e5_key"
+            android:layout_toRightOf="@id/d5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/f5_key"
+            android:layout_toRightOf="@id/e5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/f5sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="408dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/g5_key"
+            android:layout_toRightOf="@id/f5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/g5sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="440dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/a5_key"
+            android:layout_toRightOf="@id/g5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <ImageButton
+            android:id="@+id/a5sh_key"
+            android:translationZ="1000dp"
+            android:layout_marginLeft="472dp"
+            android:layout_width="16dp"
+            android:layout_height="100dp"
+            android:background="#000"
+            android:contentDescription="@string/default_string"           
+         />
+
+        <Button
+            android:translationZ="1dp"       
+            android:id="@+id/b5_key"
+            android:layout_toRightOf="@id/a5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+
+        <Button
+            android:text="@string/c6_string"
+            android:paddingTop="150dp"
+            android:translationZ="1dp"       
+            android:id="@+id/c6_key"
+            android:layout_toRightOf="@id/b5_key"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whitebutton"
+         />
+            </RelativeLayout>
+    </RelativeLayout>
+    <!-- <Button
         android:text="TestButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:id="@+id/button1" /> -->
 
 
 </LinearLayout>
