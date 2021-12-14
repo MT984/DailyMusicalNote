@@ -671,7 +671,7 @@
          />
 
         <ImageButton
-            android:id="@+id/d1sh_key"
+            android:id="@+id/d4sh_key"
             android:translationZ="1000dp"
             android:layout_marginLeft="120dp"
             android:layout_width="16dp"

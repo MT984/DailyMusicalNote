@@ -85,23 +85,68 @@ namespace DailyMusicalNote
                  FindViewById<ImageView>(Resource.Id.c5)
             };
 
-            //KeyMechanism myKey1 = new KeyMechanism("c4_key", "c4");
-            //myKey1.ClickHander();
-            int foo = Resources.GetIdentifier("c5_key", "id", PackageName);
+            Activity myActivity = this;
+            Context myContext = Android.App.Application.Context;
 
-            Activity mActivity = this;
-            Context context = Android.App.Application.Context;
-            KeyMechanism myKey2 = new KeyMechanism("button1", "c5", mActivity, context);
-            myKey2.ClickHander();
+            KeyMechanism[] pianoKeys =
+            {
+                //Order like in real keyboard, not alphabetically
+                 new KeyMechanism("c6_key", myActivity, myContext),
 
-            //Button testButton = FindViewById<Button>(Resource.Id.button1);
-            Button a0 = FindViewById<Button>(Resource.Id.a4_key);
-                ImageButton a0sh = FindViewById<ImageButton>(Resource.Id.a4sh_key);
-                Button b0 = FindViewById<Button>(Resource.Id.b4_key);
+                 new KeyMechanism("b5_key", myActivity, myContext),
+                 new KeyMechanism("a5sh_key", myActivity, myContext),
+                 new KeyMechanism("a5_key", myActivity, myContext),
+                 new KeyMechanism("g5sh_key", myActivity, myContext),
+                 new KeyMechanism("g5_key", myActivity, myContext),
+                 new KeyMechanism("f5sh_key", myActivity, myContext),             
+                 new KeyMechanism("f5_key", myActivity, myContext),             
+                 new KeyMechanism("e5_key", myActivity, myContext),             
+                 new KeyMechanism("d5sh_key", myActivity, myContext),             
+                 new KeyMechanism("d5_key", myActivity, myContext),                      
+                 new KeyMechanism("c5sh_key", myActivity, myContext), 
+                 new KeyMechanism("c5_key", myActivity, myContext),
 
-                a0.Click += (s, e) => topBarNotesLeftValue.Text = "a0";
-                a0sh.Click += (s, e) => topBarNotesLeftValue.Text = "a0sh";
-                b0.Click += (s, e) => topBarNotesLeftValue.Text = "b0";
+                 new KeyMechanism("b4_key", myActivity, myContext),
+                 new KeyMechanism("a4sh_key", myActivity, myContext),
+                 new KeyMechanism("a4_key", myActivity, myContext),
+                 new KeyMechanism("g4sh_key", myActivity, myContext),
+                 new KeyMechanism("g4_key", myActivity, myContext),
+                 new KeyMechanism("f4sh_key", myActivity, myContext),
+                 new KeyMechanism("f4_key", myActivity, myContext),
+                 new KeyMechanism("e4_key", myActivity, myContext),
+                 new KeyMechanism("d4sh_key", myActivity, myContext),
+                 new KeyMechanism("d4_key", myActivity, myContext),
+                 new KeyMechanism("c4sh_key", myActivity, myContext),
+                 new KeyMechanism("c4_key", myActivity, myContext),
+
+                 new KeyMechanism("b3_key", myActivity, myContext),
+                 new KeyMechanism("a3sh_key", myActivity, myContext),
+                 new KeyMechanism("a3_key", myActivity, myContext)
+
+                 //Below bass clef - coming soon
+                 //new KeyMechanism("g3sh_key", myActivity, myContext),
+                 //new KeyMechanism("gsh_key", myActivity, myContext),
+                 //new KeyMechanism("f3sh_key", myActivity, myContext),
+                 //new KeyMechanism("f3_key", myActivity, myContext),
+                 //new KeyMechanism("e3_key", myActivity, myContext),
+                 //new KeyMechanism("d3sh_key", myActivity, myContext),
+                 //new KeyMechanism("d3_key", myActivity, myContext),
+                 //new KeyMechanism("c3sh_key", myActivity, myContext),
+                 //new KeyMechanism("c3_key", myActivity, myContext),
+
+                 //new KeyMechanism("b2_key", myActivity, myContext),
+                 //new KeyMechanism("a2sh_key", myActivity, myContext),
+                 //new KeyMechanism("a2_key", myActivity, myContext),
+                 //new KeyMechanism("g2sh_key", myActivity, myContext),
+                 //new KeyMechanism("g2_key", myActivity, myContext),
+                 //new KeyMechanism("f2sh_key", myActivity, myContext),
+                 //new KeyMechanism("f2_key", myActivity, myContext),
+                 //new KeyMechanism("e2_key", myActivity, myContext),
+                 //new KeyMechanism("d2sh_key", myActivity, myContext),
+                 //new KeyMechanism("d2_key", myActivity, myContext),
+                 //new KeyMechanism("c2sh_key", myActivity, myContext),
+                 //new KeyMechanism("c2_key", myActivity, myContext)
+            };
 
             //Variable to count how many notes on the sheet has been shown
             byte noteCounter = 1;
@@ -141,10 +186,12 @@ namespace DailyMusicalNote
                             {
                                 case 0:
                                     trebleClef.Visibility = Android.Views.ViewStates.Visible;
+                                    MyEnums.currentClef = MyEnums.ClefList.treble;
                                     break;
 
                                 case 1:
                                     bassClef.Visibility = Android.Views.ViewStates.Visible;
+                                    MyEnums.currentClef = MyEnums.ClefList.bass;
                                     break;
                             }
 
@@ -152,8 +199,9 @@ namespace DailyMusicalNote
 
                         //Hard - All clefs and all music keys
                         case MyEnums.DifficultyMode.Hard:
-
-                            musicKeys[randomNumbers.Next(0, musicKeys.Length)].Visibility = Android.Views.ViewStates.Visible;
+                            int randomVal = randomNumbers.Next(0, musicKeys.Length);
+                            musicKeys[randomVal].Visibility = Android.Views.ViewStates.Visible;
+                            MyEnums.currentClef = randomVal > 14 ? MyEnums.ClefList.bass : MyEnums.ClefList.treble;
                             break;
                     }
 

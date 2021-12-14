@@ -3927,16 +3927,16 @@ namespace DailyMusicalNote
 			public const int customPanel = 2131230854;
 			
 			// aapt resource value: 0x7F080087
-			public const int d1sh_key = 2131230855;
+			public const int d3 = 2131230855;
 			
 			// aapt resource value: 0x7F080088
-			public const int d3 = 2131230856;
-			
-			// aapt resource value: 0x7F080089
-			public const int d4 = 2131230857;
+			public const int d4 = 2131230856;
 			
 			// aapt resource value: 0x7F08008A
-			public const int d4_key = 2131230858;
+			public const int d4sh_key = 2131230858;
+			
+			// aapt resource value: 0x7F080089
+			public const int d4_key = 2131230857;
 			
 			// aapt resource value: 0x7F08008C
 			public const int d5sh_key = 2131230860;

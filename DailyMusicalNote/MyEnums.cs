@@ -67,5 +67,15 @@ namespace DailyMusicalNote
 
         //Initializaton of MusicKey enum variable. Default (easy mode) is key C
         static public MusicKey currentKey = MusicKey.trebleC;
+
+        //Enum describe current clef - bass or treble
+        public enum ClefList : byte
+        {
+            treble,
+            bass
+        }
+
+        //Initialization of current clef. Default treble
+        static public ClefList currentClef = ClefList.treble;
     }
 }
