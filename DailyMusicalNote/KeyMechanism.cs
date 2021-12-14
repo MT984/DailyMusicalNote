@@ -15,22 +15,27 @@ namespace DailyMusicalNote
     class KeyMechanism : Activity
     {
         private string elementId, AudioFileName;
-        public KeyMechanism(string elementId, string AudioFileName)
+        private Activity mActivity;
+        private Context context;
+        public KeyMechanism(string elementId, string AudioFileName, Activity mActivity, Context context)
         {
             this.elementId = elementId;
             this.AudioFileName = AudioFileName;
+            this.mActivity = mActivity;
+            this.context = context;
         }
 
         public void ClickHander()
         {
-            int foo = Resources.GetIdentifier("c5_key", "id", PackageName);
-            var pianoKey = FindViewById( foo );
+            int foo = mActivity.Resources.GetIdentifier(elementId, "id", context.PackageName);
+            var pianoKey = mActivity.FindViewById( foo );
 
             MediaPlayer player;
             player = new MediaPlayer();
             player.Reset();
 
-            var fileDescriptor = Assets.OpenFd("Sounds/"+AudioFileName+".mp3");
+            //var fileDescriptor = Assets.OpenFd("Sounds/"+AudioFileName+".mp3");
+            var fileDescriptor = mActivity.Assets.OpenFd("Sounds/c5.mp3");
 
             player.SetDataSource(fileDescriptor.FileDescriptor, fileDescriptor.StartOffset, fileDescriptor.Length);
 

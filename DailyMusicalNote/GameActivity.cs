@@ -89,7 +89,9 @@ namespace DailyMusicalNote
             //myKey1.ClickHander();
             int foo = Resources.GetIdentifier("c5_key", "id", PackageName);
 
-            KeyMechanism myKey2 = new KeyMechanism("c5_key", "c5");
+            Activity mActivity = this;
+            Context context = Android.App.Application.Context;
+            KeyMechanism myKey2 = new KeyMechanism("button1", "c5", mActivity, context);
             myKey2.ClickHander();
 
             //Button testButton = FindViewById<Button>(Resource.Id.button1);
