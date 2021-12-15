@@ -31,6 +31,7 @@ namespace DailyMusicalNote
 
         private void ClickHander()
         {
+            GameActivity.my
             //int foo = myActivity.Resources.GetIdentifier(elementId, "id", myContext.PackageName);
             var pianoKey = myActivity.FindViewById( myActivity.Resources.GetIdentifier(elementId, "id", myContext.PackageName) );
 
