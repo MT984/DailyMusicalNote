@@ -11,21 +11,26 @@ using System.Text;
 
 namespace DailyMusicalNote
 {
-    class GameMechanism : GameActivity
+    public class GameMechanism : GameActivity
     {
-        private Activity myActivity;
-        private Context myContext;
+        private readonly Activity myActivity;
+        private readonly Context myContext;
         private ImageView trebleClef, bassClef;
         private ImageView[] musicKeys, keys, pianoKeys;
         private TextView topBarNotesLeftValue;
 
         //Variable to count how many notes on the sheet has been shown
-        private byte noteCounter = 1;
+        private byte noteCounter;
+
         public GameMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
             this.myContext = myContext;
+            noteCounter = 1;
+        }
 
+        public void CreateMechanism()
+        {
             //Finding elements by id
             trebleClef = myActivity.FindViewById<ImageView>(Resource.Id.trebleClef);
             bassClef = myActivity.FindViewById<ImageView>(Resource.Id.bassClef);
@@ -150,7 +155,7 @@ namespace DailyMusicalNote
             };
             pianoKeys = tempKeys;
         }
-        public void nextNote()
+        public void NextNote()
         {
             Random randomNumbers = new Random();
             if (noteCounter <= 50)

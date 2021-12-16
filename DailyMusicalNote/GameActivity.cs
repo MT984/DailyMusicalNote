@@ -17,7 +17,7 @@ namespace DailyMusicalNote
     [Activity(Label = "GameActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class GameActivity : Activity 
     {
-        public GameMechanism myGame;
+        public static GameMechanism myGame;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,11 +30,12 @@ namespace DailyMusicalNote
             Context myContext = Android.App.Application.Context;
             Button testButton = FindViewById<Button>(Resource.Id.button1);
             myGame = new GameMechanism(myActivity, myContext);
+            myGame.CreateMechanism();
 
             //Initialize game mechanism
-            myGame.nextNote();
+            myGame.NextNote();
 
-            testButton.Click += (s, e) => myGame.nextNote();
+            testButton.Click += (s, e) => myGame.NextNote();
         }
     }
 }

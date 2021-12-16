@@ -15,8 +15,8 @@ namespace DailyMusicalNote
     class KeyMechanism : Activity
     {
         private string elementId = "temp", AudioFileName = "temp";
-        private Activity myActivity;
-        private Context myContext;
+        private readonly Activity myActivity;
+        private readonly Context myContext;
         public KeyMechanism(string elementId, Activity myActivity, Context myContext)
         {
             this.elementId = elementId;
@@ -31,7 +31,6 @@ namespace DailyMusicalNote
 
         private void ClickHander()
         {
-            GameActivity.my
             //int foo = myActivity.Resources.GetIdentifier(elementId, "id", myContext.PackageName);
             var pianoKey = myActivity.FindViewById( myActivity.Resources.GetIdentifier(elementId, "id", myContext.PackageName) );
 
@@ -47,10 +46,13 @@ namespace DailyMusicalNote
             pianoKey.Touch += (s, e) =>
             {
                 bool handled = false;
+
+                //Key down
                 if (e.Event.Action == MotionEventActions.Down)
                 {
+                    GameActivity.myGame.NextNote();
                     //Add click visual effect
-                    if(elementId.Contains("sh"))
+                    if (elementId.Contains("sh"))
                     {
                         //black keys
                         pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(40, 40, 40));   
@@ -66,6 +68,7 @@ namespace DailyMusicalNote
                     player.Start();
                     handled = true;
                 }
+                //Key up
                 else if (e.Event.Action == MotionEventActions.Up)
                 {
                     //Remove click visual effect
