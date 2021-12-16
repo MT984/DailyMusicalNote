@@ -206,10 +206,12 @@ namespace DailyMusicalNote
                 }
 
                 //enuma dodac
-                keys[randomNumbers.Next(0, keys.Length)].Visibility = Android.Views.ViewStates.Visible;
+                int keyIndex = randomNumbers.Next(0, keys.Length);
+                keys[keyIndex].Visibility = Android.Views.ViewStates.Visible;
 
                 //ifa dodac na wyglad
                 topBarNotesLeftValue.Text = noteCounter + "/50";
+
                 noteCounter++;
             }
             else

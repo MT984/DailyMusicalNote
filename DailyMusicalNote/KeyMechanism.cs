@@ -51,6 +51,10 @@ namespace DailyMusicalNote
                 if (e.Event.Action == MotionEventActions.Down)
                 {
                     GameActivity.myGame.NextNote();
+
+                    //??
+                    MyEnums.clickedKey = (MyEnums.pianoKey)Enum.Parse(typeof(MyEnums.pianoKey), elementId);
+
                     //Add click visual effect
                     if (elementId.Contains("sh"))
                     {
