@@ -3534,25 +3534,25 @@ namespace DailyMusicalNote
 		{
 			
 			// aapt resource value: 0x7F080006
-			public const int a2 = 2131230726;
-			
-			// aapt resource value: 0x7F080007
-			public const int a3 = 2131230727;
-			
-			// aapt resource value: 0x7F080009
-			public const int a3sh_key = 2131230729;
+			public const int a3 = 2131230726;
 			
 			// aapt resource value: 0x7F080008
-			public const int a3_key = 2131230728;
+			public const int a3sh_key = 2131230728;
 			
-			// aapt resource value: 0x7F08000A
-			public const int a4 = 2131230730;
+			// aapt resource value: 0x7F080007
+			public const int a3_key = 2131230727;
 			
-			// aapt resource value: 0x7F08000C
-			public const int a4sh_key = 2131230732;
+			// aapt resource value: 0x7F080009
+			public const int a4 = 2131230729;
 			
 			// aapt resource value: 0x7F08000B
-			public const int a4_key = 2131230731;
+			public const int a4sh_key = 2131230731;
+			
+			// aapt resource value: 0x7F08000A
+			public const int a4_key = 2131230730;
+			
+			// aapt resource value: 0x7F08000C
+			public const int a5 = 2131230732;
 			
 			// aapt resource value: 0x7F08000E
 			public const int a5sh_key = 2131230734;
@@ -3747,19 +3747,19 @@ namespace DailyMusicalNote
 			public const int auto = 2131230795;
 			
 			// aapt resource value: 0x7F08004C
-			public const int b2 = 2131230796;
+			public const int b3 = 2131230796;
 			
 			// aapt resource value: 0x7F08004D
-			public const int b3 = 2131230797;
+			public const int b3_key = 2131230797;
 			
 			// aapt resource value: 0x7F08004E
-			public const int b3_key = 2131230798;
+			public const int b4 = 2131230798;
 			
 			// aapt resource value: 0x7F08004F
-			public const int b4 = 2131230799;
+			public const int b4_key = 2131230799;
 			
 			// aapt resource value: 0x7F080050
-			public const int b4_key = 2131230800;
+			public const int b5 = 2131230800;
 			
 			// aapt resource value: 0x7F080051
 			public const int b5_key = 2131230801;
@@ -3855,25 +3855,25 @@ namespace DailyMusicalNote
 			public const int button_start = 2131230831;
 			
 			// aapt resource value: 0x7F080070
-			public const int c3 = 2131230832;
-			
-			// aapt resource value: 0x7F080071
-			public const int c4 = 2131230833;
-			
-			// aapt resource value: 0x7F080073
-			public const int c4sh_key = 2131230835;
+			public const int c4 = 2131230832;
 			
 			// aapt resource value: 0x7F080072
-			public const int c4_key = 2131230834;
+			public const int c4sh_key = 2131230834;
 			
-			// aapt resource value: 0x7F080074
-			public const int c5 = 2131230836;
+			// aapt resource value: 0x7F080071
+			public const int c4_key = 2131230833;
 			
-			// aapt resource value: 0x7F080076
-			public const int c5sh_key = 2131230838;
+			// aapt resource value: 0x7F080073
+			public const int c5 = 2131230835;
 			
 			// aapt resource value: 0x7F080075
-			public const int c5_key = 2131230837;
+			public const int c5sh_key = 2131230837;
+			
+			// aapt resource value: 0x7F080074
+			public const int c5_key = 2131230836;
+			
+			// aapt resource value: 0x7F080076
+			public const int c6 = 2131230838;
 			
 			// aapt resource value: 0x7F080077
 			public const int c6_key = 2131230839;
@@ -3927,16 +3927,16 @@ namespace DailyMusicalNote
 			public const int customPanel = 2131230854;
 			
 			// aapt resource value: 0x7F080087
-			public const int d3 = 2131230855;
-			
-			// aapt resource value: 0x7F080088
-			public const int d4 = 2131230856;
-			
-			// aapt resource value: 0x7F08008A
-			public const int d4sh_key = 2131230858;
+			public const int d4 = 2131230855;
 			
 			// aapt resource value: 0x7F080089
-			public const int d4_key = 2131230857;
+			public const int d4sh_key = 2131230857;
+			
+			// aapt resource value: 0x7F080088
+			public const int d4_key = 2131230856;
+			
+			// aapt resource value: 0x7F08008A
+			public const int d5 = 2131230858;
 			
 			// aapt resource value: 0x7F08008C
 			public const int d5sh_key = 2131230860;
@@ -3975,13 +3975,13 @@ namespace DailyMusicalNote
 			public const int disableHome = 2131230870;
 			
 			// aapt resource value: 0x7F080097
-			public const int e3 = 2131230871;
+			public const int e4 = 2131230871;
 			
 			// aapt resource value: 0x7F080098
-			public const int e4 = 2131230872;
+			public const int e4_key = 2131230872;
 			
 			// aapt resource value: 0x7F080099
-			public const int e4_key = 2131230873;
+			public const int e5 = 2131230873;
 			
 			// aapt resource value: 0x7F08009A
 			public const int e5_key = 2131230874;
@@ -4011,16 +4011,16 @@ namespace DailyMusicalNote
 			public const int expand_activities_button = 2131230881;
 			
 			// aapt resource value: 0x7F0800A3
-			public const int f3 = 2131230883;
-			
-			// aapt resource value: 0x7F0800A4
-			public const int f4 = 2131230884;
-			
-			// aapt resource value: 0x7F0800A6
-			public const int f4sh_key = 2131230886;
+			public const int f4 = 2131230883;
 			
 			// aapt resource value: 0x7F0800A5
-			public const int f4_key = 2131230885;
+			public const int f4sh_key = 2131230885;
+			
+			// aapt resource value: 0x7F0800A4
+			public const int f4_key = 2131230884;
+			
+			// aapt resource value: 0x7F0800A6
+			public const int f5 = 2131230886;
 			
 			// aapt resource value: 0x7F0800A8
 			public const int f5sh_key = 2131230888;
@@ -4053,16 +4053,16 @@ namespace DailyMusicalNote
 			public const int FUNCTION = 2131230722;
 			
 			// aapt resource value: 0x7F0800B0
-			public const int g3 = 2131230896;
-			
-			// aapt resource value: 0x7F0800B1
-			public const int g4 = 2131230897;
-			
-			// aapt resource value: 0x7F0800B3
-			public const int g4sh_key = 2131230899;
+			public const int g4 = 2131230896;
 			
 			// aapt resource value: 0x7F0800B2
-			public const int g4_key = 2131230898;
+			public const int g4sh_key = 2131230898;
+			
+			// aapt resource value: 0x7F0800B1
+			public const int g4_key = 2131230897;
+			
+			// aapt resource value: 0x7F0800B3
+			public const int g5 = 2131230899;
 			
 			// aapt resource value: 0x7F0800B5
 			public const int g5sh_key = 2131230901;

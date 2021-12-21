@@ -1,15 +1,4 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DailyMusicalNote
+﻿namespace DailyMusicalNote
 {
     class MyEnums
     {
@@ -138,6 +127,9 @@ namespace DailyMusicalNote
 
         //Initialization of variable which stores clicked key
         public static pianoKey clickedKey = pianoKey.c6_key;
+
+        //Initialization of variable which stores which key is displayed
+        public static pianoKey showedKey = pianoKey.c6_key;
 
         //Initialization of variable which stores draw by lot note
         public static pianoKey currentRandomNote = pianoKey.c6_key;

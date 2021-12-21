@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,9 @@ namespace DailyMusicalNote
         private readonly Activity myActivity;
         private readonly Context myContext;
         private ImageView trebleClef, bassClef;
-        private ImageView[] musicKeys, keys, pianoKeys;
+        private ImageView[] musicKeys, pianoKeys, tempKeys;
         private TextView topBarNotesLeftValue;
+        private NoteMechanism[] notes;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -72,27 +74,30 @@ namespace DailyMusicalNote
             };
             musicKeys = tempMusicKeys;
 
-            ImageView[] tempKeys =
+            NoteMechanism[] tempNotes =
             {
-                 myActivity.FindViewById<ImageView>(Resource.Id.a2),
-                 myActivity.FindViewById<ImageView>(Resource.Id.b2),
-                 myActivity.FindViewById<ImageView>(Resource.Id.c3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.d3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.e3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.f3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.g3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.a3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.b3),
-                 myActivity.FindViewById<ImageView>(Resource.Id.c4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.d4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.e4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.f4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.g4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.a4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.b4),
-                 myActivity.FindViewById<ImageView>(Resource.Id.c5)
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c6), "c6_key"),
+
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c5), "c5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d5), "d5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e5), "e5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f5), "f5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g5), "g5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a5), "a5_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b5), "b5_key"),
+
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c4), "c4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d4), "d4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e4), "e4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f4), "f4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g4), "g4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a4), "a4_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b4), "b4_key"),
+
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a3), "a3_key"),
+                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b3), "b3_key")
             };
-            keys = tempKeys;
+            notes = tempNotes;
 
             KeyMechanism[] tempPianoKeys =
             {
@@ -158,7 +163,7 @@ namespace DailyMusicalNote
         public void NextNote()
         {
             Random randomNumbers = new Random();
-            if (noteCounter <= 50)
+            if (noteCounter <= 500)
             {
                 //Hide all unnecessary elements
                 foreach (ImageView im in musicKeys)
@@ -166,9 +171,9 @@ namespace DailyMusicalNote
                     im.Visibility = Android.Views.ViewStates.Gone;
                 }
 
-                foreach (ImageView im in keys)
+                foreach (NoteMechanism im in notes)
                 {
-                    im.Visibility = Android.Views.ViewStates.Gone;
+                    im.DelVisibility();
                 }
 
                 //Show random elements. It is ependence of chosen dificulty
@@ -206,11 +211,22 @@ namespace DailyMusicalNote
                 }
 
                 //enuma dodac
-                int keyIndex = randomNumbers.Next(0, keys.Length);
-                keys[keyIndex].Visibility = Android.Views.ViewStates.Visible;
+
+                int keyIndex = randomNumbers.Next(0, notes.Length);
+                notes[keyIndex].SetVisibility();
 
                 //ifa dodac na wyglad
-                topBarNotesLeftValue.Text = noteCounter + "/50";
+                //topBarNotesLeftValue.Text = noteCounter + "/50";
+
+                if(MyEnums.showedKey.ToString() == MyEnums.clickedKey.ToString())
+                {
+                    topBarNotesLeftValue.Text = "TAK";
+                }
+                else
+                {
+                    topBarNotesLeftValue.Text = "NIE";
+                }
+                //topBarNotesLeftValue.Text = MyEnums.showedKey.ToString();
 
                 noteCounter++;
             }
