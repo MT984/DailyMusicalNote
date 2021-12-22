@@ -44,7 +44,6 @@ namespace DailyMusicalNote
                 //Key down
                 if (e.Event.Action == MotionEventActions.Down)
                 {
-                    GameActivity.myGame.NextNote();
                     MyEnums.clickedKey = (MyEnums.pianoKey)Enum.Parse(typeof(MyEnums.pianoKey), elementId);
 
                     //Add click visual effect
@@ -63,6 +62,8 @@ namespace DailyMusicalNote
                     player.Prepare();
                     player.Start();
                     handled = true;
+
+                    GameActivity.myGame.NextNote();
                 }
                 //Key up
                 else if (e.Event.Action == MotionEventActions.Up)

@@ -18,8 +18,9 @@ namespace DailyMusicalNote
         private readonly Context myContext;
         private ImageView trebleClef, bassClef;
         private ImageView[] musicKeys, pianoKeys, tempKeys;
-        private TextView topBarNotesLeftValue;
+        private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue;
         private NoteMechanism[] notes;
+        private int wrongAnsers = 0, keyIndex = 0;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -37,6 +38,7 @@ namespace DailyMusicalNote
             trebleClef = myActivity.FindViewById<ImageView>(Resource.Id.trebleClef);
             bassClef = myActivity.FindViewById<ImageView>(Resource.Id.bassClef);
             topBarNotesLeftValue = myActivity.FindViewById<TextView>(Resource.Id.topBar_notesLeft_value);
+            topBarWrongAnswersLeftValue = myActivity.FindViewById<TextView>(Resource.Id.topBar_wrongAnswers_value);
 
             ImageView[] tempMusicKeys =
            {
@@ -163,7 +165,15 @@ namespace DailyMusicalNote
         public void NextNote()
         {
             Random randomNumbers = new Random();
-            if (noteCounter <= 500)
+
+            if (MyEnums.showedKey.ToString() != MyEnums.clickedKey.ToString())
+            {
+                //If values are differnt
+                wrongAnsers++;
+                topBarWrongAnswersLeftValue.Text = wrongAnsers.ToString();
+                notes[keyIndex].incorrectAnimation();
+            }
+            else if (noteCounter <= 250)
             {
                 //Hide all unnecessary elements
                 foreach (ImageView im in musicKeys)
@@ -210,23 +220,11 @@ namespace DailyMusicalNote
                         break;
                 }
 
-                //enuma dodac
-
-                int keyIndex = randomNumbers.Next(0, notes.Length);
+                keyIndex = randomNumbers.Next(0, notes.Length);
                 notes[keyIndex].SetVisibility();
 
                 //ifa dodac na wyglad
-                //topBarNotesLeftValue.Text = noteCounter + "/50";
-
-                if(MyEnums.showedKey.ToString() == MyEnums.clickedKey.ToString())
-                {
-                    topBarNotesLeftValue.Text = "TAK";
-                }
-                else
-                {
-                    topBarNotesLeftValue.Text = "NIE";
-                }
-                //topBarNotesLeftValue.Text = MyEnums.showedKey.ToString();
+                topBarNotesLeftValue.Text = noteCounter + "/250";
 
                 noteCounter++;
             }

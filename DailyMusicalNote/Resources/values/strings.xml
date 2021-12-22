@@ -10,7 +10,9 @@
     <string name="hard_string">Trudny</string>
     <string name="emptyStaff_string">Pięciolinia</string>
     <string name="topBar_notesLeft_string">Nuta: </string>
+    <string name="topBar_wrongAnswers_string">Błędy: </string>
     <string name="topBar_notesLeft_value_string">0/15</string>
+    <string name="topBar_wrongAnswers_value_string">0</string>
     <string name="default_string">ERR</string>
     <string name="c2_string">C2</string>
     <string name="c3_string">C3</string>
