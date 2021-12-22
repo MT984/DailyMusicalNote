@@ -11,6 +11,7 @@ namespace DailyMusicalNote
         private string elementId = "temp", AudioFileName = "temp";
         private readonly Activity myActivity;
         private readonly Context myContext;
+        private bool disableKeyFlag = false;
         public KeyMechanism(string elementId, Activity myActivity, Context myContext)
         {
             this.elementId = elementId;
@@ -37,56 +38,95 @@ namespace DailyMusicalNote
             //Wywala jakis dziwny blad po randomowym czasie
             player.SetDataSource(fileDescriptor.FileDescriptor, fileDescriptor.StartOffset, fileDescriptor.Length);
 
-            pianoKey.Touch += (s, e) =>
-            {
-                bool handled = false;
-
-                //Key down
-                if (e.Event.Action == MotionEventActions.Down)
+                pianoKey.Touch += (s, e) =>
                 {
-                    MyEnums.clickedKey = (MyEnums.pianoKey)Enum.Parse(typeof(MyEnums.pianoKey), elementId);
-
-                    //Add click visual effect
-                    if (elementId.Contains("sh"))
+                    if (!disableKeyFlag)
                     {
-                        //black keys
-                        pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(40, 40, 40));   
+                        bool handled = false;
+
+                        //Key down
+                        if (e.Event.Action == MotionEventActions.Down)
+                        {
+                            MyEnums.clickedKey = (MyEnums.pianoKey)Enum.Parse(typeof(MyEnums.pianoKey), elementId);
+
+                            //Add click visual effect
+                            if (elementId.Contains("sh"))
+                            {
+                                //black keys
+                                pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(40, 40, 40));
+                            }
+                            else
+                            {
+                                //white keys
+                                pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(195, 195, 195));
+                            }
+
+                            //Start play note
+                            player.Prepare();
+                            player.Start();
+                            handled = true;
+
+                            GameActivity.myGame.NextNote();
+                        }
+                        //Key up
+                        else if (e.Event.Action == MotionEventActions.Up)
+                        {
+                            //Remove click visual effect
+                            if (elementId.Contains("sh"))
+                            {
+                                //black keys
+                                pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(0, 0, 0));
+                            }
+                            else
+                            {
+                                //white keys
+                                pianoKey.Background = myActivity.GetDrawable(Resource.Drawable.whiteButton);
+                            }
+
+                            //Stop play note
+                            player.Stop();
+                            handled = true;
+                        }
+
+                        e.Handled = handled;
                     }
                     else
                     {
-                        //white keys
-                        pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(195, 195, 195));
-                    }
-                    
-                    //Start play note
-                    player.Prepare();
-                    player.Start();
-                    handled = true;
+                        bool handled = false;
 
-                    GameActivity.myGame.NextNote();
-                }
-                //Key up
-                else if (e.Event.Action == MotionEventActions.Up)
-                {
-                    //Remove click visual effect
-                    if (elementId.Contains("sh"))
-                    {
-                        //black keys
-                        pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(0, 0, 0));
-                    }
-                    else
-                    {
-                        //white keys
-                        pianoKey.Background = myActivity.GetDrawable(Resource.Drawable.whiteButton);
-                    }
+                        //Key down
+                        if (e.Event.Action == MotionEventActions.Down)
+                        {
+                            //do nothing
+                        }
+                        //Key up
+                        else if (e.Event.Action == MotionEventActions.Up)
+                        {
+                            //Remove click visual effect
+                            if (elementId.Contains("sh"))
+                            {
+                                //black keys
+                                pianoKey.SetBackgroundColor(color: Android.Graphics.Color.Rgb(0, 0, 0));
+                            }
+                            else
+                            {
+                                //white keys
+                                pianoKey.Background = myActivity.GetDrawable(Resource.Drawable.whiteButton);
+                            }
 
-                    //Stop play note
-                    player.Stop();
-                    handled = true;
-                }
+                            //Stop play note
+                            player.Stop();
+                            handled = true;
+                        }
 
-                e.Handled = handled;
-            };
+                        e.Handled = handled;
+                    }
+                };           
+        }
+
+        public void DisableKey()
+        {
+            disableKeyFlag = true;
         }
     }
 }

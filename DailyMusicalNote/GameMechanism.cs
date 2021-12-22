@@ -17,9 +17,10 @@ namespace DailyMusicalNote
         private readonly Activity myActivity;
         private readonly Context myContext;
         private ImageView trebleClef, bassClef;
-        private ImageView[] musicKeys, pianoKeys, tempKeys;
+        private ImageView[] musicKeys, tempKeys;
         private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue;
         private NoteMechanism[] notes;
+        private KeyMechanism[] pianoKeys;
         private int wrongAnsers = 0, keyIndex = 0;
 
         //Variable to count how many notes on the sheet has been shown
@@ -160,7 +161,7 @@ namespace DailyMusicalNote
                  //new KeyMechanism("c2sh_key", myActivity, myContext),
                  //new KeyMechanism("c2_key", myActivity, myContext)
             };
-            pianoKeys = tempKeys;
+            pianoKeys = tempPianoKeys;
         }
         public void NextNote()
         {
@@ -173,7 +174,7 @@ namespace DailyMusicalNote
                 topBarWrongAnswersLeftValue.Text = wrongAnsers.ToString();
                 notes[keyIndex].incorrectAnimation();
             }
-            else if (noteCounter <= 250)
+            else if (noteCounter <= 5)
             {
                 //Hide all unnecessary elements
                 foreach (ImageView im in musicKeys)
@@ -231,6 +232,11 @@ namespace DailyMusicalNote
             else
             {
                 topBarNotesLeftValue.Text = "KONIEC";
+
+                foreach (KeyMechanism km in pianoKeys)
+                {
+                    km.DisableKey();
+                }               
                 //testButton.Click += (s, e) => Finish();
             }
         }
