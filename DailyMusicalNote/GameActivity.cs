@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace DailyMusicalNote
 {
@@ -33,6 +34,35 @@ namespace DailyMusicalNote
 
             myGame = new GameMechanism(myActivity, myContext);
             myGame.CreateMechanism();
+
+            int secs = 0;
+            int mins = 0;
+            TextView czas = FindViewById<TextView>(Resource.Id.topBar_timer_value);
+            Timer myTimer = new Timer(1000);
+            myTimer.AutoReset = true;
+            myTimer.Enabled = true;
+            myTimer.Elapsed += (s, e) =>
+            {
+                secs++;
+                RunOnUiThread(() => {
+
+                    string timeString = "00:00", minsString="00", secString = "00";
+                    if(secs>=60)
+                    {
+                        secs = 0;
+                        mins++;
+                    }
+
+                    secString = secs < 10 ? "0" + secs.ToString() : secs.ToString();
+                    minsString = mins < 10 ? "0" + mins.ToString() : mins.ToString();
+
+                    timeString = minsString + ":" + secString;
+
+                    czas.Text = timeString;
+                
+                });
+            };
+            myTimer.Start();
 
             //Initialize game mechanism
             myGame.NextNote();

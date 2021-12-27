@@ -58,6 +58,27 @@
             android:textSize="20sp"
             android:id="@+id/topBar_wrongAnswers_value" />
 
+        <TextView
+            android:text="@string/topBar_timer_string"
+            android:textColorHighlight="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:textSize="20sp"
+            android:id="@+id/topBar_timer" />
+
+        <TextView
+            android:text="@string/topBar_timer_value_string"
+            android:textColorHighlight="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:paddingRight="5dp"
+            android:textSize="20sp"
+            android:id="@+id/topBar_timer_value" />
+
     </LinearLayout>
     <RelativeLayout
         android:minWidth="25px"
