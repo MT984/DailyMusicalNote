@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 
 namespace DailyMusicalNote
 {
@@ -18,10 +19,14 @@ namespace DailyMusicalNote
         private readonly Context myContext;
         private ImageView trebleClef, bassClef;
         private ImageView[] musicKeys, tempKeys;
-        private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue;
+        private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue, scoreValue, correctValue;
         private NoteMechanism[] notes;
         private KeyMechanism[] pianoKeys;
+        private RelativeLayout endGameLayout;
         private int wrongAnsers = 0, keyIndex = 0;
+        private Timer myTimer = new Timer(1000);
+        private byte seconds = 0, minutes = 0;
+        private const byte NOTES = 5;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -40,6 +45,11 @@ namespace DailyMusicalNote
             bassClef = myActivity.FindViewById<ImageView>(Resource.Id.bassClef);
             topBarNotesLeftValue = myActivity.FindViewById<TextView>(Resource.Id.topBar_notesLeft_value);
             topBarWrongAnswersLeftValue = myActivity.FindViewById<TextView>(Resource.Id.topBar_wrongAnswers_value);
+            endGameLayout = myActivity.FindViewById<RelativeLayout>(Resource.Id.endGameLayout);
+            scoreValue = myActivity.FindViewById<TextView>(Resource.Id.scoreValue);
+            correctValue = myActivity.FindViewById<TextView>(Resource.Id.correctValue);
+
+            endGameLayout.Visibility = Android.Views.ViewStates.Gone;
 
             ImageView[] tempMusicKeys =
            {
@@ -174,7 +184,7 @@ namespace DailyMusicalNote
                 topBarWrongAnswersLeftValue.Text = wrongAnsers.ToString();
                 notes[keyIndex].incorrectAnimation();
             }
-            else if (noteCounter <= 5)
+            else if (noteCounter <= NOTES)
             {
                 //Hide all unnecessary elements
                 foreach (ImageView im in musicKeys)
@@ -225,20 +235,76 @@ namespace DailyMusicalNote
                 notes[keyIndex].SetVisibility();
 
                 //ifa dodac na wyglad
-                topBarNotesLeftValue.Text = noteCounter + "/250";
+                topBarNotesLeftValue.Text = noteCounter + "/" + NOTES.ToString();
 
                 noteCounter++;
             }
             else
             {
-                topBarNotesLeftValue.Text = "KONIEC";
-
-                foreach (KeyMechanism km in pianoKeys)
-                {
-                    km.DisableKey();
-                }               
-                //testButton.Click += (s, e) => Finish();
+                endGame();
             }
+        }
+
+        public void StartTimer()
+        {
+            seconds = 0;
+            minutes = 0;
+            TextView timeValueView = myActivity.FindViewById<TextView>(Resource.Id.topBar_timer_value);
+            myTimer.AutoReset = true;
+            myTimer.Enabled = true;
+
+            myTimer.Elapsed += (s, e) =>
+            {
+                seconds++;
+                RunOnUiThread(() =>
+                {
+                    string timeString = "00:00", minsString = "00", secString = "00";
+                    if (seconds >= 60)
+                    {
+                        seconds = 0;
+                        minutes++;
+                    }
+
+                    secString = seconds < 10 ? "0" + seconds.ToString() : seconds.ToString();
+                    minsString = minutes < 10 ? "0" + minutes.ToString() : minutes.ToString();
+
+                    timeString = minsString + ":" + secString;
+
+                    timeValueView.Text = timeString;
+
+                });
+            };
+
+            myTimer.Start();
+        }
+
+        private void endGame()
+        {
+            myTimer.Stop();
+
+            double score = ((wrongAnsers + NOTES) / NOTES) * ((minutes * 60) + seconds);
+            score *= 10;
+
+            //nie dziala jest 0 caly czas
+            double clickAccuracy = 1;
+            clickAccuracy = NOTES / (wrongAnsers + NOTES);
+            clickAccuracy *= 100;
+
+            scoreValue.Text = score.ToString();
+            correctValue.Text = clickAccuracy.ToString() + "%";
+
+            endGameLayout.Visibility = Android.Views.ViewStates.Visible;
+
+            foreach (KeyMechanism km in pianoKeys)
+            {
+                km.DisableKey();
+            }
+
+            endGameLayout.Click += (s, e) =>
+            {
+                Finish();
+                myActivity.StartActivity(typeof(MainActivity));
+            };
         }
     }
 }

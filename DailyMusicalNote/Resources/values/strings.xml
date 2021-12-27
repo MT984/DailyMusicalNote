@@ -16,6 +16,10 @@
     <string name="topBar_wrongAnswers_value_string">0</string>
     <string name="topBar_timer_value_string">00:00</string>
     <string name="default_string">ERR</string>
+    <string name="endGame_end_string">KONIEC GRY</string>
+    <string name="endGame_score_string">Wynik: </string>
+    <string name="endGame_correct_string">Skuteczność: </string>
+    <string name="endGame_clickToEnd_string">Puknij w to okienko aby wrócić do menu</string>
     <string name="c2_string">C2</string>
     <string name="c3_string">C3</string>
     <string name="c4_string">C4</string>

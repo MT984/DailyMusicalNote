@@ -88,6 +88,73 @@
         android:background="#f9f9f9"
         android:layout_weight="4"
         android:id="@+id/staffLayout">
+        <RelativeLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/endGameLayout"
+            android:background="#555"
+            android:translationZ="100000dp"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:visibility="gone">
+
+            <TextView
+                android:textSize="30sp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/endGame_end_string"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/endGameString" />
+
+            <TextView
+                android:text="@string/endGame_score_string"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/endGameString"
+                android:id="@+id/scoreString" />
+
+           <TextView
+                android:text="@string/topBar_wrongAnswers_value_string"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/scoreString"
+                android:layout_below="@id/endGameString"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/scoreValue" />
+
+            <TextView
+                android:text="@string/endGame_correct_string"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scoreString"
+                android:id="@+id/correctString" />
+
+           <TextView
+                android:text="@string/topBar_wrongAnswers_value_string"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/correctString"
+                android:layout_below="@id/scoreValue"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/correctValue" />
+
+            <TextView
+                android:text="@string/endGame_clickToEnd_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="9sp"
+                android:id="@+id/tapToEnd" />
+
+            </RelativeLayout>
+        
+
 
         <ImageView
             android:src="@drawable/emptystaff"
@@ -95,7 +162,7 @@
             android:layout_height="145dp"
             android:layout_centerInParent="true"
             android:id="@+id/emptyStaff"
-            android:contentDescription="@string/emptyStaff_string" />
+            android:contentDescription="@string/emptyStaff_string"/>
 
         <ImageView
             android:src="@drawable/trebleclef"
