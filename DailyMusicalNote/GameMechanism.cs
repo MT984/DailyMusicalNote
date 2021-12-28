@@ -27,7 +27,7 @@ namespace DailyMusicalNote
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 2;
+        private const byte NOTES = 5;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -309,7 +309,7 @@ namespace DailyMusicalNote
                 var newFile = new Java.IO.File(directory, MyEnums.HistoryFileName);
                 using (FileOutputStream outFile = new FileOutputStream(newFile))
                 {
-                    string dataToWrite = score.ToString() + "\n" + clickAccuracy.ToString();
+                    string dataToWrite = score.ToString() + "\n" + Math.Round(clickAccuracy).ToString();
                     outFile.Write(System.Text.Encoding.ASCII.GetBytes(dataToWrite));
                     outFile.Close();
                 }
@@ -319,7 +319,7 @@ namespace DailyMusicalNote
                 var newFile = new Java.IO.File(directory, MyEnums.HistoryFileName);
                 using (FileOutputStream outFile = new FileOutputStream(newFile, true))
                 {
-                    string dataToWrite = "\n" + score.ToString() + "\n" + clickAccuracy.ToString();
+                    string dataToWrite = "\n" + score.ToString() + "\n" + Math.Round(clickAccuracy).ToString();
                     outFile.Write(System.Text.Encoding.ASCII.GetBytes(dataToWrite));
                     outFile.Close();
                 }

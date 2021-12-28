@@ -29,15 +29,23 @@ namespace DailyMusicalNote
             var directory = this.FilesDir + MyEnums.StorageFolderName;
             var filePath = directory + "/" + MyEnums.HistoryFileName;
             int counter = 0;
-            using (var streamReader = new System.IO.StreamReader(filePath))
+
+            if (System.IO.File.Exists(filePath))
             {
-                while (!streamReader.EndOfStream)
+                using (var streamReader = new System.IO.StreamReader(filePath))
                 {
-                    counter++;
-                    //10 spaces
-                    string myString = counter.ToString() + ".          " + streamReader.ReadLine() + " pkt          " + streamReader.ReadLine()+"%";
-                    myList.Insert(0, myString);
+                    while (!streamReader.EndOfStream)
+                    {
+                        counter++;
+                        //10 spaces
+                        string myString = counter.ToString() + ".          " + streamReader.ReadLine() + " pkt          " + streamReader.ReadLine() + "%";
+                        myList.Insert(0, myString);
+                    }
                 }
+            }
+            else
+            {
+                myList.Add("Brak historii!");
             }
 
             //Create list
