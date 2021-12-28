@@ -133,5 +133,18 @@
 
         //Initialization of variable which stores draw by lot note
         public static pianoKey currentRandomNote = pianoKey.c6_key;
+
+        //Maybe not enum but static var available in all files <- code neatness
+        //History file name
+        public static string HistoryFileName
+        {
+            get { return "history.data"; }
+        }
+
+        //Folder name to storage data
+        public static string StorageFolderName
+        {
+            get { return "/appData"; }
+        }
     }
 }

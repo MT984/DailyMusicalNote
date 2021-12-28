@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.IO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace DailyMusicalNote
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 5;
+        private const byte NOTES = 2;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -285,19 +286,43 @@ namespace DailyMusicalNote
             double score = ((wrongAnsers + NOTES) / NOTES) * ((minutes * 60) + seconds);
             score *= 10;
 
-            //nie dziala jest 0 caly czas
-            double clickAccuracy = 1;
-            clickAccuracy = NOTES / (wrongAnsers + NOTES);
+            double clickAccuracy = (double)NOTES / (wrongAnsers + NOTES);
             clickAccuracy *= 100;
-
+            
             scoreValue.Text = score.ToString();
-            correctValue.Text = clickAccuracy.ToString() + "%";
+            correctValue.Text = Math.Round(clickAccuracy).ToString() + "%";
 
             endGameLayout.Visibility = Android.Views.ViewStates.Visible;
 
             foreach (KeyMechanism km in pianoKeys)
             {
                 km.DisableKey();
+            }
+
+            
+            var directory = myActivity.FilesDir + MyEnums.StorageFolderName;
+            var filePath = directory + "/" + MyEnums.HistoryFileName;
+
+            //Create file to storage history or modify it
+            if (!System.IO.File.Exists(filePath))
+            {
+                var newFile = new Java.IO.File(directory, MyEnums.HistoryFileName);
+                using (FileOutputStream outFile = new FileOutputStream(newFile))
+                {
+                    string dataToWrite = score.ToString() + "\n" + clickAccuracy.ToString();
+                    outFile.Write(System.Text.Encoding.ASCII.GetBytes(dataToWrite));
+                    outFile.Close();
+                }
+            }
+            else
+            {
+                var newFile = new Java.IO.File(directory, MyEnums.HistoryFileName);
+                using (FileOutputStream outFile = new FileOutputStream(newFile, true))
+                {
+                    string dataToWrite = "\n" + score.ToString() + "\n" + clickAccuracy.ToString();
+                    outFile.Write(System.Text.Encoding.ASCII.GetBytes(dataToWrite));
+                    outFile.Close();
+                }
             }
 
             endGameLayout.Click += (s, e) =>

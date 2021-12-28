@@ -10,7 +10,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using AndroidX.AppCompat.App;
+using Java.IO;
 using System;
+using System.IO;
 
 namespace DailyMusicalNote
 {
@@ -26,6 +28,14 @@ namespace DailyMusicalNote
 
             //Full screen
             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+
+            //Create folder to storage data, only once!
+            var directory = this.FilesDir + MyEnums.StorageFolderName;
+            var exists = Directory.Exists(directory);
+            if (!exists)
+            {
+                Directory.CreateDirectory(directory);
+            }
 
             //Buttons deffinitions
             View buttonStart = FindViewById<View>(Resource.Id.button_start);
