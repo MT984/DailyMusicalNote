@@ -20,10 +20,26 @@
     <string name="endGame_score_string">Wynik: </string>
     <string name="endGame_correct_string">Skuteczność: </string>
     <string name="endGame_clickToEnd_string">Puknij w to okienko aby wrócić do menu</string>
+    <string name="history_string">Historia wyników</string>
+    <string name="history_number_string">Lp.</string>
+    <string name="history_score_string">Punkty</string>
+    <string name="history_accuracy_string">Dokładność</string>
     <string name="c2_string">C2</string>
     <string name="c3_string">C3</string>
     <string name="c4_string">C4</string>
     <string name="c5_string">C5</string>
     <string name="c6_string">C6</string>
+
+	<string name="test">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus odio vel ante suscipit, nec aliquam erat aliquam. Mauris justo leo, viverra non sapien in, maximus convallis sapien. Integer neque est, varius ac semper in, aliquet quis purus. Praesent in lectus sem. Quisque congue augue eu aliquet maximus. Vestibulum eu maximus nibh, non bibendum purus. Mauris blandit eros id nibh blandit, vitae porta ipsum dapibus. Vivamus convallis magna ut congue malesuada. Sed vulputate nunc velit, non scelerisque nibh commodo a. Cras egestas tortor efficitur malesuada pellentesque. Mauris pharetra eleifend velit in commodo. Nunc ac sem vitae eros sollicitudin luctus ac quis nisl.
+
+		Integer facilisis magna nunc, eget aliquam turpis finibus id. Pellentesque enim justo, pellentesque eu condimentum ac, aliquam vitae mauris. Maecenas mattis enim at tortor porta sollicitudin. Praesent eu erat viverra, venenatis mi quis, auctor mi. Fusce ut tellus non mauris finibus auctor id eu libero. Ut pretium justo quis rhoncus hendrerit. Quisque egestas condimentum purus, eget facilisis felis gravida sed.
+
+		Mauris tempor pellentesque sapien, non interdum velit cursus sed. In nec augue ut felis tristique euismod. Phasellus eu viverra lectus, et laoreet lorem. Suspendisse at finibus tellus, vel bibendum arcu. Sed id metus maximus, auctor mauris vel, cursus mi. Donec tempus dui ut erat tempus ultricies. Nullam bibendum turpis id venenatis tristique. Aenean et euismod sem, quis consectetur lectus. Maecenas sit amet est vel erat luctus pellentesque. Sed nec pharetra massa. Pellentesque rutrum lectus ex. Donec faucibus rhoncus purus sed lacinia. Nulla ut nibh pretium, egestas dui in, scelerisque ligula. Aliquam faucibus urna sed tristique facilisis.
+
+		Praesent vehicula nisl sed pretium lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac dolor mi. Nunc ultricies interdum magna, vitae accumsan sem interdum vitae. Nam consequat lectus vel mi scelerisque semper. Aliquam fermentum metus justo, vitae interdum nunc euismod et. Phasellus mollis faucibus urna commodo rhoncus. Integer purus augue, luctus id augue in, porta ultrices neque. Pellentesque euismod faucibus elit auctor porttitor. Nulla sem elit, eleifend et mauris sed, pharetra pharetra leo. Mauris id magna odio. Curabitur gravida elit ac mi mattis, et tristique nisl pellentesque. Donec posuere ligula ut nisl varius sodales.
+
+		Etiam consequat bibendum fermentum. In viverra nibh id ligula dignissim, id facilisis ante blandit. Phasellus eget diam enim. Vivamus viverra ullamcorper porttitor. Quisque ultrices eleifend mi sed faucibus. Nullam vel nulla at erat condimentum venenatis. Duis ultrices tristique metus a dictum. Aliquam ornare ipsum euismod, laoreet quam at, pellentesque urna. Mauris ultrices ut ipsum eu posuere. Vivamus scelerisque leo quam, in porttitor nisl sollicitudin nec. Duis a sem luctus, mattis nunc eu, dapibus metus. Nullam suscipit, ex nec luctus viverra, ex erat pharetra ex, quis sagittis lorem est id ipsum. Duis lobortis odio nec malesuada aliquet. Aenean semper neque dolor, eleifend porttitor nulla fringilla ut. Praesent placerat enim lorem, sed ultrices quam sollicitudin eu.
+	</string>
 </resources>
 
