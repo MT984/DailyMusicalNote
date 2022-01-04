@@ -88,6 +88,27 @@
         android:background="#f9f9f9"
         android:layout_weight="4"
         android:id="@+id/staffLayout">
+        <!-- x.png from https://commons.wikimedia.org/wiki/File:Heavy_red_%22x%22.png -->
+        <ImageView
+            android:src="@drawable/x"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:translationZ="100dp"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/x"
+            android:contentDescription="@string/default_string"
+            android:visibility="gone"/>
+        <!-- v.png from https://commons.wikimedia.org/wiki/File:Antu_mail-mark-notjunk.svg -->
+        <ImageView
+            android:src="@drawable/v"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:translationZ="100dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/v"
+            android:contentDescription="@string/default_string"
+            android:visibility="gone"/>
+
         <RelativeLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"

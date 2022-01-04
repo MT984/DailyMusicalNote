@@ -3518,7 +3518,13 @@ namespace DailyMusicalNote
 			public const int trebleH = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int whiteButton = 2131165362;
+			public const int v = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int whiteButton = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int x = 2131165364;
 			
 			static Drawable()
 			{
@@ -4554,22 +4560,28 @@ namespace DailyMusicalNote
 			public const int useLogo = 2131231059;
 			
 			// aapt resource value: 0x7F080154
-			public const int view_offset_helper = 2131231060;
+			public const int v = 2131231060;
 			
 			// aapt resource value: 0x7F080155
-			public const int view_tree_saved_state_registry_owner = 2131231061;
+			public const int view_offset_helper = 2131231061;
 			
 			// aapt resource value: 0x7F080156
-			public const int visible = 2131231062;
+			public const int view_tree_saved_state_registry_owner = 2131231062;
 			
 			// aapt resource value: 0x7F080157
-			public const int visible_removing_fragment_view_tag = 2131231063;
+			public const int visible = 2131231063;
 			
 			// aapt resource value: 0x7F080158
-			public const int withText = 2131231064;
+			public const int visible_removing_fragment_view_tag = 2131231064;
 			
 			// aapt resource value: 0x7F080159
-			public const int wrap_content = 2131231065;
+			public const int withText = 2131231065;
+			
+			// aapt resource value: 0x7F08015A
+			public const int wrap_content = 2131231066;
+			
+			// aapt resource value: 0x7F08015B
+			public const int x = 2131231067;
 			
 			static Id()
 			{

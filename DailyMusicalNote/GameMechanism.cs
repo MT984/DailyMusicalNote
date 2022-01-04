@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace DailyMusicalNote
@@ -18,7 +19,7 @@ namespace DailyMusicalNote
     {
         private readonly Activity myActivity;
         private readonly Context myContext;
-        private ImageView trebleClef, bassClef;
+        private ImageView trebleClef, bassClef, x, v;
         private ImageView[] musicKeys, tempKeys;
         private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue, scoreValue, correctValue;
         private NoteMechanism[] notes;
@@ -49,6 +50,8 @@ namespace DailyMusicalNote
             endGameLayout = myActivity.FindViewById<RelativeLayout>(Resource.Id.endGameLayout);
             scoreValue = myActivity.FindViewById<TextView>(Resource.Id.scoreValue);
             correctValue = myActivity.FindViewById<TextView>(Resource.Id.correctValue);
+            x = myActivity.FindViewById<ImageView>(Resource.Id.x);
+            v = myActivity.FindViewById<ImageView>(Resource.Id.v);
 
             endGameLayout.Visibility = Android.Views.ViewStates.Gone;
 
@@ -174,6 +177,19 @@ namespace DailyMusicalNote
             };
             pianoKeys = tempPianoKeys;
         }
+
+        private async Task incorrectAnimationAsync()
+        {
+            x.Visibility = Android.Views.ViewStates.Visible;
+            await Task.Delay(750);
+            x.Visibility = Android.Views.ViewStates.Gone;
+        }
+        private async Task correctAnimationAsync()
+        {
+            v.Visibility = Android.Views.ViewStates.Visible;
+            await Task.Delay(750);
+            v.Visibility = Android.Views.ViewStates.Gone;
+        }
         public void NextNote()
         {
             Random randomNumbers = new Random();
@@ -183,10 +199,12 @@ namespace DailyMusicalNote
                 //If values are differnt
                 wrongAnsers++;
                 topBarWrongAnswersLeftValue.Text = wrongAnsers.ToString();
-                notes[keyIndex].incorrectAnimation();
+                _ = incorrectAnimationAsync();
             }
             else if (noteCounter <= NOTES)
             {
+                _ = correctAnimationAsync();
+
                 //Hide all unnecessary elements
                 foreach (ImageView im in musicKeys)
                 {

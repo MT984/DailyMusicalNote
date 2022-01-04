@@ -35,10 +35,5 @@ namespace DailyMusicalNote
         {
             note.Visibility = Android.Views.ViewStates.Gone;
         }
-
-        public void incorrectAnimation()
-        {
-            //nothing yet
-        }
     }
 }
