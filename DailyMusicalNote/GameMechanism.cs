@@ -1,15 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Java.IO;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -20,7 +13,7 @@ namespace DailyMusicalNote
         private readonly Activity myActivity;
         private readonly Context myContext;
         private ImageView trebleClef, bassClef, x, v;
-        private ImageView[] musicKeys, tempKeys;
+        private ImageView[] musicKeys;
         private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue, scoreValue, correctValue;
         private NoteMechanism[] notes;
         private KeyMechanism[] pianoKeys;
@@ -28,7 +21,7 @@ namespace DailyMusicalNote
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 50;
+        private const byte NOTES = 50;       
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -92,26 +85,26 @@ namespace DailyMusicalNote
 
             NoteMechanism[] tempNotes =
             {
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c6), "c6_key"),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c6), "c6_key", myActivity),
 
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c5), "c5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d5), "d5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e5), "e5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f5), "f5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g5), "g5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a5), "a5_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b5), "b5_key"),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c5), "c5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d5), "d5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e5), "e5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f5), "f5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g5), "g5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a5), "a5_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b5), "b5_key", myActivity),
 
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c4), "c4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d4), "d4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e4), "e4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f4), "f4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g4), "g4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a4), "a4_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b4), "b4_key"),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.c4), "c4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.d4), "d4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.e4), "e4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.f4), "f4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.g4), "g4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a4), "a4_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b4), "b4_key", myActivity),
 
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a3), "a3_key"),
-                 new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b3), "b3_key")
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.a3), "a3_key", myActivity),
+                new NoteMechanism(myActivity.FindViewById<ImageView>(Resource.Id.b3), "b3_key", myActivity)
             };
             notes = tempNotes;
 
@@ -198,6 +191,7 @@ namespace DailyMusicalNote
             await Task.Delay(750);
             v.Visibility = Android.Views.ViewStates.Gone;
         }
+
         public void NextNote()
         {
             Random randomNumbers = new Random();
@@ -258,7 +252,6 @@ namespace DailyMusicalNote
                         break;
                 }
 
-                //createKeys();
                 keyIndex = randomNumbers.Next(0, notes.Length);
                 //TUTAJ JEST PRZYPISANIE I OGARNIANIE NUTY
                 notes[keyIndex].SetVisibility();

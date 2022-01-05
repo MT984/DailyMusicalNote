@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Media;
 using Android.Views;
+using Android.Widget;
 using System;
 
 namespace DailyMusicalNote
@@ -15,7 +16,7 @@ namespace DailyMusicalNote
         private MyEnums.ClefList bassOrTreble;
         private View pianoKey;
         private MediaPlayer player;
-
+        private bool isItBassKey = false;
         public KeyMechanism(string elementId, Activity myActivity, Context myContext, MyEnums.ClefList bassOrTreble, string audioName = "")
         {
             this.elementId = elementId;
@@ -28,7 +29,72 @@ namespace DailyMusicalNote
             //Big mistake???
             ClickHander();
         }
+        private void setBassKeys()
+        {
+            //a3 = 27, last of treble clef
+            int tempKey = (int)MyEnums.clickedKey;
+            tempKey += 24;
+            MyEnums.clickedKey = (MyEnums.pianoKey)tempKey;
+            //switch (MyEnums.clickedKey)
+            //{
+            //    //Only white keys
+            //    case MyEnums.pianoKey.c6_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.e4_key;
+            //        break;
+            //    //////////////////////////////////////////////////
+            //    case MyEnums.pianoKey.b5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.d4_key;
+            //        break;
+            //    case MyEnums.pianoKey.a5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.c4_key;
+            //        break;
+            //    case MyEnums.pianoKey.g5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.b3_key;
+            //        break;
+            //    case MyEnums.pianoKey.f5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.a3_key;
+            //        break;
+            //    case MyEnums.pianoKey.e5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.g3_key;
+            //        break;
+            //    case MyEnums.pianoKey.d5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.f3_key;
+            //        break;
+            //    case MyEnums.pianoKey.c5_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.e3_key;
+            //        break;
+            //    //////////////////////////////////////////////////
+            //    case MyEnums.pianoKey.b4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.d3_key;
+            //        break;
+            //    case MyEnums.pianoKey.a4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.c3_key;
+            //        break;
+            //    case MyEnums.pianoKey.g4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.b2_key;
+            //        break;
+            //    case MyEnums.pianoKey.f4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.a2_key;
+            //        break;
+            //    case MyEnums.pianoKey.e4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.g2_key;
+            //        break;
+            //    case MyEnums.pianoKey.d4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.f2_key;
+            //        break;
+            //    case MyEnums.pianoKey.c4_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.e2_key;
+            //        break;
+            //    //////////////////////////////////////////////////
+            //    case MyEnums.pianoKey.b3_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.d2_key;
+            //        break;
+            //    case MyEnums.pianoKey.a3_key:
+            //        MyEnums.clickedKey = MyEnums.pianoKey.c2_key;
+            //        break;
+            //}
 
+        }
         private void touched(string AudioName, object s, View.TouchEventArgs e)
         {
             if (!disableKeyFlag)
@@ -45,6 +111,10 @@ namespace DailyMusicalNote
 
                     //TUTAJ JEST PRZYPISANIE DO ENUMA CO KLIKNIETO
                     MyEnums.clickedKey = (MyEnums.pianoKey)Enum.Parse(typeof(MyEnums.pianoKey), elementId);
+                    if(isItBassKey)
+                    {
+                        setBassKeys();
+                    }
 
                     //Add click visual effect
                     if (elementId.Contains("sh"))
@@ -129,11 +199,15 @@ namespace DailyMusicalNote
             {
                 if (bassOrTreble == MyEnums.currentClef && bassOrTreble == MyEnums.ClefList.treble)
                 {
+                    //Treble clef
+                    isItBassKey = false;
                     AudioFileName = elementId.Substring(0, elementId.LastIndexOf("_"));
                     touched(AudioFileName, s, e);
                 }
                 else if(bassOrTreble == MyEnums.currentClef && bassOrTreble == MyEnums.ClefList.bass)
                 {
+                    //Bass clef
+                    isItBassKey = true;
                     touched(AudioFileName, s, e);
                 }
             };
