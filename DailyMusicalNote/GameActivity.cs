@@ -29,16 +29,12 @@ namespace DailyMusicalNote
             Activity myActivity = this;
             Context myContext = Android.App.Application.Context;
 
-            Button testButton = FindViewById<Button>(Resource.Id.button1);
-
             myGame = new GameMechanism(myActivity, myContext);
             myGame.CreateMechanism();
 
             //Initialize game mechanism
             myGame.NextNote();
             myGame.StartTimer();
-
-            testButton.Click += (s, e) => myGame.NextNote();
         }
     }
 }

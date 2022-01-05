@@ -66,6 +66,8 @@
 
         //Initialization of current clef. Default treble
         static public ClefList currentClef = ClefList.treble;
+        //Helpful variable to handle appropriate piano key. Default treble
+        static public ClefList bassOrTreble = ClefList.treble;
 
         //Enum describes value of piano keys and piano notes
         public enum pianoKey: byte
