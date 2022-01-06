@@ -22,8 +22,10 @@ namespace DailyMusicalNote
             Activity myActivity = this;
             Context myContext = Android.App.Application.Context;
 
+            
             if (MyEnums.currentGameMode == MyEnums.gameMode.notePractice)
             {
+                //Note practice
                 SetContentView(Resource.Layout.game);
 
                 myGame = new GameMechanism(myActivity, myContext);
@@ -34,6 +36,7 @@ namespace DailyMusicalNote
                 myGame.StartTimer();
             }else if(MyEnums.currentGameMode == MyEnums.gameMode.hearingPractice)
             {
+                //Hearing practice
                 SetContentView(Resource.Layout.hearing);
 
                 myHearingGame = new HearingMechanism(myActivity, myContext);

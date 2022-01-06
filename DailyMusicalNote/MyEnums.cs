@@ -37,6 +37,7 @@
             trebleEb,
             trebleB,
             trebleF,
+
             bassC,
             bassG,
             bassD,

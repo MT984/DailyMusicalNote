@@ -48,7 +48,7 @@ namespace DailyMusicalNote
             endGameLayout.Visibility = Android.Views.ViewStates.Gone;
 
             ImageView[] tempMusicKeys =
-           {
+            {
                 trebleClef,
                 myActivity.FindViewById<ImageView>(Resource.Id.trebleG),
                 myActivity.FindViewById<ImageView>(Resource.Id.trebleD),
@@ -248,6 +248,7 @@ namespace DailyMusicalNote
                     case MyEnums.DifficultyMode.Hard:
                         int randomVal = randomNumbers.Next(0, musicKeys.Length);
                         musicKeys[randomVal].Visibility = Android.Views.ViewStates.Visible;
+                        MyEnums.currentKey = (MyEnums.MusicKey)randomVal;
                         MyEnums.currentClef = randomVal > 14 ? MyEnums.ClefList.bass : MyEnums.ClefList.treble;
                         break;
                 }
