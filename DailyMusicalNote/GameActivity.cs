@@ -11,10 +11,10 @@ namespace DailyMusicalNote
     public class GameActivity : Activity 
     {
         public static GameMechanism myGame;
+        public static HearingMechanism myHearingGame;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.game);
 
             //Full screen
             this.Window.AddFlags(WindowManagerFlags.Fullscreen);
@@ -22,12 +22,27 @@ namespace DailyMusicalNote
             Activity myActivity = this;
             Context myContext = Android.App.Application.Context;
 
-            myGame = new GameMechanism(myActivity, myContext);
-            myGame.CreateMechanism();
+            if (MyEnums.currentGameMode == MyEnums.gameMode.notePractice)
+            {
+                SetContentView(Resource.Layout.game);
 
-            //Initialize game mechanism
-            myGame.NextNote();
-            myGame.StartTimer();
+                myGame = new GameMechanism(myActivity, myContext);
+                myGame.CreateMechanism();
+
+                //Initialize game mechanism
+                myGame.NextNote();
+                myGame.StartTimer();
+            }else if(MyEnums.currentGameMode == MyEnums.gameMode.hearingPractice)
+            {
+                SetContentView(Resource.Layout.hearing);
+
+                myHearingGame = new HearingMechanism(myActivity, myContext);
+                myHearingGame.CreateMechanism();
+
+                //Initialize game mechanism
+                myHearingGame.nextHearingNote();
+                myHearingGame.StartTimer();
+            }
         }
     }
 }

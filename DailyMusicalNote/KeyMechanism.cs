@@ -104,6 +104,8 @@ namespace DailyMusicalNote
                 //Key down
                 if (e.Event.Action == MotionEventActions.Down)
                 {
+                    MyEnums.isKeyUp = false;
+
                     var fileDescriptor = myActivity.Assets.OpenFd("Sounds/" + AudioName + ".mp3");
                     player = new MediaPlayer();
                     player.Reset();
@@ -133,7 +135,15 @@ namespace DailyMusicalNote
                     player.Start();
                     handled = true;
 
-                    GameActivity.myGame.NextNote();
+                    if (MyEnums.currentGameMode == MyEnums.gameMode.notePractice)
+                    {
+                        GameActivity.myGame.NextNote();
+                    }
+                    else if (MyEnums.currentGameMode == MyEnums.gameMode.hearingPractice)
+                    {
+                        GameActivity.myHearingGame.chceckNote();
+                    }
+                    
                 }
                 //Key up
                 else if (e.Event.Action == MotionEventActions.Up)
@@ -154,6 +164,7 @@ namespace DailyMusicalNote
                     player.Stop();
                     player.Release();
                     handled = true;
+                    MyEnums.isKeyUp = true;
                 }
 
                 e.Handled = handled;

@@ -30,11 +30,20 @@
         android:textSize="20sp"
         android:id="@+id/button_start" />
     <Button
-        android:text="@string/button_history_string"
+        android:text="@string/button_hearing_string"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/button_start"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:id="@+id/button_hearing" />
+    <Button
+        android:text="@string/button_history_string"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/button_hearing"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:id="@+id/button_history" />

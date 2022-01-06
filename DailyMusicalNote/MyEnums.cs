@@ -105,7 +105,7 @@
             a3_key,
 
             //Below bass
-            g3sh_key,
+            g3sh_key, //28
             g3_key,
             f3sh_key,
             f3_key,
@@ -135,10 +135,29 @@
         //Initialization of variable which stores which key is displayed
         public static pianoKey showedKey = pianoKey.c6_key;
 
+        //Initialization of variable which stores which note to hearing is displayed
+        public static pianoKey hearingNote = pianoKey.c6_key;
+
         //Initialization of variable which stores draw by lot note
         public static pianoKey currentRandomNote = pianoKey.c6_key;
 
+        //Initialization of variable which stores draw by lot note
+        public static pianoKey currentHearingNote = pianoKey.c6_key;
+
+        //Enum which store which game mode in selected by user
+        public enum gameMode : byte
+        {
+            notePractice,
+            hearingPractice
+        }
+        //Var init
+        public static gameMode currentGameMode = gameMode.notePractice;
+
         //Maybe not enum but static var available in all files <- code neatness
+
+        //Global bools variable
+        public static bool isKeyUp = true;
+
         //History file name
         public static string HistoryFileName
         {

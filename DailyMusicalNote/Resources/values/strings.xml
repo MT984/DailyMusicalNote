@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">DailyMusicalNote</string>
     <string name="app_title_string">Daily Musical Note</string>
-    <string name="button_start_string">Zacznij grę</string>
+    <string name="button_start_string">Ćwiczenie nut</string>
     <string name="button_history_string">Historia</string>
+    <string name="button_hearing_string">Ćwiczenie słuchu</string>
     <string name="author_name_string">Designed and created by Maciej Trocha</string>
     <string name="choose_difficulty_string">Wybierz poziom trudności</string>
     <string name="easy_string">Łatwy</string>
@@ -24,11 +25,15 @@
     <string name="history_number_string">Lp.</string>
     <string name="history_score_string">Punkty</string>
     <string name="history_accuracy_string">Dokładność</string>
+    <string name="history_hearing_string">SLUCHANIE</string>
+    <string name="history_playing_string">GRANIE</string>
     <string name="c2_string">C2</string>
     <string name="c3_string">C3</string>
     <string name="c4_string">C4</string>
     <string name="c5_string">C5</string>
     <string name="c6_string">C6</string>
+    <string name="hearNote_string">Kliknij aby odtworzyć dźwięk</string>
+    <string name="playingHearNote_string">Odtwarzanie dźwięku</string>
 
 	<string name="test">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus odio vel ante suscipit, nec aliquam erat aliquam. Mauris justo leo, viverra non sapien in, maximus convallis sapien. Integer neque est, varius ac semper in, aliquet quis purus. Praesent in lectus sem. Quisque congue augue eu aliquet maximus. Vestibulum eu maximus nibh, non bibendum purus. Mauris blandit eros id nibh blandit, vitae porta ipsum dapibus. Vivamus convallis magna ut congue malesuada. Sed vulputate nunc velit, non scelerisque nibh commodo a. Cras egestas tortor efficitur malesuada pellentesque. Mauris pharetra eleifend velit in commodo. Nunc ac sem vitae eros sollicitudin luctus ac quis nisl.

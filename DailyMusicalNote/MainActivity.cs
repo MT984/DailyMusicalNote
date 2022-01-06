@@ -37,10 +37,21 @@ namespace DailyMusicalNote
 
             //Buttons deffinitions
             View buttonStart = FindViewById<View>(Resource.Id.button_start);
+            View buttonHearing = FindViewById<View>(Resource.Id.button_hearing);
             View buttonHistory = FindViewById<View>(Resource.Id.button_history);
 
             //Buttons events handlers
-            buttonStart.Click += (s, e) => StartActivity(typeof(DifficultyActivity));
+            buttonStart.Click += (s, e) =>
+            {
+                MyEnums.currentGameMode = MyEnums.gameMode.notePractice;
+                StartActivity(typeof(DifficultyActivity));
+            };
+
+            buttonHearing.Click += (s, e) =>
+            {
+                MyEnums.currentGameMode = MyEnums.gameMode.hearingPractice;
+                StartActivity(typeof(GameActivity));
+            }; 
             buttonHistory.Click += (s, e) => StartActivity(typeof(HistoryActivity));
         }
 
