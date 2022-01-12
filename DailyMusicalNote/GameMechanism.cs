@@ -253,7 +253,14 @@ namespace DailyMusicalNote
                         break;
                 }
 
-                keyIndex = randomNumbers.Next(0, notes.Length);
+                if(MyEnums.currentClef == MyEnums.ClefList.bass)
+                {
+                    keyIndex = randomNumbers.Next(1, notes.Length);
+                }
+                else{
+                    keyIndex = randomNumbers.Next(0, notes.Length);
+                }
+               
                 //TUTAJ JEST PRZYPISANIE I OGARNIANIE NUTY
                 notes[keyIndex].SetVisibility();
 
