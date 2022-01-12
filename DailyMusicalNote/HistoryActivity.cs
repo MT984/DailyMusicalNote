@@ -32,10 +32,10 @@ namespace DailyMusicalNote
                     while (!streamReader.EndOfStream)
                     {
                         counter++;
-                        //10 spaces
-                        string myString = counter.ToString() + ".          " +
-                               streamReader.ReadLine() + " pkt          " +
-                               streamReader.ReadLine() + "%          " +
+                        //8 spaces
+                        string myString = counter.ToString() + ".        " +
+                               streamReader.ReadLine() + " pkt        " +
+                               streamReader.ReadLine() + "%        " +
                                streamReader.ReadLine();
                         myList.Insert(0, myString);
                     }

@@ -21,10 +21,13 @@ namespace DailyMusicalNote
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 50;       
+        private const byte NOTES = 50;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
+        
+        //private bool toDelete = true;
+
         public GameMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
@@ -242,6 +245,19 @@ namespace DailyMusicalNote
                                 break;
                         }
 
+                        //if(toDelete)
+                        //{
+                        //    trebleClef.Visibility = Android.Views.ViewStates.Visible;
+                        //    MyEnums.currentClef = MyEnums.ClefList.treble;
+                        //    toDelete = false;
+                        //}
+                        //else
+                        //{
+                        //    bassClef.Visibility = Android.Views.ViewStates.Visible;
+                        //    MyEnums.currentClef = MyEnums.ClefList.bass;
+                        //    toDelete = true;
+                        //}
+
                         break;
 
                     //Hard - All clefs and all music keys
@@ -255,7 +271,7 @@ namespace DailyMusicalNote
 
                 if(MyEnums.currentClef == MyEnums.ClefList.bass)
                 {
-                    keyIndex = randomNumbers.Next(1, notes.Length);
+                    keyIndex = randomNumbers.Next(2, notes.Length);
                 }
                 else{
                     keyIndex = randomNumbers.Next(0, notes.Length);
