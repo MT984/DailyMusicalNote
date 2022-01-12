@@ -44,6 +44,7 @@ namespace DailyMusicalNote
 
                 //Initialize game mechanism
                 myHearingGame.nextHearingNote();
+                myHearingGame.playNote();
                 myHearingGame.StartTimer();
             }
         }

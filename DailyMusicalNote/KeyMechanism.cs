@@ -164,7 +164,12 @@ namespace DailyMusicalNote
                     player.Stop();
                     player.Release();
                     handled = true;
-                    MyEnums.isKeyUp = true;
+                    //MyEnums.isKeyUp = true;
+                    if (MyEnums.currentGameMode == MyEnums.gameMode.hearingPractice && GameActivity.myHearingGame.isCorrect == true)
+                    { 
+                        GameActivity.myHearingGame.playNote();
+                        GameActivity.myHearingGame.isCorrect = false;
+                    }
                 }
 
                 e.Handled = handled;

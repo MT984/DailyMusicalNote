@@ -25,6 +25,7 @@ namespace DailyMusicalNote
         private const byte NOTES = 2;
         private MediaPlayer player;
         private string AudioName = "";
+        public bool isCorrect = false;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
@@ -137,7 +138,6 @@ namespace DailyMusicalNote
             await Task.Delay(750);
             v.Visibility = Android.Views.ViewStates.Gone;
         }
-
         private async Task playingNoteAsync()
         {
             StartHearingButton.Text = myActivity.Resources.GetString(Resource.String.playingHearNote_string);
@@ -239,7 +239,7 @@ namespace DailyMusicalNote
         }
 
         public void nextHearingNote()
-        {
+        {         
             //Wait until key will be up
             //while (MyEnums.isKeyUp) ;
 
@@ -272,12 +272,12 @@ namespace DailyMusicalNote
                 c6.Text = "C4";
             }
 
-            playNote();
+            //playNote();
 
             StartHearingButton.Click += (s, e) => playNote();
         }
 
-        private void playNote()
+        public void playNote()
         {
             //Start play note
             player.Start();
@@ -298,7 +298,9 @@ namespace DailyMusicalNote
 
                 topBarNotesLeftValue.Text = noteCounter + "/" + NOTES.ToString();
                 noteCounter++;
+
                 
+                isCorrect = true;
                 nextHearingNote();
             }
             else
