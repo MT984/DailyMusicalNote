@@ -15,14 +15,13 @@ namespace DailyMusicalNote
         private readonly Context myContext;
         private ImageView x, v;
         private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue, scoreValue, correctValue;
-        private NoteMechanism[] notes;
         private KeyMechanism[] pianoKeys;
         private RelativeLayout endGameLayout;
         private Button c4, c5, c6, StartHearingButton;
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 2;
+        private const byte NOTES = 15;
         private MediaPlayer player;
         private string AudioName = "";
         public bool isCorrect = false;

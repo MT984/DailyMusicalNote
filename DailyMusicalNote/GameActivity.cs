@@ -28,6 +28,7 @@ namespace DailyMusicalNote
                 //Note practice
                 SetContentView(Resource.Layout.game);
 
+                myGame = null;
                 myGame = new GameMechanism(myActivity, myContext);
                 myGame.CreateMechanism();
 
@@ -39,6 +40,7 @@ namespace DailyMusicalNote
                 //Hearing practice
                 SetContentView(Resource.Layout.hearing);
 
+                myHearingGame = null;
                 myHearingGame = new HearingMechanism(myActivity, myContext);
                 myHearingGame.CreateMechanism();
 
