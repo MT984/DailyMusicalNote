@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DailyMusicalNote</string>
+    <string name="app_name">Daily Musical Note</string>
     <string name="app_title_string">Daily Musical Note</string>
     <string name="button_start_string">Ćwiczenie nut</string>
     <string name="button_history_string">Historia</string>
@@ -34,6 +34,7 @@
     <string name="c6_string">C6</string>
     <string name="hearNote_string">Kliknij aby odtworzyć dźwięk</string>
     <string name="playingHearNote_string">Odtwarzanie dźwięku</string>
+    <string name="allRights_string">All rights reserved</string>
 
 	<string name="test">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus odio vel ante suscipit, nec aliquam erat aliquam. Mauris justo leo, viverra non sapien in, maximus convallis sapien. Integer neque est, varius ac semper in, aliquet quis purus. Praesent in lectus sem. Quisque congue augue eu aliquet maximus. Vestibulum eu maximus nibh, non bibendum purus. Mauris blandit eros id nibh blandit, vitae porta ipsum dapibus. Vivamus convallis magna ut congue malesuada. Sed vulputate nunc velit, non scelerisque nibh commodo a. Cras egestas tortor efficitur malesuada pellentesque. Mauris pharetra eleifend velit in commodo. Nunc ac sem vitae eros sollicitudin luctus ac quis nisl.
