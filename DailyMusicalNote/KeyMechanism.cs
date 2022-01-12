@@ -2,7 +2,6 @@
 using Android.Content;
 using Android.Media;
 using Android.Views;
-using Android.Widget;
 using System;
 
 namespace DailyMusicalNote

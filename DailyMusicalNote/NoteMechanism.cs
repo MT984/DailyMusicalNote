@@ -943,7 +943,6 @@ namespace DailyMusicalNote
                 setMusicKey();
             }
         }
-
         public void DelVisibility()
         {
             note.Visibility = Android.Views.ViewStates.Gone;

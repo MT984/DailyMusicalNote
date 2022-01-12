@@ -21,13 +21,11 @@ namespace DailyMusicalNote
         private int wrongAnsers = 0, keyIndex = 0;
         private Timer myTimer = new Timer(1000);
         private byte seconds = 0, minutes = 0;
-        private const byte NOTES = 50;
+        private const byte NOTES = 15;
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
         
-        //private bool toDelete = true;
-
         public GameMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
@@ -194,7 +192,6 @@ namespace DailyMusicalNote
             await Task.Delay(750);
             v.Visibility = Android.Views.ViewStates.Gone;
         }
-
         public void NextNote()
         {
             Random randomNumbers = new Random();
@@ -245,19 +242,6 @@ namespace DailyMusicalNote
                                 break;
                         }
 
-                        //if(toDelete)
-                        //{
-                        //    trebleClef.Visibility = Android.Views.ViewStates.Visible;
-                        //    MyEnums.currentClef = MyEnums.ClefList.treble;
-                        //    toDelete = false;
-                        //}
-                        //else
-                        //{
-                        //    bassClef.Visibility = Android.Views.ViewStates.Visible;
-                        //    MyEnums.currentClef = MyEnums.ClefList.bass;
-                        //    toDelete = true;
-                        //}
-
                         break;
 
                     //Hard - All clefs and all music keys
@@ -290,7 +274,6 @@ namespace DailyMusicalNote
                 endGame();
             }
         }
-
         public void StartTimer()
         {
             seconds = 0;
@@ -323,7 +306,6 @@ namespace DailyMusicalNote
 
             myTimer.Start();
         }
-
         private void endGame()
         {
             myTimer.Stop();

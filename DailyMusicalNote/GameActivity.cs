@@ -39,7 +39,7 @@ namespace DailyMusicalNote
                 //Hearing practice
                 SetContentView(Resource.Layout.hearing);
 
-                myHearingGame = new HearingMechanism(myActivity, myContext);
+                myHearingGame = new HearingMechanism(myActivity);
                 myHearingGame.CreateMechanism();
 
                 //Initialize game mechanism
