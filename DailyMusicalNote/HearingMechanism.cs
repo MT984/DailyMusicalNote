@@ -12,8 +12,11 @@ namespace DailyMusicalNote
     public class HearingMechanism : GameActivity
     {
         private readonly Activity myActivity;
+        private readonly Context myContext;
         private ImageView x, v;
         private TextView topBarNotesLeftValue, topBarWrongAnswersLeftValue, scoreValue, correctValue;
+        private NoteMechanism[] notes;
+        private KeyMechanism[] pianoKeys;
         private RelativeLayout endGameLayout;
         private Button c4, c5, c6, StartHearingButton;
         private int wrongAnsers = 0, keyIndex = 0;
@@ -26,13 +29,15 @@ namespace DailyMusicalNote
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
-        public HearingMechanism(Activity myActivity)
+        public HearingMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
+            this.myContext = myContext;
             player = new MediaPlayer();
 
             noteCounter = 1;
         }
+
         public void CreateMechanism()
         {
             //Finding elements by id
@@ -49,7 +54,78 @@ namespace DailyMusicalNote
             StartHearingButton = myActivity.FindViewById<Button>(Resource.Id.StartHearingButton);
 
             endGameLayout.Visibility = Android.Views.ViewStates.Gone;
+
+            KeyMechanism[] tempPianoKeys =
+            {
+                //Order like in real keyboard, not alphabetically
+                new KeyMechanism("c6_key", myActivity, myContext , MyEnums.ClefList.treble),
+
+                new KeyMechanism("b5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a5sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("g5sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("g5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("f5sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("f5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("e5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("d5sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("d5_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("c5sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("c5_key", myActivity, myContext , MyEnums.ClefList.treble),
+
+                new KeyMechanism("b4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a4sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("g4sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("g4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("f4sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("f4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("e4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("d4sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("d4_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("c4sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("c4_key", myActivity, myContext , MyEnums.ClefList.treble),
+
+                new KeyMechanism("b3_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a3sh_key", myActivity, myContext , MyEnums.ClefList.treble),
+                new KeyMechanism("a3_key", myActivity, myContext,  MyEnums.ClefList.treble),
+
+                //Below bass clef - coming soon
+                new KeyMechanism("c6_key", myActivity, myContext , MyEnums.ClefList.bass, "c4"),
+
+                new KeyMechanism("b5_key", myActivity, myContext , MyEnums.ClefList.bass, "b3"),
+                new KeyMechanism("a5sh_key", myActivity, myContext , MyEnums.ClefList.bass, "a3sh"),
+                new KeyMechanism("a5_key", myActivity, myContext , MyEnums.ClefList.bass, "a3"),
+                new KeyMechanism("g5sh_key", myActivity, myContext , MyEnums.ClefList.bass, "g3sh"),
+                new KeyMechanism("g5_key", myActivity, myContext , MyEnums.ClefList.bass, "g3"),
+                new KeyMechanism("f5sh_key", myActivity, myContext , MyEnums.ClefList.bass, "f3sh"),
+                new KeyMechanism("f5_key", myActivity, myContext , MyEnums.ClefList.bass, "f3"),
+                new KeyMechanism("e5_key", myActivity, myContext , MyEnums.ClefList.bass, "e3"),
+                new KeyMechanism("d5sh_key", myActivity, myContext , MyEnums.ClefList.bass, "d3sh"),
+                new KeyMechanism("d5_key", myActivity, myContext , MyEnums.ClefList.bass, "d3"),
+                new KeyMechanism("c5sh_key", myActivity, myContext , MyEnums.ClefList.bass, "c3sh"),
+                new KeyMechanism("c5_key", myActivity, myContext , MyEnums.ClefList.bass, "c3"),
+
+                new KeyMechanism("b4_key", myActivity, myContext , MyEnums.ClefList.bass, "b2"),
+                new KeyMechanism("a4sh_key", myActivity, myContext , MyEnums.ClefList.bass, "a2sh"),
+                new KeyMechanism("a4_key", myActivity, myContext , MyEnums.ClefList.bass, "a2"),
+                new KeyMechanism("g4sh_key", myActivity, myContext , MyEnums.ClefList.bass, "g2sh"),
+                new KeyMechanism("g4_key", myActivity, myContext , MyEnums.ClefList.bass, "g2"),
+                new KeyMechanism("f4sh_key", myActivity, myContext , MyEnums.ClefList.bass, "f2sh"),
+                new KeyMechanism("f4_key", myActivity, myContext , MyEnums.ClefList.bass, "f2"),
+                new KeyMechanism("e4_key", myActivity, myContext , MyEnums.ClefList.bass, "e2"),
+                new KeyMechanism("d4sh_key", myActivity, myContext , MyEnums.ClefList.bass, "d2sh"),
+                new KeyMechanism("d4_key", myActivity, myContext , MyEnums.ClefList.bass, "d2"),
+                new KeyMechanism("c4sh_key", myActivity, myContext , MyEnums.ClefList.bass, "c2sh"),
+                new KeyMechanism("c4_key", myActivity, myContext , MyEnums.ClefList.bass, "c2"),
+
+                new KeyMechanism("b3_key", myActivity, myContext , MyEnums.ClefList.bass, "c2"),
+                new KeyMechanism("a3sh_key", myActivity, myContext , MyEnums.ClefList.bass, "c2"),
+                new KeyMechanism("a3_key", myActivity, myContext,  MyEnums.ClefList.bass, "c2"),
+            };
+            pianoKeys = tempPianoKeys;
         }
+
         private async Task incorrectAnimationAsync()
         {
             x.Visibility = Android.Views.ViewStates.Visible;
@@ -70,6 +146,7 @@ namespace DailyMusicalNote
             StartHearingButton.Text = myActivity.Resources.GetString(Resource.String.hearNote_string);
             StartHearingButton.Clickable = true;
         }
+
         public void StartTimer()
         {
             seconds = 0;
@@ -102,6 +179,7 @@ namespace DailyMusicalNote
 
             myTimer.Start();
         }
+
         private void endGame()
         {
             myTimer.Stop();
@@ -116,6 +194,11 @@ namespace DailyMusicalNote
             correctValue.Text = Math.Round(clickAccuracy).ToString() + "%";
 
             endGameLayout.Visibility = Android.Views.ViewStates.Visible;
+
+            foreach (KeyMechanism km in pianoKeys)
+            {
+                km.DisableKey();
+            }
 
             var directory = myActivity.FilesDir + MyEnums.StorageFolderName;
             var filePath = directory + "/" + MyEnums.HistoryFileName;
@@ -154,13 +237,14 @@ namespace DailyMusicalNote
                 myActivity.StartActivity(typeof(MainActivity));
             };
         }
+
         public void nextHearingNote()
-        {         
+        {
             //Wait until key will be up
             //while (MyEnums.isKeyUp) ;
 
             Random randomNumbers = new Random();
-            keyIndex = randomNumbers.Next(0, 1+(int)MyEnums.pianoKey.c2_key);
+            keyIndex = randomNumbers.Next(0, 1 + (int)MyEnums.pianoKey.c2_key);
 
             MyEnums.currentClef = keyIndex >= 28 ? MyEnums.ClefList.bass : MyEnums.ClefList.treble;
             MyEnums.currentHearingNote = (MyEnums.pianoKey)keyIndex;
@@ -192,6 +276,7 @@ namespace DailyMusicalNote
 
             StartHearingButton.Click += (s, e) => playNote();
         }
+
         public void playNote()
         {
             //Start play note
@@ -202,7 +287,7 @@ namespace DailyMusicalNote
         public void chceckNote()
         {
             if (MyEnums.clickedKey != MyEnums.currentHearingNote)
-            {   
+            {
                 _ = incorrectAnimationAsync();
                 wrongAnsers++;
                 topBarWrongAnswersLeftValue.Text = wrongAnsers.ToString();
@@ -214,7 +299,7 @@ namespace DailyMusicalNote
                 topBarNotesLeftValue.Text = noteCounter + "/" + NOTES.ToString();
                 noteCounter++;
 
-                
+
                 isCorrect = true;
                 nextHearingNote();
             }
