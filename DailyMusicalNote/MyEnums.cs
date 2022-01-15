@@ -1,5 +1,8 @@
 ﻿namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Stores all enums which is using in program, additionally stores a few global (not enums) variables.
+    /// </summary>
     class MyEnums
     {
         //Enum for choosing difficulty

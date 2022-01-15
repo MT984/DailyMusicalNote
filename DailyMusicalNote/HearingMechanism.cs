@@ -9,6 +9,9 @@ using System.Timers;
 
 namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Hearing practice mechanism - here are methods for random notes (and playing them), checking correctness of user choices, start and stop timer and ending game.
+    /// </summary>
     public class HearingMechanism : GameActivity
     {
         private readonly Activity myActivity;
@@ -28,6 +31,12 @@ namespace DailyMusicalNote
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
+
+        /// <summary>
+        /// Constructor, initialization of myActivity, myContext, player and noteCounter.
+        /// </summary>
+        /// <param name="myActivity">Variable of Activity type to get activity from GameAvtivity.cs (main game activity).</param>
+        /// <param name="myContext">Variable of Context type to get context from GameAvtivity.cs (main game activity).</param>
         public HearingMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
@@ -37,6 +46,9 @@ namespace DailyMusicalNote
             noteCounter = 1;
         }
 
+        /// <summary>
+        /// Finds necessary view elements by id, generates array for keyboard keys (and generates this keys).
+        /// </summary>
         public void CreateMechanism()
         {
             //Finding elements by id
@@ -125,18 +137,32 @@ namespace DailyMusicalNote
             pianoKeys = tempPianoKeys;
         }
 
+        /// <summary>
+        /// When user choice is incorrect then shows "x" (wrong answer symbol) for 750ms.
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task incorrectAnimationAsync()
         {
             x.Visibility = Android.Views.ViewStates.Visible;
             await Task.Delay(750);
             x.Visibility = Android.Views.ViewStates.Gone;
         }
+
+        /// <summary>
+        /// When user choice is correct then shows "tick" (correct answer symbol) for 750ms.
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task correctAnimationAsync()
         {
             v.Visibility = Android.Views.ViewStates.Visible;
             await Task.Delay(750);
             v.Visibility = Android.Views.ViewStates.Gone;
         }
+
+        /// <summary>
+        /// Disables "play sound" button for 4s (disables during playing sounds).
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task playingNoteAsync()
         {
             StartHearingButton.Text = myActivity.Resources.GetString(Resource.String.playingHearNote_string);
@@ -146,6 +172,9 @@ namespace DailyMusicalNote
             StartHearingButton.Clickable = true;
         }
 
+        /// <summary>
+        /// Starts timer and updates timer in the UI.
+        /// </summary>
         public void StartTimer()
         {
             seconds = 0;
@@ -179,6 +208,9 @@ namespace DailyMusicalNote
             myTimer.Start();
         }
 
+        /// <summary>
+        /// When the game is end calculates points, then shows "end game" window, disables keyboard keys and sets entry in history.
+        /// </summary>
         private void endGame()
         {
             myTimer.Stop();
@@ -237,6 +269,9 @@ namespace DailyMusicalNote
             };
         }
 
+        /// <summary>
+        /// Sets random sound to play and prepare keyboard in depends on randomized clef.
+        /// </summary>
         public void nextHearingNote()
         {
             //Wait until key will be up
@@ -276,6 +311,9 @@ namespace DailyMusicalNote
             StartHearingButton.Click += (s, e) => playNote();
         }
 
+        /// <summary>
+        /// Plays sounds (one sound - 4s).
+        /// </summary>
         public void playNote()
         {
             //Start play note
@@ -283,6 +321,9 @@ namespace DailyMusicalNote
             _ = playingNoteAsync();
         }
 
+        /// <summary>
+        /// Chcecks correctivity of user choices. If yes starts "good" animation then goto <code>nextHearingNote();</code>. If no starts "bad" animation. Also method chcecks when is the end of the game, and calculates points.
+        /// </summary>
         public void chceckNote()
         {
             if (MyEnums.clickedKey != MyEnums.currentHearingNote)
@@ -297,7 +338,6 @@ namespace DailyMusicalNote
 
                 topBarNotesLeftValue.Text = noteCounter + "/" + NOTES.ToString();
                 noteCounter++;
-
 
                 isCorrect = true;
                 nextHearingNote();

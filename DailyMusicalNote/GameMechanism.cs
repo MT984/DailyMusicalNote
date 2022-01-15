@@ -8,6 +8,9 @@ using System.Timers;
 
 namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Note practice mechanism - here are methods for random notes (and displaying notes), checking correctness of user choices, start and stop timer and ending game.
+    /// </summary>
     public class GameMechanism : GameActivity
     {
         private readonly Activity myActivity;
@@ -25,7 +28,12 @@ namespace DailyMusicalNote
 
         //Variable to count how many notes on the sheet has been shown
         private byte noteCounter;
-        
+
+        /// <summary>
+        /// Constructor, initialization of myActivity, myContext and noteCounter.
+        /// </summary>
+        /// <param name="myActivity">Variable of Activity type to get activity from GameAvtivity.cs (main game activity).</param>
+        /// <param name="myContext">Variable of Context type to get context from GameAvtivity.cs (main game activity).</param>
         public GameMechanism(Activity myActivity, Context myContext)
         {
             this.myActivity = myActivity;
@@ -33,6 +41,9 @@ namespace DailyMusicalNote
             noteCounter = 1;
         }
 
+        /// <summary>
+        /// Finds necessary view elements by id, generates array for notes (and prepare all available notes to showing) and generates array for keyboard keys (and generates this keys).
+        /// </summary>
         public void CreateMechanism()
         {
             //Finding elements by id
@@ -144,7 +155,7 @@ namespace DailyMusicalNote
                 new KeyMechanism("a3sh_key", myActivity, myContext , MyEnums.ClefList.treble),
                 new KeyMechanism("a3_key", myActivity, myContext,  MyEnums.ClefList.treble),
 
-                //Below bass clef - coming soon
+                //Below bass clef
                 new KeyMechanism("c6_key", myActivity, myContext , MyEnums.ClefList.bass, "c4"),
 
                 new KeyMechanism("b5_key", myActivity, myContext , MyEnums.ClefList.bass, "b3"),
@@ -180,18 +191,31 @@ namespace DailyMusicalNote
             pianoKeys = tempPianoKeys;
         }
 
+        /// <summary>
+        /// When user choice is incorrect then shows "x" (wrong answer symbol) for 750ms.
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task incorrectAnimationAsync()
         {
             x.Visibility = Android.Views.ViewStates.Visible;
             await Task.Delay(750);
             x.Visibility = Android.Views.ViewStates.Gone;
         }
+
+        /// <summary>
+        /// When user choice is correct then shows "tick" (correct answer symbol) for 750ms.
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task correctAnimationAsync()
         {
             v.Visibility = Android.Views.ViewStates.Visible;
             await Task.Delay(750);
             v.Visibility = Android.Views.ViewStates.Gone;
         }
+
+        /// <summary>
+        /// Chcecks correctivity of user choices. If yes starts "good" animation, randomizes elements (such as clefs, piano keys, notes - depends on current difficult mode). If no starts "bad" animation. Also method chcecks when is the end of the game, and calculates points.
+        /// </summary>
         public void NextNote()
         {
             Random randomNumbers = new Random();
@@ -274,6 +298,10 @@ namespace DailyMusicalNote
                 endGame();
             }
         }
+
+        /// <summary>
+        /// Starts timer and updates timer in the UI.
+        /// </summary>
         public void StartTimer()
         {
             seconds = 0;
@@ -306,6 +334,10 @@ namespace DailyMusicalNote
 
             myTimer.Start();
         }
+
+        /// <summary>
+        /// When the game is end calculates points, then shows "end game" window, disables keyboard keys and sets entry in history.
+        /// </summary>
         private void endGame()
         {
             myTimer.Stop();
@@ -325,7 +357,6 @@ namespace DailyMusicalNote
             {
                 km.DisableKey();
             }
-
             
             var directory = myActivity.FilesDir + MyEnums.StorageFolderName;
             var filePath = directory + "/" + MyEnums.HistoryFileName;

@@ -4,12 +4,21 @@ using System;
 
 namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Here are handling notes in depends on current music key and current clef.
+    /// </summary>
     class NoteMechanism : Activity
     {
         private ImageView note;
         private Button c4, c5, c6;
         private string noteVal;
-        
+
+        /// <summary>
+        /// Constructor, initialize a few variables and find all C keyboard keys by ID.
+        /// </summary>
+        /// <param name="note">ImageView object, associate view with object</param>
+        /// <param name="noteVal">Value of note (e.g. B4, G5...)</param>
+        /// <param name="myActivity">Variable of Activity type to get activity from GameAvtivity.cs (main game activity).</param>
         public NoteMechanism(ImageView note, string noteVal, Activity myActivity)
         {
             this.note = note;
@@ -19,6 +28,9 @@ namespace DailyMusicalNote
             c6 = myActivity.FindViewById<Button>(Resource.Id.c6_key);
         }
 
+        /// <summary>
+        /// If chosen clef is bass then transforms displaying notes to bass clef (e.g. G4 in treble = B2 in bass).
+        /// </summary>
         private void setBassNotes()
         {
             //a3 = 27, last of treble clef
@@ -82,6 +94,9 @@ namespace DailyMusicalNote
             }
         }
 
+        /// <summary>
+        /// Transforms notes in depends on current music key. E.g. if displayed note is F and music key is D major then F should be F#.
+        /// </summary>
         private void setMusicKey()
         {
             switch(MyEnums.currentKey)
@@ -919,6 +934,9 @@ namespace DailyMusicalNote
             }
         }
 
+        /// <summary>
+        /// Sets note to visible, sets enum variable (<code>MyEnums.showedKey</code>) and transforms string on the keyboard (e.g. when chosen clef is bass then on C4 key should be string C2). After all goes to (or no) to <code>setMusicKey();</code>.
+        /// </summary>
         public void SetVisibility()
         {
             note.Visibility = Android.Views.ViewStates.Visible;
@@ -943,6 +961,9 @@ namespace DailyMusicalNote
                 setMusicKey();
             }
         }
+        /// <summary>
+        /// Sets visibility of note to <code>Android.Views.ViewStates.Gone;</code>.
+        /// </summary>
         public void DelVisibility()
         {
             note.Visibility = Android.Views.ViewStates.Gone;

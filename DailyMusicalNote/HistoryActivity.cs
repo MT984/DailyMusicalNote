@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Displaying history.
+    /// </summary>
     [Activity(Label = "HistoryActivity")]
     public class HistoryActivity : Activity
     {

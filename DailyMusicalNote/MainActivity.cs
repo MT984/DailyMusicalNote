@@ -14,6 +14,9 @@ using System.IO;
 
 namespace DailyMusicalNote
 {
+    /// <summary>
+    /// Main activity, menu (handling and displaying).
+    /// </summary>
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
