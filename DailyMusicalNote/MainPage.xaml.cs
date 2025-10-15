@@ -1,24 +1,37 @@
-﻿namespace DailyMusicalNote
+﻿using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
+
+namespace DailyMusicalNote
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        /// <summary>
+        /// Button on clicked event handler. One method handles
+        /// 3 buttons (start button, history button and exit button)
+        /// base on their classId.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnButtonClicked(object sender, EventArgs e)
         {
-            count++;
+            var button = sender as Button;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            switch (button?.ClassId)
+            {
+                case "bStart":
+                    //TODO Implement bStart handler.
+                    break;
+                case "bHistory":
+                    //TODO Implement bHistory handler.
+                    break;
+                case "bExit":
+                    Environment.Exit(0);
+                    break;
+            }
         }
     }
 
