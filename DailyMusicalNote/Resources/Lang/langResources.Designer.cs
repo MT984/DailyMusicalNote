@@ -61,6 +61,33 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easy.
+        /// </summary>
+        internal static string buttonEasy {
+            get {
+                return ResourceManager.GetString("buttonEasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard.
+        /// </summary>
+        internal static string buttonHard {
+            get {
+                return ResourceManager.GetString("buttonHard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        internal static string buttonMedium {
+            get {
+                return ResourceManager.GetString("buttonMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string buttonMenuExit {
@@ -88,11 +115,38 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the number of notes to practice:.
+        /// </summary>
+        internal static string labelDifficultyNoteNb {
+            get {
+                return ResourceManager.GetString("labelDifficultyNoteNb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a difficulty:.
+        /// </summary>
+        internal static string labelDifficultyTitle {
+            get {
+                return ResourceManager.GetString("labelDifficultyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily Musical Note.
         /// </summary>
         internal static string labelMenuTitle {
             get {
                 return ResourceManager.GetString("labelMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to notes.
+        /// </summary>
+        internal static string labelNotes {
+            get {
+                return ResourceManager.GetString("labelNotes", resourceCulture);
             }
         }
     }

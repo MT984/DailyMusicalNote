@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DailyMusicalNote.Views.DifficultyView"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:resx="clr-namespace:DailyMusicalNote.Resources.Lang"
+             Title="DifficultyView">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource GlobalButtonStyle}">
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}">
+            <Setter Property="FontSize" Value="35" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <StackLayout Margin="20" Spacing="10">
+
+        <Label Text="{Static resx:langResources.labelDifficultyTitle}"
+           Padding="20" /> 
+
+        <Button Text="{Static resx:langResources.buttonEasy}"
+            x:Name="buttonEasy"
+            ClassId="bEasy"
+            Clicked="OnButtonClicked"/>
+
+        <Button Text="{Static resx:langResources.buttonMedium}"
+            x:Name="buttonMedium"
+            ClassId="bMedium"
+            Clicked="OnButtonClicked"/>
+
+        <Button Text="{Static resx:langResources.buttonHard}"
+            x:Name="buttonHard"
+            ClassId="bHard"
+            Clicked="OnButtonClicked"/>
+
+        <Label Text="{Static resx:langResources.labelDifficultyNoteNb}"
+               HorizontalOptions="Center"
+               Padding="0,70,0,0"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="0,0,0,70">
+            <Entry x:Name="NumberEntry"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource MainTextColor}"
+                   Placeholder="15"
+                   FontSize="30"
+                   Keyboard="Numeric"
+                   WidthRequest="70"/>
+
+            <Label Text="{Static resx:langResources.labelNotes}"
+                   VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <Button Text="{Static resx:langResources.buttonMenuStart}"
+             ClassId="bStart"
+             Clicked="OnButtonClicked"/>
+        
+    </StackLayout>
+</ContentPage>

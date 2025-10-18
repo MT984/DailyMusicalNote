@@ -1,9 +1,13 @@
-﻿using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
-
-namespace DailyMusicalNote
+﻿namespace DailyMusicalNote.Views
 {
     public partial class MainPage : ContentPage
     {
+        public event EventHandler ButtonStartClicked;
+        public event EventHandler ButtonHistoryClicked;
+
+        /// <summary>
+        /// Initializes a new instance of the MainPage class.
+        /// </summary>
         public MainPage()
         {
             InitializeComponent();
@@ -23,10 +27,10 @@ namespace DailyMusicalNote
             switch (button?.ClassId)
             {
                 case "bStart":
-                    //TODO Implement bStart handler.
+                    ButtonStartClicked?.Invoke(this, EventArgs.Empty);
                     break;
                 case "bHistory":
-                    //TODO Implement bHistory handler.
+                    ButtonHistoryClicked?.Invoke(this, EventArgs.Empty);
                     break;
                 case "bExit":
                     Environment.Exit(0);

@@ -2,30 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resx="clr-namespace:DailyMusicalNote.Resources.Lang"
-             x:Class="DailyMusicalNote.MainPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{StaticResource MainBackColor}">
+             x:Class="DailyMusicalNote.Views.MainPage"
+             NavigationPage.HasNavigationBar="False">
 
-    <!-- One style for all buttons in this page. -->
     <ContentPage.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="BackgroundColor" Value="Black" />
-            <Setter Property="WidthRequest" Value="300" />
-            <Setter Property="HeightRequest" Value="110" />
-            <Setter Property="Margin" Value="20" />
-        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource GlobalButtonStyle}" />
+        <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}" />
     </ContentPage.Resources>
 
     <StackLayout Margin="20" Spacing="10">
 
         <Label Text="{Static resx:langResources.labelMenuTitle}"
-               TextColor="Black"
-               HorizontalOptions="Center"
-               HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
                FontSize="60"
-               Padding="40" />
+               Padding="30" />
         
         <Button Text="{Static resx:langResources.buttonMenuStart}"
                 ClassId="bStart"

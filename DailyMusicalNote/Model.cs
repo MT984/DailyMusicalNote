@@ -9,6 +9,9 @@ namespace DailyMusicalNote
 {
     class Model
     {
+        /// <summary>
+        /// Model class constructor.
+        /// </summary>
         public Model()
         {
             Debug.WriteLine("Model() constructor");
