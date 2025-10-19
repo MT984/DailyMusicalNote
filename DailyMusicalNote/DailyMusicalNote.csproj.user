@@ -11,6 +11,9 @@
     <MauiXaml Update="Views\DifficultyView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\HistoryView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

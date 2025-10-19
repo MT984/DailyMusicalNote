@@ -1,4 +1,10 @@
-﻿namespace DailyMusicalNote.Views
+﻿using System.Diagnostics;
+#if ANDROID
+using Android.Content.PM;
+using Android.App;
+#endif
+
+namespace DailyMusicalNote.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -11,6 +17,23 @@
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// OnAppearing() is invoked when the MainPage becomes visible.
+        /// In this case, the screen rotates to default (portrait)
+        /// orientation when the page becomes visible.
+        /// </summary>
+        protected override void OnAppearing()
+        {
+            Debug.WriteLine("MainPage OnAppearing()");
+            base.OnAppearing();
+#if ANDROID
+            this.Dispatcher.Dispatch(() => {
+                var activity = MainActivity.Instance;
+                activity.RequestedOrientation = ScreenOrientation.Portrait;
+            });
+#endif
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ namespace DailyMusicalNote
         private readonly MainPage _mainPage = new();
         private readonly DifficultyView _difficultyView = new();
         private readonly HistoryView _historyView = new();
+        private readonly GameView _gameView = new();
         private readonly Model _model;
         public Page GetMainPage => _mainPage;
 
@@ -31,6 +32,7 @@ namespace DailyMusicalNote
 
             _mainPage.ButtonStartClicked += OnButtonStartClicked;
             _mainPage.ButtonHistoryClicked += OnButtonHistoryClicked;
+            _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
         }
 
         /// <summary>
@@ -53,6 +55,19 @@ namespace DailyMusicalNote
         private async void OnButtonHistoryClicked(object? sender, EventArgs e)
         {
             await _mainPage.Navigation.PushAsync(_historyView);
+        }
+
+        /// <summary>
+        /// Event handler for the ButtonStartGameClicked event. 
+        /// In this handler, the main game view is opened and
+        /// the difficultyView is removed.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private async void OnButtonStartGameClicked(object? sender, EventArgs e)
+        {
+            _mainPage.Navigation.RemovePage(_difficultyView);
+            await _mainPage.Navigation.PushAsync(_gameView);
         }
     }
 }

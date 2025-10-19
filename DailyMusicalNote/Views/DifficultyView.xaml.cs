@@ -1,8 +1,10 @@
+using System.Diagnostics;
 namespace DailyMusicalNote.Views;
 
 public partial class DifficultyView : ContentPage
 {
     private string _chosenDifficulty;
+    public event EventHandler ButtonStartGameClicked;
 
     /// <summary>
     /// Initializes a new instance of the DifficultyView class.
@@ -23,23 +25,29 @@ public partial class DifficultyView : ContentPage
     /// <param name="e">Event arguments.</param>
     private void OnButtonClicked(object sender, EventArgs e)
     {
+        //If there is an error then return.
         if (sender is not Button button)
         {
             return;
         }
 
-        if(button.ClassId == "bStart")
+        //If the start game button is clicked, then GameView should open.
+        if (button.ClassId == "bStart")
         {
-            //TODO start game
+            ButtonStartGameClicked?.Invoke(this, EventArgs.Empty);
         }
 
+        //Set chosen option.
         _chosenDifficulty = button.ClassId;
         var buttons = new[] { buttonEasy, buttonMedium, buttonHard };
 
+        //Foreach used to colorize buttons
         foreach (var btn in buttons)
         {
+            //"Reset" all button colors.
             btn.BackgroundColor = (Color)Application.Current.Resources["ButtonColor1"];
 
+            //Set the color of the clicked button.
             if (btn.ClassId == button.ClassId)
                 btn.BackgroundColor = (Color)Application.Current.Resources["ChosenOption"];
         }
