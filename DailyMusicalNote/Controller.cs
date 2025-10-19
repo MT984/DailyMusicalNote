@@ -13,6 +13,7 @@ namespace DailyMusicalNote
     {
         private readonly MainPage _mainPage = new();
         private readonly DifficultyView _difficultyView = new();
+        private readonly HistoryView _historyView = new();
         private readonly Model _model;
         public Page GetMainPage => _mainPage;
 
@@ -28,10 +29,30 @@ namespace DailyMusicalNote
             Debug.WriteLine("Controller() constructor");
             _model = model;
 
-            _mainPage.ButtonStartClicked += async (s, e) => {
-                //Application.Current.MainPage = new DifficultyView();
-                await _mainPage.Navigation.PushAsync(_difficultyView);
-            };
+            _mainPage.ButtonStartClicked += OnButtonStartClicked;
+            _mainPage.ButtonHistoryClicked += OnButtonHistoryClicked;
+        }
+
+        /// <summary>
+        /// Event handler for the ButtonStartClicked event. 
+        /// In this handler, the difficultyView is opened.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private async void OnButtonStartClicked(object? sender, EventArgs e)
+        {
+            await _mainPage.Navigation.PushAsync(_difficultyView);
+        }
+
+        /// <summary>
+        /// Event handler for the ButtonHistoryClicked event. 
+        /// In this handler, the historyView is opened.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private async void OnButtonHistoryClicked(object? sender, EventArgs e)
+        {
+            await _mainPage.Navigation.PushAsync(_historyView);
         }
     }
 }
