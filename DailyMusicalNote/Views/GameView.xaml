@@ -5,9 +5,14 @@
              NavigationPage.HasNavigationBar="False"
              Title="GameView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <HorizontalStackLayout
+            x:Name="Staff"
+            HorizontalOptions="Center">
+            <Image Source="empty_staff.png"
+                   WidthRequest="550"
+                   Margin="20"
+                   Aspect="AspectFit" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout x:Name="Keyboard" HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

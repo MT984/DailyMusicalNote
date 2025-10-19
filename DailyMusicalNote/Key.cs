@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DailyMusicalNote
+{
+    internal enum Notes
+    {
+        NOTE_C,
+        NOTE_CSH,
+        NOTE_D,
+        NOTE_DSH,
+        NOTE_E,
+        NOTE_F,
+        NOTE_FSH,
+        NOTE_G,
+        NOTE_GSH,
+        NOTE_A,
+        NOTE_ASH,
+        NOTE_B,
+        LAST_ELEMENT
+    }
+
+    internal enum Octaves
+    {
+        OCTAVE_0,
+        OCTAVE_1,
+        OCTAVE_2,
+        OCTAVE_3,
+        OCTAVE_4,
+        OCTAVE_5,
+        OCTAVE_6,
+        OCTAVE_7,
+        OCTAVE_8,
+        LAST_ELEMENT
+    }
+
+    internal class Key : Button
+    {
+        private readonly Octaves _octave;
+        private readonly Notes _note;
+        public Notes Note => _note;
+
+        /// <summary>
+        /// Initializes a new instance of the Key class.
+        /// Inherits from the Button class.
+        /// </summary>
+        /// <param name="note">The note value of the key (e.g., C, D, etc.).</param>
+        /// <param name="octave">The octave of the key (e.g., 1, 2, etc.).</param>
+        public Key(Notes note, Octaves octave) : base()
+        {
+            _octave = octave;
+            _note = note;
+
+            Debug.WriteLine($"Key() constructor. Note: {note.ToString()}, " +
+                            $"octave: {octave.ToString()}");
+
+            Padding = new Thickness(0, 130, 0, 0);
+            CornerRadius = 0;
+
+            //Set text on C notes to inform about octeaves.
+            if (_note == Notes.NOTE_C)
+            {
+                Text = "C" + (int)_octave;
+            }
+            else
+            {
+                Text = "";
+            }
+        }
+    }
+}
