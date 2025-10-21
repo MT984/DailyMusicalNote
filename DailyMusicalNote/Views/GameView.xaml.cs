@@ -64,9 +64,7 @@ public partial class GameView : ContentPage
             }
 
             //Color button based on note sharpness.
-            if ( new[] {Notes.NOTE_CSH, Notes.NOTE_DSH,
-                        Notes.NOTE_FSH, Notes.NOTE_GSH,
-                        Notes.NOTE_ASH }.Contains(keys[i].Note))
+            if (keys[i].IsSharpedKey())
             {
                 keys[i].Style = (Style)Microsoft.Maui.Controls.
                                  Application.Current.Resources["KeyboardBlackKey"];

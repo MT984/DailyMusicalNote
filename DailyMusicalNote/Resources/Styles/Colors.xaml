@@ -13,6 +13,8 @@
     <Color x:Key="MainTextColor">Black</Color>
     <Color x:Key="ChosenOption">#777</Color>
     <Color x:Key="ButtonColor1">Black</Color>
+    <Color x:Key="KeySharpedPressed">#333</Color>
+    <Color x:Key="KeyPressed">#888</Color>
 
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
