@@ -8,39 +8,46 @@
 
     <ContentPage.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource GlobalButtonStyle}">
-            <Setter Property="HeightRequest" Value="50" />
-            <Setter Property="Margin" Value="5" />
+            <Setter Property="Margin" Value="10" />
+            <!--<Setter Property="MaximumHeightRequest" Value="100" />-->
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}">
             <Setter Property="FontSize" Value="35" />
         </Style>
     </ContentPage.Resources>
-    
-    <StackLayout Margin="20" Spacing="10">
+
+    <Grid RowDefinitions="auto,*,*,*,*,auto,auto,*,auto,*"
+      ColumnDefinitions="*">
 
         <Label Text="{Static resx:langResources.labelDifficultyTitle}"
-           Padding="20" /> 
+           Padding="10"
+           Grid.Row="0"/> 
 
         <Button Text="{Static resx:langResources.buttonEasy}"
             x:Name="buttonEasy"
             ClassId="bEasy"
-            Clicked="OnButtonClicked"/>
+            Clicked="OnButtonClicked"
+            Grid.Row="1"/>
 
         <Button Text="{Static resx:langResources.buttonMedium}"
             x:Name="buttonMedium"
             ClassId="bMedium"
-            Clicked="OnButtonClicked"/>
+            Clicked="OnButtonClicked"
+            Grid.Row="2"/>
 
         <Button Text="{Static resx:langResources.buttonHard}"
             x:Name="buttonHard"
             ClassId="bHard"
-            Clicked="OnButtonClicked"/>
+            Clicked="OnButtonClicked"
+            Grid.Row="3"/>
 
+        <Button Grid.Row="4" IsVisible="Hidden"/>
         <Label Text="{Static resx:langResources.labelDifficultyNoteNb}"
                HorizontalOptions="Center"
-               Padding="0,70,0,0"/>
+               Grid.Row="5"
+               Padding="10"/>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Padding="0,0,0,70">
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="6">
             <Entry x:Name="NumberEntry"
                    HorizontalTextAlignment="Center"
                    TextColor="{StaticResource MainTextColor}"
@@ -52,10 +59,14 @@
             <Label Text="{Static resx:langResources.labelNotes}"
                    VerticalOptions="Center"/>
         </HorizontalStackLayout>
+        <Button Grid.Row="7" IsVisible="Hidden"/>
 
         <Button Text="{Static resx:langResources.buttonMenuStart}"
              ClassId="bStart"
-             Clicked="OnButtonClicked"/>
-        
-    </StackLayout>
+             Clicked="OnButtonClicked"
+             Grid.Row="8"/>
+
+        <Button Grid.Row="9" IsVisible="Hidden"/>
+
+    </Grid>
 </ContentPage>

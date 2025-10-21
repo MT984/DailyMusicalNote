@@ -10,25 +10,31 @@
         <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}" />
     </ContentPage.Resources>
 
-    <StackLayout Margin="20" Spacing="10">
+    <Grid RowDefinitions="5*,2*,2*,2*,1*"
+          ColumnDefinitions="*">
 
         <Label Text="{Static resx:langResources.labelMenuTitle}"
                VerticalTextAlignment="Center"
                FontSize="60"
-               Padding="30" />
+               Padding="30"
+               LineBreakMode="WordWrap"
+               Grid.Row="0" />
         
         <Button Text="{Static resx:langResources.buttonMenuStart}"
                 ClassId="bStart"
-                Clicked="OnButtonClicked"/>
+                Clicked="OnButtonClicked"
+                Grid.Row="1"/>
         
         <Button Text="{Static resx:langResources.buttonMenuHistory}"
                 ClassId="bHistory"
-                Clicked="OnButtonClicked" />
-        
+                Clicked="OnButtonClicked"
+                Grid.Row="2" />
+
         <Button Text="{Static resx:langResources.buttonMenuExit}"
                 ClassId="bExit"
-                Clicked="OnButtonClicked" />
-        
-    </StackLayout>
+                Clicked="OnButtonClicked"
+                Grid.Row="3" />
+
+    </Grid>
 
 </ContentPage>
