@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace DailyMusicalNote
 {
+    internal class KeyClickedEventArgs(Notes notes, Octaves octave) : EventArgs
+    {
+        private Notes _note = notes;
+        private Octaves _octaves = octave;
+        public Notes Note => _note;
+        public Octaves Octave => _octaves;
+    }
+
     internal class Key : Button
     {
         private readonly Octaves _octave;
         private readonly Notes _note;
         private Color _colorBuffer = Color.FromArgb("000");
         public Notes Note => _note;
+        public Octaves Octave => _octave;
 
         /// <summary>
         /// Initializes a new instance of the Key class.

@@ -12,6 +12,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 public partial class GameView : ContentPage
 {
+    public event EventHandler KeyClicked;
+    private RandomNote _currentlyShowingNote;
+
     /// <summary>
     /// GameView() constructor. Initializes a keyboard layout.
     /// </summary>
@@ -19,6 +22,16 @@ public partial class GameView : ContentPage
 	{
 		InitializeComponent();
         GenerateKeyboard();
+    }
+
+    /// <summary>
+    /// No description yet. Work in progress.
+    /// </summary>
+    /// <param name="note">Note that should be displayed in the GUI.</param>
+    public void ShowNote(RandomNote note)
+    {
+        _currentlyShowingNote = note;
+        //TODO display RandomNote in GUI.
     }
 
     /// <summary>
@@ -46,14 +59,16 @@ public partial class GameView : ContentPage
         AbsoluteLayout KeyboardLayout = new();
 
         //Start values.
+        //TODO implement difficulty dependency.
         int startNote = (int)Notes.NOTE_A;
-        int startOctave = (int)Octaves.OCTAVE_0;
+        int startOctave = (int)Octaves.OCTAVE_4;
         double xIndex = 0;
 
         for (int i = 0; i < keys.Length; i++)
         {
             //Key initialize.
             keys[i] = new Key((Notes)startNote++, (Octaves)startOctave);
+            keys[i].Clicked += OnKeyClicked;
 
             //If the last note is NOTE_B, increment the
             //octave and start from NOTE_C.
@@ -108,4 +123,21 @@ public partial class GameView : ContentPage
         //Add layout to "Keyboard" section.
         Keyboard.Children.Add(KeyboardLayout);
     }
+
+    /// <summary>
+    /// Event handler for the Key.Clicked event. 
+    /// In this handler, the currently displayed note
+    /// and the selected key are sent to the event.
+    /// </summary>
+    /// <param name="sender">The object that triggered the event.</param>
+    /// <param name="e">Event arguments.</param>
+    private void OnKeyClicked(object? sender, EventArgs e)
+    {
+        if (sender is not Key key)
+            return;
+
+        KeyClicked?.Invoke(key, new KeyClickedEventArgs(
+            _currentlyShowingNote.Note, _currentlyShowingNote.Octave));
+    }
+
 }

@@ -33,8 +33,10 @@ namespace DailyMusicalNote
             _mainPage.ButtonStartClicked += OnButtonStartClicked;
             _mainPage.ButtonHistoryClicked += OnButtonHistoryClicked;
             _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
+            _gameView.KeyClicked += OnKeyClicked;
         }
 
+        #region MainMenuClickHandlers
         /// <summary>
         /// Event handler for the ButtonStartClicked event. 
         /// In this handler, the difficultyView is opened.
@@ -56,7 +58,9 @@ namespace DailyMusicalNote
         {
             await _mainPage.Navigation.PushAsync(_historyView);
         }
+        #endregion
 
+        #region GameMechanismUtils
         /// <summary>
         /// Event handler for the ButtonStartGameClicked event. 
         /// In this handler, the main game view is opened and
@@ -68,9 +72,29 @@ namespace DailyMusicalNote
         {
             //TODO get value from GUI.
             _model.GenerateRandomNotes(15);
+            _gameView.ShowNote(_model.NextNote);
 
             _mainPage.Navigation.RemovePage(_difficultyView);
             await _mainPage.Navigation.PushAsync(_gameView);
         }
+
+        /// <summary>
+        /// Event handler for the OnKeyClicked event.
+        /// In this handler, the displayed note
+        /// is compared with the clicked note.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnKeyClicked(object? sender, EventArgs e)
+        {
+            if ( (sender is not Key key) || (e is not KeyClickedEventArgs keyClickedEventArgs))
+                return;
+
+            Debug.WriteLine($"OnKeyClicked handler." +
+                $" Clicked on: {key.Note}, {key.Octave}." +
+                $" Current note: {keyClickedEventArgs.Note}, {keyClickedEventArgs.Octave}.");
+            //TODO here compare a clicked note.
+        }
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DailyMusicalNote
 {
-    internal enum Notes
+    public enum Notes
     {
         NOTE_C,
         NOTE_CSH,
@@ -25,7 +25,7 @@ namespace DailyMusicalNote
         LAST_ELEMENT
     }
 
-    internal enum Octaves
+    public enum Octaves
     {
         OCTAVE_0,
         OCTAVE_1,
@@ -39,14 +39,14 @@ namespace DailyMusicalNote
         LAST_ELEMENT
     }
 
-    enum Clefs
+    public enum Clefs
     {
         CLEF_TREBLE,
         CLEF_BASS,
         LAST_ELEMENT
     }
 
-    enum Difficulty
+    public enum Difficulty
     {
         /// <summary>
         /// Display only treble clef, no sharped notes.
@@ -62,7 +62,7 @@ namespace DailyMusicalNote
         HARD
     }
 
-    struct RandomNote
+    public struct RandomNote
     {
         public Notes Note;
         public Octaves Octave;
