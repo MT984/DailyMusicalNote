@@ -72,7 +72,17 @@ namespace DailyMusicalNote
     class Model
     {
         private PriorityQueue<RandomNote, int> _randomNotes = new();
-        public RandomNote NextNote => _randomNotes.Dequeue();
+        private RandomNote _currentlyDisplayingNote;
+        public RandomNote NextNote
+        {
+            get
+            {
+                //TODO protect case when _randomNotes is null or empty.
+                _currentlyDisplayingNote = _randomNotes.Dequeue();
+                return _currentlyDisplayingNote;
+            }
+        }
+        public RandomNote CurrentlyDisplayingNote => _currentlyDisplayingNote;
 
         //At this moment changing difficulty isn't implemented.
         private Difficulty _difficulty = Difficulty.EASY;
@@ -92,6 +102,7 @@ namespace DailyMusicalNote
         public void GenerateRandomNotes(int notesNumber)
         {
             Random random = new Random();
+            _randomNotes.Clear();
 
             for (int i = 0; i < notesNumber; i++)
             {
@@ -138,6 +149,12 @@ namespace DailyMusicalNote
                 //A lower number means a higher priority. Default=100
                 _randomNotes.Enqueue(buff, 100);
             }
+        }
+
+        public bool CheckResult(Key clickedKey)
+        {
+            return (clickedKey.Note == _currentlyDisplayingNote.Note &&
+                    clickedKey.Octave == _currentlyDisplayingNote.Octave);
         }
 
         /// <summary>

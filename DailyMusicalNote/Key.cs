@@ -8,14 +8,6 @@ using System.Threading.Tasks;
 
 namespace DailyMusicalNote
 {
-    internal class KeyClickedEventArgs(Notes notes, Octaves octave) : EventArgs
-    {
-        private Notes _note = notes;
-        private Octaves _octaves = octave;
-        public Notes Note => _note;
-        public Octaves Octave => _octaves;
-    }
-
     internal class Key : Button
     {
         private readonly Octaves _octave;

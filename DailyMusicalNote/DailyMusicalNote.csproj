@@ -61,6 +61,8 @@
 	  <None Remove="Resources\Images\rest.png" />
 	  <None Remove="Resources\Images\time_sign.png" />
 	  <None Remove="Resources\Images\treble_clef.png" />
+	  <None Remove="Resources\Images\v.png" />
+	  <None Remove="Resources\Images\x.png" />
 	</ItemGroup>
 
 	<ItemGroup>

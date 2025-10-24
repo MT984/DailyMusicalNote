@@ -89,15 +89,24 @@ namespace DailyMusicalNote
         /// <param name="e">Event arguments.</param>
         private void OnKeyClicked(object? sender, EventArgs e)
         {
-            if ( (sender is not Key key) || (e is not KeyClickedEventArgs keyClickedEventArgs))
+            if (sender is not Key key)
                 return;
 
             Debug.WriteLine($"OnKeyClicked handler." +
                 $" Clicked on: {key.Note}, {key.Octave}." +
-                $" Current note: {keyClickedEventArgs.Note}, {keyClickedEventArgs.Octave}.");
-            //TODO here compare a clicked note.
-            //Just test below
-            _gameView.ShowNote(_model.NextNote);
+                $" Current note: {_model.CurrentlyDisplayingNote.Note}, {_model.CurrentlyDisplayingNote.Octave}.");
+            
+            if(_model.CheckResult(key))
+            {
+                _gameView.ShowCorrectImageAsync();
+                _gameView.ShowNote(_model.NextNote);
+            }
+            else
+            {
+                _gameView.ShowInvalidImageAsync();
+                Debug.WriteLine("Incorrect");
+            }
+
         }
         #endregion
     }

@@ -6,6 +6,7 @@ using Android.App;
 #endif
 
 namespace DailyMusicalNote.Views;
+
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Layouts;
 using static System.Net.Mime.MediaTypeNames;
@@ -14,7 +15,6 @@ using static System.Net.Mime.MediaTypeNames;
 public partial class GameView : ContentPage
 {
     public event EventHandler KeyClicked;
-    private RandomNote _currentlyShowingNote;
 
     List<(Notes, Octaves, double)> _ratios = new();
     const double RATIO = 8.7 / (19440.0 / 99.0); //Ratio of y-position.
@@ -35,9 +35,7 @@ public partial class GameView : ContentPage
     /// <param name="note">Note that should be displayed in the GUI.</param>
     public void ShowNote(RandomNote note)
     {
-        _currentlyShowingNote = note;
-        Debug.WriteLine($"Current note: {note.Note}, {note.Octave}");
-        //TODO display RandomNote in GUI.
+        Debug.WriteLine($"Displaying note: {note.Note}, {note.Octave}");
 
         Staff.Dispatcher.Dispatch(async () =>
         {
@@ -65,6 +63,28 @@ public partial class GameView : ContentPage
                 NoteImage.TranslationY = (double)Staff.Height * -ratio;
             }
         });
+    }
+
+    public async void ShowCorrectImageAsync()
+    {
+        InvalidImage.IsVisible = false;
+
+        CorrectImage.IsVisible = true;
+        await CorrectImage.FadeTo(1, 100);
+        await Task.Delay(700);
+        await CorrectImage.FadeTo(0, 200);
+        CorrectImage.IsVisible = false;
+    }
+
+    public async void ShowInvalidImageAsync()
+    {
+        CorrectImage.IsVisible = false;
+
+        InvalidImage.IsVisible = true;
+        await InvalidImage.FadeTo(1, 100);
+        await Task.Delay(700);
+        await InvalidImage.FadeTo(0, 200);
+        InvalidImage.IsVisible = false;
     }
 
     /// <summary>
@@ -247,8 +267,7 @@ public partial class GameView : ContentPage
         if (sender is not Key key)
             return;
 
-        KeyClicked?.Invoke(key, new KeyClickedEventArgs(
-            _currentlyShowingNote.Note, _currentlyShowingNote.Octave));
+        KeyClicked?.Invoke(key, e);
     }
 
 }

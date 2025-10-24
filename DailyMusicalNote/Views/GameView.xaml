@@ -36,18 +36,33 @@
                    WidthRequest="550"
                    Margin="100,20,20,20"
                    Aspect="AspectFit"
+                   IsVisible="False"
                    x:Name="DownStaff" />
             
             <Image Source="top_staff.png"
                    WidthRequest="550"
                    Margin="100,20,20,20"
                    Aspect="AspectFit"
+                   IsVisible="False"
                    x:Name="TopStaff" />
             
             <Image Source="a3.png"
                    Margin="100,20,20,20"
                    Aspect="AspectFit"
                    x:Name="NoteImage"/>
+
+            <Image Source="v.png"
+                   Margin="-650,20,20,20"
+                   Aspect="AspectFit"
+                   IsVisible="False"
+                   x:Name="CorrectImage"/>
+
+            <Image Source="x.png"
+                   Margin="-650,20,20,20"
+                   Aspect="AspectFit"
+                   IsVisible="False"
+                   x:Name="InvalidImage"/>
+
         </Grid>
         <HorizontalStackLayout
             x:Name="Keyboard"
