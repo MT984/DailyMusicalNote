@@ -3,18 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DailyMusicalNote.Views.GameView"
              NavigationPage.HasNavigationBar="False"
-             Title="GameView">
+             Title="GameView"
+             x:Name="GameViewContentPage">
     <Grid RowDefinitions="*,*"
       ColumnDefinitions="*">
-        <HorizontalStackLayout
+        <Grid
             x:Name="Staff"
+            VerticalOptions="Start"
             HorizontalOptions="Center"
             Grid.Row="0">
             <Image Source="empty_staff.png"
                    WidthRequest="550"
                    Margin="20"
                    Aspect="AspectFit" />
-        </HorizontalStackLayout>
+            
+            <Image Source="rest.png"
+                   WidthRequest="550"
+                   Margin="300,20,20,20"
+                   Aspect="AspectFit" />
+            
+            <Image Source="time_sign.png"
+                   WidthRequest="550"
+                   Margin="-200,20,20,20"
+                   Aspect="AspectFit" />
+            
+            <Image Source="treble_clef.png"
+                   WidthRequest="550"
+                   Margin="-400,20,20,20"
+                   Aspect="AspectFit" />
+            
+            <Image Source="down_staff.png"
+                   WidthRequest="550"
+                   Margin="100,20,20,20"
+                   Aspect="AspectFit"
+                   x:Name="DownStaff" />
+            
+            <Image Source="top_staff.png"
+                   WidthRequest="550"
+                   Margin="100,20,20,20"
+                   Aspect="AspectFit"
+                   x:Name="TopStaff" />
+            
+            <Image Source="a3.png"
+                   Margin="100,20,20,20"
+                   Aspect="AspectFit"
+                   x:Name="NoteImage"/>
+        </Grid>
         <HorizontalStackLayout
             x:Name="Keyboard"
             HorizontalOptions="Center"

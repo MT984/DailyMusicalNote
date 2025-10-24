@@ -57,6 +57,10 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\empty_staff.png" />
+	  <None Remove="Resources\Images\g3.png" />
+	  <None Remove="Resources\Images\rest.png" />
+	  <None Remove="Resources\Images\time_sign.png" />
+	  <None Remove="Resources\Images\treble_clef.png" />
 	</ItemGroup>
 
 	<ItemGroup>

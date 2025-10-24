@@ -71,11 +71,13 @@ namespace DailyMusicalNote
         private async void OnButtonStartGameClicked(object? sender, EventArgs e)
         {
             //TODO get value from GUI.
-            _model.GenerateRandomNotes(15);
-            _gameView.ShowNote(_model.NextNote);
+            _model.GenerateRandomNotes(30);
 
             _mainPage.Navigation.RemovePage(_difficultyView);
             await _mainPage.Navigation.PushAsync(_gameView);
+
+            await Task.Delay(100);
+            _gameView.ShowNote(_model.NextNote);
         }
 
         /// <summary>
@@ -94,6 +96,8 @@ namespace DailyMusicalNote
                 $" Clicked on: {key.Note}, {key.Octave}." +
                 $" Current note: {keyClickedEventArgs.Note}, {keyClickedEventArgs.Octave}.");
             //TODO here compare a clicked note.
+            //Just test below
+            _gameView.ShowNote(_model.NextNote);
         }
         #endregion
     }

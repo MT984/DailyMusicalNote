@@ -108,7 +108,7 @@ namespace DailyMusicalNote
                             note = random.Next(0, (int)Notes.LAST_ELEMENT);
                         } while (IsSharp((Notes)note));
 
-                        octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_7);
+                        octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
                         clef = (int)Clefs.CLEF_TREBLE;
                         break;
 
@@ -118,7 +118,7 @@ namespace DailyMusicalNote
                             note = random.Next(0, (int)Notes.LAST_ELEMENT);
                         } while (IsSharp((Notes)note));
 
-                        octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_7);
+                        octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
                         clef = random.Next(0, (int)Clefs.LAST_ELEMENT);
                         break;
 
