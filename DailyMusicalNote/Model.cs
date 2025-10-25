@@ -71,8 +71,22 @@ namespace DailyMusicalNote
         {
             get
             {
-                //TODO protect case when _randomNotes is null or empty.
-                _currentlyDisplayingNote = _randomNotes.Dequeue();
+                if (_randomNotes.Count > 0)
+                {
+                    _currentlyDisplayingNote = _randomNotes.Dequeue();
+                }
+                else
+                {
+                    //If _randomNotes is empty then return note
+                    //with LAST_ELEMENTS values.
+                    RandomNote buff = new RandomNote();
+                    buff.Note = Notes.LAST_ELEMENT;
+                    buff.Octave = Octaves.LAST_ELEMENT;
+                    buff.Clef = Clefs.LAST_ELEMENT;
+
+                    _currentlyDisplayingNote = buff;
+                }
+
                 return _currentlyDisplayingNote;
             }
         }
@@ -173,6 +187,14 @@ namespace DailyMusicalNote
                 Notes.NOTE_GSH,
                 Notes.NOTE_ASH
             }.Contains(note));
+        }
+
+        /// <summary>
+        /// Not implemented yet.
+        /// </summary>
+        public void GameOver()
+        {
+            //TODO implement game over
         }
     }
 }

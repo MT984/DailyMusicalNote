@@ -15,7 +15,7 @@ public partial class GameView : ContentPage
 
     private List<(Notes, Octaves, double)> _ratios = new();
     private const double RATIO = 8.7 / (19440.0 / 99.0); //Ratio of y-position.
-    private const int KEYBOARD_SIZE = 25; //Size in keys (white and black).
+    private const int KEYBOARD_SIZE = 28; //Size in keys (white and black).
 
     /// <summary>
     /// GameView() constructor. Initializes a keyboard layout.
@@ -315,5 +315,14 @@ public partial class GameView : ContentPage
             return;
 
         KeyClicked?.Invoke(key, e);
+    }
+
+    /// <summary>
+    /// Not implemented yet.
+    /// </summary>
+    public async void GameOver()
+    {
+        //TODO implement game over. An alert is now shown for testing.
+        await DisplayAlert("End", "Game over", "OK");
     }
 }

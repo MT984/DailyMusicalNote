@@ -93,7 +93,22 @@ namespace DailyMusicalNote
             if (_model.CheckResult(key))
             {
                 _gameView.ShowCorrectImageAsync();
-                _gameView.ShowNote(_model.NextNote);
+
+                RandomNote nextNote = _model.NextNote;
+
+                //If it's the end of the notes
+                //(they are set to LAST_ELEMENT), game over occurs.
+                if (nextNote.Note == Notes.LAST_ELEMENT &&
+                   nextNote.Octave == Octaves.LAST_ELEMENT)
+                {
+                    Debug.WriteLine("Game over");
+                    _gameView.GameOver();
+                    _model.GameOver();
+                }
+                else
+                {
+                    _gameView.ShowNote(nextNote);
+                }
             }
             else
             {
