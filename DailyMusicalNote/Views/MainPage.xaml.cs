@@ -8,8 +8,8 @@ namespace DailyMusicalNote.Views
 {
     public partial class MainPage : ContentPage
     {
-        public event EventHandler ButtonStartClicked;
-        public event EventHandler ButtonHistoryClicked;
+        public event EventHandler? ButtonStartClicked;
+        public event EventHandler? ButtonHistoryClicked;
 
         /// <summary>
         /// Initializes a new instance of the MainPage class.

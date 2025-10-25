@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace DailyMusicalNote
 {
@@ -135,7 +129,7 @@ namespace DailyMusicalNote
 
                     case Difficulty.HARD:
                         //TODO Implement hard difficulty.
-                    break;
+                        break;
                 }
 
                 RandomNote buff = new RandomNote();
@@ -151,6 +145,14 @@ namespace DailyMusicalNote
             }
         }
 
+        /// <summary>
+        /// Checks if the picked note is equal to the clicked note.
+        /// </summary>
+        /// <param name="clickedKey">The key that was clicked.</param>
+        /// <returns>
+        /// True if the clicked key and the picked
+        /// key are equal. Otherwise false.
+        /// </returns>
         public bool CheckResult(Key clickedKey)
         {
             return (clickedKey.Note == _currentlyDisplayingNote.Note &&

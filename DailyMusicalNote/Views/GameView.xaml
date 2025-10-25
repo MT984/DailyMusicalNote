@@ -49,6 +49,7 @@
             <Image Source="a3.png"
                    Margin="100,20,20,20"
                    Aspect="AspectFit"
+                   IsVisible="False"
                    x:Name="NoteImage"/>
 
             <Image Source="v.png"

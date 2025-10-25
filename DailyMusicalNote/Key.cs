@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace DailyMusicalNote
 {
@@ -46,7 +40,7 @@ namespace DailyMusicalNote
             _colorBuffer = BackgroundColor;
             BackgroundColor = IsSharpedKey() ?
                 (Color)Application.Current.Resources["KeySharpedPressed"] :
-                (Color)Application.Current.Resources["KeyPressed"]; 
+                (Color)Application.Current.Resources["KeyPressed"];
         }
 
         /// <summary>

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DailyMusicalNote.Views;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DailyMusicalNote.Views;
-using Microsoft.Maui.Controls;
 
 namespace DailyMusicalNote
 {
@@ -76,7 +70,8 @@ namespace DailyMusicalNote
             _mainPage.Navigation.RemovePage(_difficultyView);
             await _mainPage.Navigation.PushAsync(_gameView);
 
-            await Task.Delay(100);
+            //Wait for view initialization.
+            await Task.Delay(250);
             _gameView.ShowNote(_model.NextNote);
         }
 
@@ -95,15 +90,15 @@ namespace DailyMusicalNote
             Debug.WriteLine($"OnKeyClicked handler." +
                 $" Clicked on: {key.Note}, {key.Octave}." +
                 $" Current note: {_model.CurrentlyDisplayingNote.Note}, {_model.CurrentlyDisplayingNote.Octave}.");
-            
-            if(_model.CheckResult(key))
+
+            if (_model.CheckResult(key))
             {
                 _gameView.ShowCorrectImageAsync();
                 _gameView.ShowNote(_model.NextNote);
             }
             else
             {
-                _gameView.ShowInvalidImageAsync();
+                _gameView.ShowIncorrectImageAsync();
                 Debug.WriteLine("Incorrect");
             }
 
