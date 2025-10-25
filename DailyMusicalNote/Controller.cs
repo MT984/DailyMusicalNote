@@ -62,10 +62,9 @@ namespace DailyMusicalNote
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments.</param>
-        private async void OnButtonStartGameClicked(object? sender, EventArgs e)
+        private async void OnButtonStartGameClicked(object? sender, int notesNumer)
         {
-            //TODO get value from GUI.
-            _model.GenerateRandomNotes(30);
+            _model.GenerateRandomNotes(notesNumer);
 
             _mainPage.Navigation.RemovePage(_difficultyView);
             await _mainPage.Navigation.PushAsync(_gameView);

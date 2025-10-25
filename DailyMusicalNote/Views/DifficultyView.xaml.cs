@@ -4,7 +4,7 @@ namespace DailyMusicalNote.Views;
 public partial class DifficultyView : ContentPage
 {
     private string _chosenDifficulty;
-    public event EventHandler ButtonStartGameClicked;
+    public event EventHandler<int>? ButtonStartGameClicked;
 
     /// <summary>
     /// Initializes a new instance of the DifficultyView class.
@@ -34,7 +34,18 @@ public partial class DifficultyView : ContentPage
         //If the start game button is clicked, then GameView should open.
         if (button.ClassId == "bStart")
         {
-            ButtonStartGameClicked?.Invoke(this, EventArgs.Empty);
+            //Check that input data is int>0.
+            string? text = NumberEntry.Text?.Trim();
+            if (int.TryParse(text, out int number) && number>=5 && number <=50)
+            {
+                ButtonStartGameClicked?.Invoke(this, number);
+            }
+            else
+            {
+                //TODO use lang
+                DisplayAlert("Info",
+                    "Incorect input data. You can play from 5 to 50 notes.", "OK");
+            }
         }
 
         //Set chosen option.
