@@ -121,6 +121,14 @@
     <value>Easy</value>
     <comment>Shows in the DifficultyView.</comment>
   </data>
+  <data name="buttonGameOverRepeat" xml:space="preserve">
+    <value>Play again</value>
+    <comment>Shows in the game over popup. This is a repeat button.</comment>
+  </data>
+  <data name="buttonGameOverReturn" xml:space="preserve">
+    <value>Main menu</value>
+    <comment>Shows in the game over popup. This is a main menu return button.</comment>
+  </data>
   <data name="buttonHard" xml:space="preserve">
     <value>Hard</value>
     <comment>Shows in the DifficultyView.</comment>
@@ -148,6 +156,18 @@
   <data name="labelDifficultyTitle" xml:space="preserve">
     <value>Choose a difficulty:</value>
     <comment>Shows in the DifficultyView.</comment>
+  </data>
+  <data name="labelGameOverAccuracy" xml:space="preserve">
+    <value>Accuracy: </value>
+    <comment>Shows in the game over popup. This is an accuracy.</comment>
+  </data>
+  <data name="labelGameOverScore" xml:space="preserve">
+    <value>Score: </value>
+    <comment>Shows in the game over popup. This is a score.</comment>
+  </data>
+  <data name="labelGameOverTitle" xml:space="preserve">
+    <value>Game over</value>
+    <comment>Shows in the game over popup. This is a tittle.</comment>
   </data>
   <data name="labelMenuTitle" xml:space="preserve">
     <value>Daily Musical Note</value>

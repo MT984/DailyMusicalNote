@@ -15,6 +15,11 @@
     <Color x:Key="ButtonColor1">Black</Color>
     <Color x:Key="KeySharpedPressed">#333</Color>
     <Color x:Key="KeyPressed">#888</Color>
+    <Color x:Key="PopupBackground">#222</Color>
+    <Color x:Key="PopupOverlay">#80000000</Color>
+    <Color x:Key="PopupTitleTextColor">White</Color>
+    <Color x:Key="PopupTextColor">#ccc</Color>
+    <Color x:Key="PopupButtonBackground">#ccc</Color>
 
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>

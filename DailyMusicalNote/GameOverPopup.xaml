@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:resx="clr-namespace:DailyMusicalNote.Resources.Lang"
+    x:Class="DailyMusicalNote.GameOverPopup"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <Grid BackgroundColor="{StaticResource PopupOverlay}"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill">
+        <Frame BackgroundColor="{StaticResource PopupBackground}"
+            Padding="20"
+            HasShadow="True"
+            WidthRequest="300"
+            HeightRequest="250"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+
+            <VerticalStackLayout Spacing="15"
+                                 HorizontalOptions="Center">
+                <Label FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="{Static resx:langResources.labelGameOverTitle}"
+                    TextColor="{StaticResource PopupTitleTextColor}" />
+                
+                <Label FontSize="18"
+                    Text="{Static resx:langResources.labelGameOverScore}"
+                    TextColor="{StaticResource PopupTextColor}"
+                    x:Name="ScoreLabel"/>
+                
+                <Label FontSize="18"
+                    Text="{Static resx:langResources.labelGameOverAccuracy}"
+                    TextColor="{StaticResource PopupTextColor}"
+                    x:Name="AccuracyaLabel"/>
+
+                <BoxView HeightRequest="0" VerticalOptions="FillAndExpand" />
+                <BoxView HeightRequest="0" VerticalOptions="FillAndExpand" />
+                
+                <HorizontalStackLayout Spacing="10">
+                    <Button Text="{Static resx:langResources.buttonGameOverRepeat}"
+                            BackgroundColor="{StaticResource PopupButtonBackground}"
+                            TextColor="{StaticResource Black}"
+                            Clicked="OnRestartClicked" />
+                    <Button Text="{Static resx:langResources.buttonGameOverReturn}"
+                            BackgroundColor="{StaticResource PopupButtonBackground}"
+                            TextColor="{StaticResource Black}"
+                            Clicked="OnReturnClicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+
+</toolkit:Popup>

@@ -102,7 +102,8 @@ namespace DailyMusicalNote
                    nextNote.Octave == Octaves.LAST_ELEMENT)
                 {
                     Debug.WriteLine("Game over");
-                    _gameView.GameOver();
+                    //TODO score mechanism
+                    _gameView.GameOver(123, 123);
                     _model.GameOver();
                 }
                 else

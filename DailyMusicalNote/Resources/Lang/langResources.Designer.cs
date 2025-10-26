@@ -70,6 +70,24 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play again.
+        /// </summary>
+        internal static string buttonGameOverRepeat {
+            get {
+                return ResourceManager.GetString("buttonGameOverRepeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main menu.
+        /// </summary>
+        internal static string buttonGameOverReturn {
+            get {
+                return ResourceManager.GetString("buttonGameOverReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hard.
         /// </summary>
         internal static string buttonHard {
@@ -129,6 +147,33 @@ namespace DailyMusicalNote.Resources.Lang {
         internal static string labelDifficultyTitle {
             get {
                 return ResourceManager.GetString("labelDifficultyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accuracy: .
+        /// </summary>
+        internal static string labelGameOverAccuracy {
+            get {
+                return ResourceManager.GetString("labelGameOverAccuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score: .
+        /// </summary>
+        internal static string labelGameOverScore {
+            get {
+                return ResourceManager.GetString("labelGameOverScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game over.
+        /// </summary>
+        internal static string labelGameOverTitle {
+            get {
+                return ResourceManager.GetString("labelGameOverTitle", resourceCulture);
             }
         }
         

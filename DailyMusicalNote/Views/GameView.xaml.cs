@@ -6,12 +6,14 @@ using Android.App;
 
 namespace DailyMusicalNote.Views;
 
+using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Layouts;
 
 public partial class GameView : ContentPage
 {
     public event EventHandler? KeyClicked;
+    public event EventHandler<GameOverPopup.PopupResult>? GameOverResult;
 
     private List<(Notes, Octaves, double)> _ratios = new();
     private const double RATIO = 8.7 / (19440.0 / 99.0); //Ratio of y-position.
@@ -318,11 +320,14 @@ public partial class GameView : ContentPage
     }
 
     /// <summary>
-    /// Not implemented yet.
+    /// Shows the game over popup and then invokes the <see cref="GameOverResult"/> event.
     /// </summary>
-    public async void GameOver()
+    public async void GameOver(int score, int accuracy)
     {
-        //TODO implement game over. An alert is now shown for testing.
-        await DisplayAlert("End", "Game over", "OK");
+        var popup = new GameOverPopup(score, accuracy);
+        var result = await this.ShowPopupAsync(popup);
+        result ??= GameOverPopup.PopupResult.RETURN_TO_MAIN_MENU;
+
+        GameOverResult?.Invoke(this, (GameOverPopup.PopupResult)result);
     }
 }

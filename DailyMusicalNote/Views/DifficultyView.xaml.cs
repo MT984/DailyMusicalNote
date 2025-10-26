@@ -4,8 +4,9 @@ namespace DailyMusicalNote.Views;
 public partial class DifficultyView : ContentPage
 {
     private string _chosenDifficulty;
+    private const string DEFAULT_NOTES_NUMBER = "15";
     public event EventHandler<int>? ButtonStartGameClicked;
-
+    
     /// <summary>
     /// Initializes a new instance of the DifficultyView class.
     /// Also initializes a variables. 
@@ -14,6 +15,7 @@ public partial class DifficultyView : ContentPage
 	{
 		InitializeComponent();
         _chosenDifficulty = string.Empty;
+        NumberEntry.Text = DEFAULT_NOTES_NUMBER;
     }
 
     /// <summary>
