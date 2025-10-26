@@ -173,8 +173,16 @@
     <value>Daily Musical Note</value>
     <comment>Shows in the main menu. This is an app title.</comment>
   </data>
+  <data name="labelNote" xml:space="preserve">
+    <value>Note: </value>
+    <comment>Shows in the game view.</comment>
+  </data>
   <data name="labelNotes" xml:space="preserve">
     <value>notes</value>
     <comment>Shows in the DifficultyView.</comment>
+  </data>
+  <data name="labelTime" xml:space="preserve">
+    <value>Time: </value>
+    <comment>Shows in the game view.</comment>
   </data>
 </root>

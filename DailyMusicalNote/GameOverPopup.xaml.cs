@@ -16,13 +16,13 @@ public partial class GameOverPopup : Popup
     /// </summary>
     /// <param name="score">The score to be displayed in the popup.</param>
     /// <param name="accuracy">The accuracy to be displayed in the popup.</param>
-    public GameOverPopup(int score, int accuracy)
+    public GameOverPopup(int score, int accuracyPercent)
     {
         InitializeComponent();
 
         //Show results on the screen.
         ScoreLabel.Text += score.ToString();
-        AccuracyaLabel.Text += accuracy.ToString();
+        AccuracyaLabel.Text += accuracyPercent.ToString() + "%";
     }
 
     /// <summary>

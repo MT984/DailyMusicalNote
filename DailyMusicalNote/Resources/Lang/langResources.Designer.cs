@@ -187,11 +187,29 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note: .
+        /// </summary>
+        internal static string labelNote {
+            get {
+                return ResourceManager.GetString("labelNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to notes.
         /// </summary>
         internal static string labelNotes {
             get {
                 return ResourceManager.GetString("labelNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time: .
+        /// </summary>
+        internal static string labelTime {
+            get {
+                return ResourceManager.GetString("labelTime", resourceCulture);
             }
         }
     }

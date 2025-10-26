@@ -7,6 +7,7 @@ using Android.App;
 namespace DailyMusicalNote.Views;
 
 using CommunityToolkit.Maui.Views;
+using DailyMusicalNote.Resources.Lang;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Layouts;
 
@@ -329,5 +330,44 @@ public partial class GameView : ContentPage
         result ??= GameOverPopup.PopupResult.RETURN_TO_MAIN_MENU;
 
         GameOverResult?.Invoke(this, (GameOverPopup.PopupResult)result);
+    }
+
+    /// <summary>
+    /// Shows the timespan in the GUI in the format "labelTime: mm:ss".
+    /// </summary>
+    /// <param name="timeSpan">Timespan to be shown in the GUI.</param>
+    public void UpdateTimerLabel(TimeSpan timeSpan)
+    {
+        TimeLabel.Text = $"{langResources.labelTime}: {timeSpan:mm\\:ss}";
+    }
+
+    /// <summary>
+    /// Updates the note counter that is shown in the GUI.
+    /// </summary>
+    /// <param name="currentNumber">Number of notes to show.</param>
+    public void UpdateNotesCounter(int currentNumber)
+    {
+        if (string.IsNullOrWhiteSpace(NotesLabel.Text))
+        {
+            NotesLabel.Text = $"{currentNumber}/NaN";
+        }
+        else
+        {
+            string[] parts = NotesLabel.Text.Split('/');
+
+            parts[0] = currentNumber.ToString();
+            NotesLabel.Text = $"{parts[0]}/{parts[1]}";
+        }
+    }
+
+    /// <summary>
+    /// Updates the note counter that is shown in the GUI.
+    /// Also sets the maximum number of notes displayed in the GUI.
+    /// </summary>
+    /// <param name="currentNumber">Number of notes to show.</param>
+    /// <param name="maxNumber">Max number of notes to show.</param>
+    public void UpdateNotesCounter(int currentNumber, int maxNumber)
+    {
+        NotesLabel.Text = $"{currentNumber}/{maxNumber}";
     }
 }

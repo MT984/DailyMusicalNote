@@ -3,10 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DailyMusicalNote.Views.GameView"
              NavigationPage.HasNavigationBar="False"
+             xmlns:resx="clr-namespace:DailyMusicalNote.Resources.Lang"
              Title="GameView"
              x:Name="GameViewContentPage">
-    <Grid RowDefinitions="*,*"
-      ColumnDefinitions="*">
+    <Grid RowDefinitions="*,*" ColumnDefinitions="*">
+        <Frame
+            Padding="8,2"
+            HasShadow="True"
+            BackgroundColor="{StaticResource KeyPressed}"
+            HeightRequest="24"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start">
+            
+            <HorizontalStackLayout>
+
+                <Label x:Name="TimeLabel"
+                       Text="{Static resx:langResources.labelTime}"
+                       TextColor="{StaticResource White}"
+                       FontSize="14"
+                       WidthRequest="90"
+                       VerticalOptions="Center" />
+
+                <Label Text="{Static resx:langResources.labelNote}"
+                       TextColor="{StaticResource White}"
+                       FontSize="14"
+                       Margin="30,0,0,0"
+                       HorizontalTextAlignment="End"/>
+                
+                <Label x:Name="NotesLabel"
+                       Text=" "
+                       TextColor="{StaticResource White}"
+                       FontSize="14"
+                       WidthRequest="40"
+                       HorizontalTextAlignment="End"/>
+
+            </HorizontalStackLayout>
+        </Frame>
         <Grid
             x:Name="Staff"
             VerticalOptions="Start"

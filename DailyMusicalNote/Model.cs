@@ -65,8 +65,11 @@ namespace DailyMusicalNote
 
     class Model
     {
+        //At this moment changing difficulty isn't implemented.
+        private Difficulty _difficulty = Difficulty.EASY;
         private PriorityQueue<RandomNote, int> _randomNotes = new();
         private RandomNote _currentlyDisplayingNote;
+        private Stopwatch _stopwatch = new();
         public RandomNote NextNote
         {
             get
@@ -91,10 +94,7 @@ namespace DailyMusicalNote
             }
         }
         public RandomNote CurrentlyDisplayingNote => _currentlyDisplayingNote;
-
-        //At this moment changing difficulty isn't implemented.
-        private Difficulty _difficulty = Difficulty.EASY;
-
+        public TimeSpan Elapsed => _stopwatch.Elapsed;
         /// <summary>
         /// Model class constructor.
         /// </summary>
@@ -104,10 +104,38 @@ namespace DailyMusicalNote
         }
 
         /// <summary>
+        /// Generates notes to play and starts the timer.
+        /// </summary>
+        /// <param name="notesNumber">Number of notes to generate.</param>
+        public void StartGame(int notesNumber)
+        {
+            GenerateRandomNotes(notesNumber);
+            StartTimer();
+        }
+
+        /// <summary>
+        /// Resets and starts the stopwatch.
+        /// </summary>
+        private void StartTimer()
+        {
+            _stopwatch.Reset();
+            _stopwatch.Start();
+        }
+
+
+        /// <summary>
+        /// Stops the timer.
+        /// </summary>
+        private void StopTimer()
+        {
+            _stopwatch.Stop();
+        }
+
+        /// <summary>
         /// Generates a PriorityQueue containing notes that can be displayed in the GUI.
         /// </summary>
         /// <param name="notesNumber">Number of notes to generate.</param>
-        public void GenerateRandomNotes(int notesNumber)
+        private void GenerateRandomNotes(int notesNumber)
         {
             Random random = new Random();
             _randomNotes.Clear();

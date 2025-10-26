@@ -10,6 +10,10 @@ namespace DailyMusicalNote
         private readonly HistoryView _historyView = new();
         private readonly GameView _gameView = new();
         private readonly Model _model;
+        private IDispatcherTimer _timer = Application.Current!.Dispatcher.CreateTimer();
+        private int _correctAnswerCounter;
+        private int _overallAnswerCounter;
+
         public Page GetMainPage => _mainPage;
 
         /// <summary>
@@ -63,15 +67,27 @@ namespace DailyMusicalNote
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments.</param>
         private async void OnButtonStartGameClicked(object? sender, int notesNumer)
-        {
-            _model.GenerateRandomNotes(notesNumer);
-
+        {    
             _mainPage.Navigation.RemovePage(_difficultyView);
             await _mainPage.Navigation.PushAsync(_gameView);
 
             //Wait for view initialization.
             await Task.Delay(250);
+
+            //TODO protect when timer.Enabled in model == false
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += (s, e) =>
+            {
+                _gameView.UpdateTimerLabel(_model.Elapsed);
+            };
+            _timer.Start();
+
+            //First start game then show note.
+            _model.StartGame(notesNumer);
             _gameView.ShowNote(_model.NextNote);
+
+            _correctAnswerCounter = 0;
+            _gameView.UpdateNotesCounter(_correctAnswerCounter, notesNumer);
         }
 
         /// <summary>
@@ -86,30 +102,15 @@ namespace DailyMusicalNote
             if (sender is not Key key)
                 return;
 
+            _overallAnswerCounter++;
+
             Debug.WriteLine($"OnKeyClicked handler." +
                 $" Clicked on: {key.Note}, {key.Octave}." +
                 $" Current note: {_model.CurrentlyDisplayingNote.Note}, {_model.CurrentlyDisplayingNote.Octave}.");
 
             if (_model.CheckResult(key))
             {
-                _gameView.ShowCorrectImageAsync();
-
-                RandomNote nextNote = _model.NextNote;
-
-                //If it's the end of the notes
-                //(they are set to LAST_ELEMENT), game over occurs.
-                if (nextNote.Note == Notes.LAST_ELEMENT &&
-                   nextNote.Octave == Octaves.LAST_ELEMENT)
-                {
-                    Debug.WriteLine("Game over");
-                    //TODO score mechanism
-                    _gameView.GameOver(123, 123);
-                    _model.GameOver();
-                }
-                else
-                {
-                    _gameView.ShowNote(nextNote);
-                }
+                ProcessCorrectAnswer();
             }
             else
             {
@@ -118,6 +119,38 @@ namespace DailyMusicalNote
             }
 
         }
+
+        /// <summary>
+        /// Processes the correct answer. Updates the GUI and model.
+        /// </summary>
+        private void ProcessCorrectAnswer()
+        {
+            _correctAnswerCounter++;
+            _gameView.ShowCorrectImageAsync();
+            _gameView.UpdateNotesCounter(_correctAnswerCounter);
+
+            RandomNote nextNote = _model.NextNote;
+
+            //If it's the end of the notes
+            //(they are set to LAST_ELEMENT), game over occurs.
+            if (nextNote.Note == Notes.LAST_ELEMENT &&
+               nextNote.Octave == Octaves.LAST_ELEMENT)
+            {
+                Debug.WriteLine("Game over");
+
+                int percent = (int)Math.Round((double)_correctAnswerCounter /
+                                                      _overallAnswerCounter * 100);
+
+                //TODO score mechanism
+                _gameView.GameOver(123, percent);
+                _model.GameOver();
+            }
+            else
+            {
+                _gameView.ShowNote(nextNote);
+            }
+        }
+
         #endregion
     }
 }
