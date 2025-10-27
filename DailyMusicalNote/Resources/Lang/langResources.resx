@@ -181,6 +181,14 @@
     <value>notes</value>
     <comment>Shows in the DifficultyView.</comment>
   </data>
+  <data name="labelSaveErrorContent" xml:space="preserve">
+    <value>History is not saved. Error: </value>
+    <comment>Shows when there is an error with save history. This describes a content.</comment>
+  </data>
+  <data name="labelSaveErrorTitle" xml:space="preserve">
+    <value>Error</value>
+    <comment>Shows when there is an error with save history. This describes a title.</comment>
+  </data>
   <data name="labelTime" xml:space="preserve">
     <value>Time: </value>
     <comment>Shows in the game view.</comment>

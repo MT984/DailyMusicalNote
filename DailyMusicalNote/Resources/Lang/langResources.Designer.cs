@@ -205,6 +205,24 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History is not saved. Error: .
+        /// </summary>
+        internal static string labelSaveErrorContent {
+            get {
+                return ResourceManager.GetString("labelSaveErrorContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string labelSaveErrorTitle {
+            get {
+                return ResourceManager.GetString("labelSaveErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time: .
         /// </summary>
         internal static string labelTime {

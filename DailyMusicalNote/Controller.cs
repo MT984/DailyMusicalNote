@@ -73,7 +73,7 @@ namespace DailyMusicalNote
         /// the difficultyView is removed.
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="notesNumer">Event arguments.</param>
         private async void OnButtonStartGameClicked(object? sender, int notesNumer)
         {
             if (_mainPage.Navigation.NavigationStack.Contains(_difficultyView))
@@ -163,14 +163,19 @@ namespace DailyMusicalNote
             _timer.Stop();
 
             int misclicks = _overallAnswerCounter - _correctAnswerCounter;
-            int score = _model.GameOver(_correctAnswerCounter, misclicks);
-
             int percent = (int)Math.Round((double)_correctAnswerCounter /
                                                   _overallAnswerCounter * 100);
+
+            int score = _model.GameOver(_correctAnswerCounter, misclicks, percent);
 
             _gameView.GameOver(score, percent);
         }
 
+        /// <summary>
+        /// Restarts game or returns to main menu based on chosen option.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="result">Event arguments - chosen option.</param>
         private void OnGameOverResult(object? sender, GameOverPopup.PopupResult result)
         {
             switch (result)

@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System;
 
 namespace DailyMusicalNote
 {
@@ -70,6 +73,7 @@ namespace DailyMusicalNote
         private PriorityQueue<RandomNote, int> _randomNotes = new();
         private RandomNote _currentlyDisplayingNote;
         private Stopwatch _stopwatch = new();
+        private string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "save.db");
         public RandomNote NextNote
         {
             get
@@ -217,18 +221,19 @@ namespace DailyMusicalNote
         }
 
         /// <summary>
-        /// Stops the timers and calculates a score.
+        /// Stops the timers, calculates a score and saves the score to the file.
         /// </summary>
         /// <param name="correctAnswers">
         /// The number of correct answers
         /// (equals to number of notes in thr game).
         /// </param>
         /// <param name="incorrectAnswers">The number of incorrect answers.</param>
+        /// <param name="accuracyPercent">The accuracy result, expressed as a percentage.</param>
         /// <returns>
         /// The number of points a player has earned.
         /// Calculated based on the number of misclicks and gameplay time.
         /// </returns>
-        public int GameOver(int correctAnswers, int incorrectAnswers)
+        public int GameOver(int correctAnswers, int incorrectAnswers, int accuracyPercent)
         {
             StopTimer();
             double seconds = _stopwatch.Elapsed.TotalSeconds;
@@ -237,8 +242,83 @@ namespace DailyMusicalNote
             double score = (incorrectAnswers + correctAnswers) / correctAnswers;
             score *= seconds;
 
-            //TODO save into history
+            //Run task to avoid GUI freeze.
+            Task task = Task.Run(() =>
+            {
+                var save = new Save
+                {
+                    dateTime = DateTime.Now,
+                    score = (int)score,
+                    accuracy = accuracyPercent,
+                    gameplayTime = _stopwatch.Elapsed.ToString(@"mm\:ss"),
+                    noteCounter = correctAnswers,
+                    difficulty = Difficulty.EASY
+                };
+
+                _ = SaveResultAsync(save);
+            });
+
             return (int)score;
+        }
+
+        /// <summary>
+        /// Saves result to a file.
+        /// </summary>
+        /// <param name="save">The <see cref="Save"/>
+        /// object to be written to the file.</param>
+        /// <returns>A task that represents the asynchronous save operation.</returns>
+        private async Task SaveResultAsync(Save save)
+        {
+            try
+            {
+                using var db = new AppDbContext();
+                await db.Database.EnsureCreatedAsync();
+
+                db.Save.Add(save);
+                _ = db.SaveChangesAsync();
+
+                Debug.WriteLine("The result has been saved");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("The result is not saved: "+ex.Message);
+
+                await Application.Current.MainPage.DisplayAlert(
+                    Resources.Lang.langResources.labelSaveErrorTitle,
+                    Resources.Lang.langResources.labelSaveErrorContent+ex.Message, "OK");
+            }
+        }
+
+        /// <summary>
+        /// Gets the list of <see cref="Save"/> objects read from the file.
+        /// </summary>
+        /// <returns>The list of <see cref="Save"/>
+        /// objects that was read from the file.</returns>
+        public List<Save> GetSavedHistory()
+        {
+            using var db = new AppDbContext();
+            var save = db.Save.ToList();
+
+            return save;
+        }
+
+        /// <summary>
+        /// Deletes the database file (clears the history of results).
+        /// </summary>
+        public void DeleteHistory()
+        {
+            //TODO unhardcode file name (here and in the entire project)
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "save.db");
+
+            if (File.Exists(dbPath))
+            {
+                File.Delete(dbPath);
+                Debug.WriteLine("Database deleted");
+            }
+            else
+            {
+                Debug.WriteLine("Database doesn't exist");
+            }
         }
     }
 }
