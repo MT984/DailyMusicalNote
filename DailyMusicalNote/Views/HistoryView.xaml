@@ -9,9 +9,67 @@
         <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}" />
     </ContentPage.Resources>
 
-    <VerticalStackLayout VerticalOptions="Center">
-        <Label
-            Text="History will be available soon!"
-            FontSize="50" />
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Label 
+        Text="Game Results"
+        FontSize="24"
+        FontAttributes="Bold"
+        HorizontalOptions="Center"
+        Margin="0,0,0,10" />
+
+        <!-- Nagłówek -->
+        <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="0,0,0,4">
+            <Label Text="Date" FontAttributes="Bold" />
+            <Label Text="Score" FontAttributes="Bold" Grid.Column="1" />
+            <Label Text="Accuracy" FontAttributes="Bold" Grid.Column="2" />
+            <Label Text="Time" FontAttributes="Bold" Grid.Column="3" />
+            <Label Text="Notes" FontAttributes="Bold" Grid.Column="4" />
+            <Label Text="Difficulty" FontAttributes="Bold" Grid.Column="5" />
+        </Grid>
+
+        <BoxView HeightRequest="1" Color="#CCCCCC" />
+
+        <!-- Lista wierszy -->
+        <VerticalStackLayout x:Name="ResultsList"
+                     BindableLayout.ItemsSource="{Binding Results}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="0,4">
+                            <Label Text="{Binding dateTime, StringFormat='{0:dd.MM.yy HH:mm}'}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                            <Label Text="{Binding score}"
+                           Grid.Column="1"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                            <Label Text="{Binding accuracy, StringFormat='{0}%'}"
+                           Grid.Column="2"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                            <Label Text="{Binding gameplayTime}"
+                           Grid.Column="3"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                            <Label Text="{Binding noteCounter}"
+                           Grid.Column="4"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                            <Label Text="{Binding difficulty}"
+                           Grid.Column="5"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                        </Grid>
+                        <BoxView HeightRequest="1" Color="#EEEEEE" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+
+
     </VerticalStackLayout>
+
+
 </ContentPage>

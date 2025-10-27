@@ -33,6 +33,7 @@ namespace DailyMusicalNote
             _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
             _gameView.KeyClicked += OnKeyClicked;
             _gameView.GameOverResult += OnGameOverResult;
+            _historyView.Loaded += OnHistoryViewLoaded;
 
             //TODO protect when timer.Enabled in model == false
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -190,6 +191,12 @@ namespace DailyMusicalNote
                         _mainPage.Navigation.RemovePage(_gameView);
                     break;
             }
+        }
+
+        private void OnHistoryViewLoaded(object? sender, EventArgs e)
+        {
+            List<Save> saveList = _model.GetSavedHistory();
+            _historyView.SetHistoryList(saveList);
         }
 
         #endregion
