@@ -32,6 +32,14 @@ namespace DailyMusicalNote
             _mainPage.ButtonHistoryClicked += OnButtonHistoryClicked;
             _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
             _gameView.KeyClicked += OnKeyClicked;
+            _gameView.GameOverResult += OnGameOverResult;
+
+            //TODO protect when timer.Enabled in model == false
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += (s, e) =>
+            {
+                _gameView.UpdateTimerLabel(_model.Elapsed);
+            };
         }
 
         #region MainMenuClickHandlers
@@ -67,19 +75,19 @@ namespace DailyMusicalNote
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments.</param>
         private async void OnButtonStartGameClicked(object? sender, int notesNumer)
-        {    
-            _mainPage.Navigation.RemovePage(_difficultyView);
-            await _mainPage.Navigation.PushAsync(_gameView);
+        {
+            if (_mainPage.Navigation.NavigationStack.Contains(_difficultyView))
+                _mainPage.Navigation.RemovePage(_difficultyView);
+
+            bool isGameViewOpen = _mainPage.Navigation.NavigationStack
+                .Any(p => p == _gameView);
+
+            if (!isGameViewOpen)
+                await _mainPage.Navigation.PushAsync(_gameView);
 
             //Wait for view initialization.
             await Task.Delay(250);
 
-            //TODO protect when timer.Enabled in model == false
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += (s, e) =>
-            {
-                _gameView.UpdateTimerLabel(_model.Elapsed);
-            };
             _timer.Start();
 
             //First start game then show note.
@@ -87,6 +95,7 @@ namespace DailyMusicalNote
             _gameView.ShowNote(_model.NextNote);
 
             _correctAnswerCounter = 0;
+            _overallAnswerCounter = 0;
             _gameView.UpdateNotesCounter(_correctAnswerCounter, notesNumer);
         }
 
@@ -136,18 +145,45 @@ namespace DailyMusicalNote
             if (nextNote.Note == Notes.LAST_ELEMENT &&
                nextNote.Octave == Octaves.LAST_ELEMENT)
             {
-                Debug.WriteLine("Game over");
-
-                int percent = (int)Math.Round((double)_correctAnswerCounter /
-                                                      _overallAnswerCounter * 100);
-
-                //TODO score mechanism
-                _gameView.GameOver(123, percent);
-                _model.GameOver();
+                ProcessGameOver();
             }
             else
             {
                 _gameView.ShowNote(nextNote);
+            }
+        }
+
+        /// <summary>
+        /// Processes the game over.
+        /// </summary>
+        private void ProcessGameOver()
+        {
+            Debug.WriteLine("Game over");
+
+            _timer.Stop();
+
+            int misclicks = _overallAnswerCounter - _correctAnswerCounter;
+            int score = _model.GameOver(_correctAnswerCounter, misclicks);
+
+            int percent = (int)Math.Round((double)_correctAnswerCounter /
+                                                  _overallAnswerCounter * 100);
+
+            _gameView.GameOver(score, percent);
+        }
+
+        private void OnGameOverResult(object? sender, GameOverPopup.PopupResult result)
+        {
+            switch (result)
+            {
+                case GameOverPopup.PopupResult.RESTART_GAME:
+                    OnButtonStartGameClicked(this, _correctAnswerCounter);
+                    break;
+
+                default:
+                case GameOverPopup.PopupResult.RETURN_TO_MAIN_MENU:
+                    if (_mainPage.Navigation.NavigationStack.Contains(_gameView))
+                        _mainPage.Navigation.RemovePage(_gameView);
+                    break;
             }
         }
 

@@ -122,7 +122,6 @@ namespace DailyMusicalNote
             _stopwatch.Start();
         }
 
-
         /// <summary>
         /// Stops the timer.
         /// </summary>
@@ -218,11 +217,28 @@ namespace DailyMusicalNote
         }
 
         /// <summary>
-        /// Not implemented yet.
+        /// Stops the timers and calculates a score.
         /// </summary>
-        public void GameOver()
+        /// <param name="correctAnswers">
+        /// The number of correct answers
+        /// (equals to number of notes in thr game).
+        /// </param>
+        /// <param name="incorrectAnswers">The number of incorrect answers.</param>
+        /// <returns>
+        /// The number of points a player has earned.
+        /// Calculated based on the number of misclicks and gameplay time.
+        /// </returns>
+        public int GameOver(int correctAnswers, int incorrectAnswers)
         {
-            //TODO implement game over
+            StopTimer();
+            double seconds = _stopwatch.Elapsed.TotalSeconds;
+
+            //correctAnswers = numbers of notes in game
+            double score = (incorrectAnswers + correctAnswers) / correctAnswers;
+            score *= seconds;
+
+            //TODO save into history
+            return (int)score;
         }
     }
 }
