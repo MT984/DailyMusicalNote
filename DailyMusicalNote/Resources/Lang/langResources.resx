@@ -133,6 +133,14 @@
     <value>Hard</value>
     <comment>Shows in the DifficultyView.</comment>
   </data>
+  <data name="buttonHistoryClear" xml:space="preserve">
+    <value>Clear history</value>
+    <comment>Shows in the history view.</comment>
+  </data>
+  <data name="buttonHistoryReturn" xml:space="preserve">
+    <value>Return to main menu</value>
+    <comment>Shows in the history view.</comment>
+  </data>
   <data name="buttonMedium" xml:space="preserve">
     <value>Medium</value>
     <comment>Shows in the DifficultyView.</comment>
@@ -148,6 +156,22 @@
   <data name="buttonMenuStart" xml:space="preserve">
     <value>Start game</value>
     <comment>Shows in the main menu. Describes button which start a "difficulty choose" page.</comment>
+  </data>
+  <data name="historyAlertContent" xml:space="preserve">
+    <value>Are you sure you want to clear history?</value>
+    <comment>Shows in the alert when somebody wants to clear history. This is a content.</comment>
+  </data>
+  <data name="historyAlertNo" xml:space="preserve">
+    <value>No</value>
+    <comment>Shows in the alert when somebody wants to clear history. This is an no option.</comment>
+  </data>
+  <data name="historyAlertTitle" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Shows in the alert when somebody wants to clear history. This is a title.</comment>
+  </data>
+  <data name="historyAlertYes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Shows in the alert when somebody wants to clear history. This is an yes option.</comment>
   </data>
   <data name="labelDifficultyNoteNb" xml:space="preserve">
     <value>Choose the number of notes to practice:</value>
@@ -168,6 +192,38 @@
   <data name="labelGameOverTitle" xml:space="preserve">
     <value>Game over</value>
     <comment>Shows in the game over popup. This is a tittle.</comment>
+  </data>
+  <data name="labelHistoryAccuracy" xml:space="preserve">
+    <value>Accuracy</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryDate" xml:space="preserve">
+    <value>Date</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryDifficulty" xml:space="preserve">
+    <value>Difficulty</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryNotes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryScore" xml:space="preserve">
+    <value>Score</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryTime" xml:space="preserve">
+    <value>Time</value>
+    <comment>Shows in the history view. This is an column title.</comment>
+  </data>
+  <data name="labelHistoryTitle" xml:space="preserve">
+    <value>Game results</value>
+    <comment>Shows in the history view. This is an view title.</comment>
+  </data>
+  <data name="labelLoading" xml:space="preserve">
+    <value>Loading...</value>
+    <comment>Can be used anywhere.</comment>
   </data>
   <data name="labelMenuTitle" xml:space="preserve">
     <value>Daily Musical Note</value>

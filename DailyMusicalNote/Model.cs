@@ -295,29 +295,35 @@ namespace DailyMusicalNote
         /// <returns>The list of <see cref="Save"/>
         /// objects that was read from the file.</returns>
         public List<Save> GetSavedHistory()
-        {
+        {   
             using var db = new AppDbContext();
-            var save = db.Save.ToList();
 
-            return save;
+            try
+            {
+                var save = db.Save.ToList();
+                return save;
+            }
+            catch (Microsoft.Data.Sqlite.SqliteException)
+            {
+                return [];
+            }
         }
 
         /// <summary>
-        /// Deletes the database file (clears the history of results).
+        /// Deletes the all save elements (clears the history of results).
         /// </summary>
-        public void DeleteHistory()
+        public void ClearHistory()
         {
-            //TODO unhardcode file name (here and in the entire project)
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "save.db");
-
-            if (File.Exists(dbPath))
+            try
             {
-                File.Delete(dbPath);
-                Debug.WriteLine("Database deleted");
+                using var db = new AppDbContext();
+                var allSaves = db.Save.ToList();
+                db.Save.RemoveRange(allSaves);
+                _ = db.SaveChangesAsync();
             }
-            else
+            catch (Exception ex)
             {
-                Debug.WriteLine("Database doesn't exist");
+                Debug.WriteLine("Error: " + ex.Message);
             }
         }
     }

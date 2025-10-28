@@ -34,6 +34,8 @@ namespace DailyMusicalNote
             _gameView.KeyClicked += OnKeyClicked;
             _gameView.GameOverResult += OnGameOverResult;
             _historyView.Loaded += OnHistoryViewLoaded;
+            _historyView.ButtonClearClickedEvent += OnButtonClearClicked;
+            _historyView.ButtonReturnClickedEvent += OnButtonReturnClicked;
 
             //TODO protect when timer.Enabled in model == false
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -197,6 +199,36 @@ namespace DailyMusicalNote
         {
             List<Save> saveList = _model.GetSavedHistory();
             _historyView.SetHistoryList(saveList);
+        }
+
+        /// <summary>
+        /// Handles the clear button click and clears the history.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnButtonClearClicked(object? sender, EventArgs e)
+        {
+            _model.ClearHistory();
+        }
+
+        /// <summary>
+        /// Closes the history view.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnButtonReturnClicked(object? sender, EventArgs e)
+        {
+            if (_mainPage.Navigation.NavigationStack.Contains(_historyView))
+            {
+                if (_mainPage.Navigation.NavigationStack.Last() == _historyView)
+                {
+                    _mainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    _mainPage.Navigation.RemovePage(_historyView);
+                }
+            }
         }
 
         #endregion

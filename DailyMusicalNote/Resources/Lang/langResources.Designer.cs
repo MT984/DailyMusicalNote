@@ -97,6 +97,24 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear history.
+        /// </summary>
+        internal static string buttonHistoryClear {
+            get {
+                return ResourceManager.GetString("buttonHistoryClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return to main menu.
+        /// </summary>
+        internal static string buttonHistoryReturn {
+            get {
+                return ResourceManager.GetString("buttonHistoryReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medium.
         /// </summary>
         internal static string buttonMedium {
@@ -129,6 +147,42 @@ namespace DailyMusicalNote.Resources.Lang {
         internal static string buttonMenuStart {
             get {
                 return ResourceManager.GetString("buttonMenuStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to clear history?.
+        /// </summary>
+        internal static string historyAlertContent {
+            get {
+                return ResourceManager.GetString("historyAlertContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string historyAlertNo {
+            get {
+                return ResourceManager.GetString("historyAlertNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string historyAlertTitle {
+            get {
+                return ResourceManager.GetString("historyAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string historyAlertYes {
+            get {
+                return ResourceManager.GetString("historyAlertYes", resourceCulture);
             }
         }
         
@@ -174,6 +228,78 @@ namespace DailyMusicalNote.Resources.Lang {
         internal static string labelGameOverTitle {
             get {
                 return ResourceManager.GetString("labelGameOverTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accuracy.
+        /// </summary>
+        internal static string labelHistoryAccuracy {
+            get {
+                return ResourceManager.GetString("labelHistoryAccuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string labelHistoryDate {
+            get {
+                return ResourceManager.GetString("labelHistoryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty.
+        /// </summary>
+        internal static string labelHistoryDifficulty {
+            get {
+                return ResourceManager.GetString("labelHistoryDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string labelHistoryNotes {
+            get {
+                return ResourceManager.GetString("labelHistoryNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        internal static string labelHistoryScore {
+            get {
+                return ResourceManager.GetString("labelHistoryScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string labelHistoryTime {
+            get {
+                return ResourceManager.GetString("labelHistoryTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game results.
+        /// </summary>
+        internal static string labelHistoryTitle {
+            get {
+                return ResourceManager.GetString("labelHistoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        internal static string labelLoading {
+            get {
+                return ResourceManager.GetString("labelLoading", resourceCulture);
             }
         }
         

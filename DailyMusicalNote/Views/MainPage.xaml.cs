@@ -53,6 +53,22 @@ namespace DailyMusicalNote.Views
                     ButtonStartClicked?.Invoke(this, EventArgs.Empty);
                     break;
                 case "bHistory":
+                    //Set button text to "loading".
+                    HistoryButton.Text =
+                                DailyMusicalNote.Resources.Lang.langResources.labelLoading;
+                    
+                    //After 7 seconds set button text to
+                    //previous without freeze a program.
+                    Task.Run(() =>
+                    {
+                        Task.Delay(7000);
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            HistoryButton.Text =
+                                DailyMusicalNote.Resources.Lang.langResources.buttonMenuHistory;
+                        });
+                    });
+
                     ButtonHistoryClicked?.Invoke(this, EventArgs.Empty);
                     break;
                 case "bExit":

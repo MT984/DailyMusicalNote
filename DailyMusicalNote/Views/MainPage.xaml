@@ -26,6 +26,7 @@
                 Grid.Row="1"/>
         
         <Button Text="{Static resx:langResources.buttonMenuHistory}"
+                x:Name="HistoryButton"
                 ClassId="bHistory"
                 Clicked="OnButtonClicked"
                 Grid.Row="2" />
