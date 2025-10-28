@@ -151,6 +151,33 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorect input data. You can play from 5 to 50 notes..
+        /// </summary>
+        internal static string difficultyAlertContent {
+            get {
+                return ResourceManager.GetString("difficultyAlertContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string difficultyAlertOk {
+            get {
+                return ResourceManager.GetString("difficultyAlertOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong number.
+        /// </summary>
+        internal static string difficultyAlertTitle {
+            get {
+                return ResourceManager.GetString("difficultyAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to clear history?.
         /// </summary>
         internal static string historyAlertContent {

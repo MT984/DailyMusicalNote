@@ -157,6 +157,18 @@
     <value>Start game</value>
     <comment>Shows in the main menu. Describes button which start a "difficulty choose" page.</comment>
   </data>
+  <data name="difficultyAlertContent" xml:space="preserve">
+    <value>Incorect input data. You can play from 5 to 50 notes.</value>
+    <comment>Shows in the alert when the given number of notes is incorrect. This is a content.</comment>
+  </data>
+  <data name="difficultyAlertOk" xml:space="preserve">
+    <value>OK</value>
+    <comment>Shows in the alert when the given number of notes is incorrect. This is an OK button.</comment>
+  </data>
+  <data name="difficultyAlertTitle" xml:space="preserve">
+    <value>Wrong number</value>
+    <comment>Shows in the alert when the given number of notes is incorrect. This is a title.</comment>
+  </data>
   <data name="historyAlertContent" xml:space="preserve">
     <value>Are you sure you want to clear history?</value>
     <comment>Shows in the alert when somebody wants to clear history. This is a content.</comment>

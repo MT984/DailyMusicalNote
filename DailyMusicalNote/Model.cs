@@ -68,8 +68,7 @@ namespace DailyMusicalNote
 
     class Model
     {
-        //At this moment changing difficulty isn't implemented.
-        private Difficulty _difficulty = Difficulty.EASY;
+        private Difficulty _difficulty = Difficulty.EASY; //Easy is default mode.
         private PriorityQueue<RandomNote, int> _randomNotes = new();
         private RandomNote _currentlyDisplayingNote;
         private Stopwatch _stopwatch = new();
@@ -99,6 +98,11 @@ namespace DailyMusicalNote
         }
         public RandomNote CurrentlyDisplayingNote => _currentlyDisplayingNote;
         public TimeSpan Elapsed => _stopwatch.Elapsed;
+        public Difficulty Difficulty
+        {
+            get { return _difficulty; }
+            set { _difficulty = value; }
+        }
         /// <summary>
         /// Model class constructor.
         /// </summary>

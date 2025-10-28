@@ -3,9 +3,9 @@ namespace DailyMusicalNote.Views;
 
 public partial class DifficultyView : ContentPage
 {
-    private string _chosenDifficulty;
+    private Difficulty _chosenDifficulty = Difficulty.EASY; //Easy is default mode.
     private const string DEFAULT_NOTES_NUMBER = "15";
-    public event EventHandler<int>? ButtonStartGameClicked;
+    public event EventHandler<(int, Difficulty)>? ButtonStartGameClicked;
     
     /// <summary>
     /// Initializes a new instance of the DifficultyView class.
@@ -14,7 +14,6 @@ public partial class DifficultyView : ContentPage
 	public DifficultyView()
 	{
 		InitializeComponent();
-        _chosenDifficulty = string.Empty;
         NumberEntry.Text = DEFAULT_NOTES_NUMBER;
     }
 
@@ -40,18 +39,72 @@ public partial class DifficultyView : ContentPage
             string? text = NumberEntry.Text?.Trim();
             if (int.TryParse(text, out int number) && number>=5 && number <=50)
             {
-                ButtonStartGameClicked?.Invoke(this, number);
+                ButtonStartGameClicked?.Invoke(this, (number, _chosenDifficulty) );
             }
             else
             {
-                //TODO use lang
-                DisplayAlert("Info",
-                    "Incorect input data. You can play from 5 to 50 notes.", "OK");
+                DisplayAlert(DailyMusicalNote.Resources.Lang.langResources.difficultyAlertTitle,
+                             DailyMusicalNote.Resources.Lang.langResources.difficultyAlertContent,
+                             DailyMusicalNote.Resources.Lang.langResources.difficultyAlertOk);
             }
         }
 
+        //TODO clean code
+
         //Set chosen option.
-        _chosenDifficulty = button.ClassId;
+        switch(button.ClassId)
+        {
+            case "bHard":
+                _chosenDifficulty = Difficulty.HARD;
+                break;
+
+            case "bMedium":
+                _chosenDifficulty = Difficulty.MEDIUM;
+                break;
+
+            case "bEasy":
+            default:
+                _chosenDifficulty = Difficulty.EASY;
+                break;
+        }
+
+        SetDifficultyButtonsColors(button.ClassId);
+    }
+
+    /// <summary>
+    /// Sets the default difficulty level.
+    /// </summary>
+    /// <param name="difficulty">The difficulty level to set as default.</param>
+    public void SetChosenDifficulty(Difficulty difficulty)
+    {
+        string classId;
+        _chosenDifficulty = difficulty;
+
+        switch (difficulty)
+        {
+            case Difficulty.HARD:
+                classId = "bHard";
+                break;
+
+            case Difficulty.MEDIUM:
+                classId = "bMedium";
+                break;
+
+            default:
+            case Difficulty.EASY:
+                classId = "bEasy";
+                break;
+        }
+
+        SetDifficultyButtonsColors(classId);
+    }
+
+    /// <summary>
+    /// Sets a color to the button representing the chosen difficulty.
+    /// </summary>
+    /// <param name="targetButton">The ClassId of button that should be marked as chosen.</param>
+    private void SetDifficultyButtonsColors(string targetButton)
+    {
         var buttons = new[] { buttonEasy, buttonMedium, buttonHard };
 
         //Foreach used to colorize buttons
@@ -61,7 +114,7 @@ public partial class DifficultyView : ContentPage
             btn.BackgroundColor = (Color)Application.Current.Resources["ButtonColor1"];
 
             //Set the color of the clicked button.
-            if (btn.ClassId == button.ClassId)
+            if (btn.ClassId == targetButton)
                 btn.BackgroundColor = (Color)Application.Current.Resources["ChosenOption"];
         }
     }

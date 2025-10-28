@@ -28,7 +28,7 @@ namespace DailyMusicalNote
             Debug.WriteLine("Controller() constructor");
             _model = model;
 
-            _mainPage.ButtonStartClicked += OnButtonStartClicked;
+            _mainPage.ButtonStartClicked += OnButtonDifficultyClicked;
             _mainPage.ButtonHistoryClicked += OnButtonHistoryClicked;
             _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
             _gameView.KeyClicked += OnKeyClicked;
@@ -52,8 +52,9 @@ namespace DailyMusicalNote
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments.</param>
-        private async void OnButtonStartClicked(object? sender, EventArgs e)
+        private async void OnButtonDifficultyClicked(object? sender, EventArgs e)
         {
+            _difficultyView.SetChosenDifficulty(_model.Difficulty);
             await _mainPage.Navigation.PushAsync(_difficultyView);
         }
 
@@ -77,8 +78,11 @@ namespace DailyMusicalNote
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="notesNumer">Event arguments.</param>
-        private async void OnButtonStartGameClicked(object? sender, int notesNumer)
+        private async void OnButtonStartGameClicked(object? sender, (int, Difficulty) e)
         {
+            int notesNumer = e.Item1;
+            Difficulty difficulty = e.Item2;
+
             if (_mainPage.Navigation.NavigationStack.Contains(_difficultyView))
                 _mainPage.Navigation.RemovePage(_difficultyView);
 
@@ -94,6 +98,7 @@ namespace DailyMusicalNote
             _timer.Start();
 
             //First start game then show note.
+            _model.Difficulty = difficulty;
             _model.StartGame(notesNumer);
             _gameView.ShowNote(_model.NextNote);
 
@@ -184,7 +189,7 @@ namespace DailyMusicalNote
             switch (result)
             {
                 case GameOverPopup.PopupResult.RESTART_GAME:
-                    OnButtonStartGameClicked(this, _correctAnswerCounter);
+                    OnButtonStartGameClicked(this, (_correctAnswerCounter, _model.Difficulty) );
                     break;
 
                 default:
