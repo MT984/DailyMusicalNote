@@ -144,7 +144,38 @@ namespace DailyMusicalNote
         /// <param name="notesNumber">Number of notes to generate.</param>
         private void GenerateRandomNotes(int notesNumber)
         {
+            /*
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        HashSet<string> usedCombinations = new HashSet<string>();
+        int totalCombinations = 50;
+
+        while (usedCombinations.Count < totalCombinations)
+        {
+            int a = random.Next(0, 5);  // 0..4
+            int b = random.Next(0, 2);  // 0..1
+            int c = random.Next(0, 25); // 0..24
+
+            string combination = $"{a},{b},{c}";
+
+            if (!usedCombinations.Contains(combination))
+            {
+                usedCombinations.Add(combination);
+                Console.WriteLine(combination);
+            }
+        }
+    }
+}
+
+             */
             Random random = new Random();
+            //TODO seems like not random
             _randomNotes.Clear();
 
             for (int i = 0; i < notesNumber; i++)
@@ -172,8 +203,14 @@ namespace DailyMusicalNote
                             note = random.Next(0, (int)Notes.LAST_ELEMENT);
                         } while (IsSharp((Notes)note));
 
-                        octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
                         clef = random.Next(0, (int)Clefs.LAST_ELEMENT);
+
+                        if(clef == (int)Clefs.CLEF_TREBLE)
+                            octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
+
+                        if (clef == (int)Clefs.CLEF_BASS)
+                            octave = random.Next((int)Octaves.OCTAVE_2, (int)Octaves.OCTAVE_4);
+
                         break;
 
                     case Difficulty.HARD:
@@ -256,7 +293,7 @@ namespace DailyMusicalNote
                     accuracy = accuracyPercent,
                     gameplayTime = _stopwatch.Elapsed.ToString(@"mm\:ss"),
                     noteCounter = correctAnswers,
-                    difficulty = Difficulty.EASY
+                    difficulty = _difficulty
                 };
 
                 _ = SaveResultAsync(save);

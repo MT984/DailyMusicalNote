@@ -9,6 +9,7 @@
         <Style TargetType="Label" BasedOn="{StaticResource GlobalLabelStyle}" />
         <Style TargetType="Button">
             <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor1}" />
+            <Setter Property="TextColor" Value="{StaticResource White}" />
         </Style>
         <Style x:Key="HistoryLabels" TargetType="Label">
             <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -27,7 +28,7 @@
                HorizontalOptions="Center"
                Margin="0,0,0,10" />
 
-        <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="0,0,0,4">
+        <Grid ColumnDefinitions="*,*,auto,*,*,auto" Padding="0,0,0,4">
             
             <Label Text="{Static resx:langResources.labelHistoryDate}"
                    Style="{StaticResource TitleLabels}" />

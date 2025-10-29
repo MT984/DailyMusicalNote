@@ -62,8 +62,17 @@
             <Image Source="treble_clef.png"
                    WidthRequest="550"
                    Margin="-400,20,20,20"
-                   Aspect="AspectFit" />
-            
+                   Aspect="AspectFit"
+                   x:Name="TrebleImage"
+                   IsVisible="False"/>
+
+            <Image Source="bass_clef.png"
+                   WidthRequest="550"
+                   Margin="-400,20,20,20"
+                   Aspect="AspectFit"
+                   x:Name="BassImage"
+                   IsVisible="False"/>
+
             <Image Source="down_staff.png"
                    WidthRequest="550"
                    Margin="100,20,20,20"

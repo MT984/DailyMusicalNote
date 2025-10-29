@@ -26,7 +26,6 @@ public partial class GameView : ContentPage
     public GameView()
     {
         InitializeComponent();
-        GenerateKeyboard();
     }
 
     /// <summary>
@@ -36,41 +35,71 @@ public partial class GameView : ContentPage
     /// <param name="note">Note that should be displayed in the GUI.</param>
     public void ShowNote(RandomNote note)
     {
-        Debug.WriteLine($"Displaying note: {note.Note}, {note.Octave}");
+        //TODO clean all code below
+
+        Debug.WriteLine($"Displaying note: {note.Note}, {note.Octave} in clef: {note.Clef}");
 
         //Run on UI thread.
         Staff.Dispatcher.Dispatch(() =>
         {
-            //Get ratio.
-            var result = _ratios.FirstOrDefault(x =>
-                                             x.Item1 == note.Note &&
-                                             x.Item2 == note.Octave);
-
-            if (result != default)
+            //Set clef.
+            //TODO note.Clef is probably useful, it can be obtained from note.Octave
+            //TODO Unnecessary to regenerate the keyboard for every new note
+            switch (note.Clef)
             {
-                //If the note is outside the main staff,
-                //display an additional staff above or below.
-                double ratio = (double)result.Item3;
-                TopStaff.IsVisible = ratio >= 7 * RATIO ? true : false;
-                DownStaff.IsVisible = ratio <= -5 * RATIO ? true : false;
+                case Clefs.CLEF_BASS:
+                    GenerateKeyboard(Notes.NOTE_A, Octaves.OCTAVE_1);
+                    TrebleImage.IsVisible = false;
+                    BassImage.IsVisible = true;
+                    break;
 
-                //If note is above A3 (A3 is the default (ratio=0). Above it
-                //the ratio is positive, below it the ratio is negative).
-                if (ratio > 0)
-                {
-                    //Rotate a note and compensate a ratio (because
-                    //image rotates around its center).
-                    NoteImage.Rotation = 180;
-                    ratio -= 2 * RATIO;
-                }
-                else
-                {
-                    NoteImage.Rotation = 0;
-                }
-
-                //Move note up or down.
-                NoteImage.TranslationY = (double)Staff.Height * -ratio;
+                default:
+                case Clefs.CLEF_TREBLE:
+                    GenerateKeyboard(Notes.NOTE_A, Octaves.OCTAVE_3);
+                    TrebleImage.IsVisible = true;
+                    BassImage.IsVisible = false;
+                    break;
             }
+
+            //Treble clef
+            //if (note.Octave >= Octaves.OCTAVE_4 && note.Octave <= Octaves.OCTAVE_6)
+            //{
+                //Get ratio.
+                var result = _ratios.FirstOrDefault(x =>
+                                                 x.Item1 == note.Note &&
+                                                 x.Item2 == note.Octave);
+
+                if (result != default)
+                {
+                    //If the note is outside the main staff,
+                    //display an additional staff above or below.
+                    double ratio = (double)result.Item3;
+                    TopStaff.IsVisible = ratio >= 7 * RATIO ? true : false;
+                    DownStaff.IsVisible = ratio <= -5 * RATIO ? true : false;
+
+                    //If note is above A3 (A3 is the default (ratio=0). Above it
+                    //the ratio is positive, below it the ratio is negative).
+                    if (ratio > 0)
+                    {
+                        //Rotate a note and compensate a ratio (because
+                        //image rotates around its center).
+                        NoteImage.Rotation = 180;
+                        ratio -= 2 * RATIO;
+                    }
+                    else
+                    {
+                        NoteImage.Rotation = 0;
+                    }
+
+                    //Move note up or down.
+                    NoteImage.TranslationY = (double)Staff.Height * -ratio;
+                }
+            //}
+            ////Bass clef
+            //else
+            //{
+
+            //}
 
             //On start NoteImage.IsVisible = false.
             //It prevents a "jump" of the note when the GUI starts.
@@ -134,38 +163,41 @@ public partial class GameView : ContentPage
     /// </summary>
     private void CreateNotePositionList()
     {
-        //Now works for easy mode only.
         _ratios.Clear();
 
-        CalculateUpperStaffRatios();
-        CalculateLowerStaffRatios();
+        CalculateUpperClefStaffRatios();
+        CalculateLowerClefStaffRatios();
+
+        CalculateUpperBassStaffRatios();
+        CalculateLowerBassStaffRatios();
     }
 
     /// <summary>
     /// GenerateKeyboard() generates a piano keyboard in the GUI.
     /// </summary>
-    private void GenerateKeyboard()
+    private void GenerateKeyboard(Notes startNote, Octaves startOctave)
     {
+        //Clear view.
+        Keyboard.Children.Clear();
+
         //Keys to show in GUI.
         Key[] keys = new Key[KEYBOARD_SIZE];
         AbsoluteLayout KeyboardLayout = new();
 
         //Start values.
         //TODO implement difficulty dependency.
-        int startNote = (int)Notes.NOTE_A;
-        int startOctave = (int)Octaves.OCTAVE_3;
         double xIndex = 0;
 
         for (int i = 0; i < keys.Length; i++)
         {
             //Key initialize.
-            keys[i] = new Key((Notes)startNote, (Octaves)startOctave);
+            keys[i] = new Key(startNote, startOctave);
             keys[i].Clicked += OnKeyClicked;
 
             //If the last note is NOTE_B, increment the
             //octave and start from NOTE_C.
             startNote++;
-            if (startNote == (int)Notes.LAST_ELEMENT)
+            if (startNote == Notes.LAST_ELEMENT)
             {
                 startNote = 0;
                 startOctave++;
@@ -220,7 +252,7 @@ public partial class GameView : ContentPage
     /// <summary>
     /// Calcualtes a ratios for the upper side of the staff.
     /// </summary>
-    private void CalculateUpperStaffRatios()
+    private void CalculateUpperClefStaffRatios()
     {
         //Start from A4 (include A4).
         //TODO add bass clef case (changing  octave).
@@ -229,7 +261,7 @@ public partial class GameView : ContentPage
         int octaveCounter = (int)Octaves.OCTAVE_4;
 
         //From note A4 to upmost.
-        for (int i = 0; i < KEYBOARD_SIZE / 2; i++)
+        for (int i = 0; i < 10; i++)
         {
             Notes note;
 
@@ -266,14 +298,14 @@ public partial class GameView : ContentPage
     /// <summary>
     /// Calcualtes a ratios for the lower side of the staff.
     /// </summary>
-    private void CalculateLowerStaffRatios()
+    private void CalculateLowerClefStaffRatios()
     {
         //Start from A4 (exclude A4).
         int noteCounter = (int)Notes.NOTE_A;
         int octaveCounter = (int)Octaves.OCTAVE_4;
 
         //From lower notes up to A4 (without A4).
-        for (int i = -1; i >= -KEYBOARD_SIZE / 2; i--)
+        for (int i = -1; i >= -6; i--)
         {
             Notes note;
 
@@ -305,6 +337,86 @@ public partial class GameView : ContentPage
         }
     }
 
+    private void CalculateUpperBassStaffRatios()
+    {
+        //Start from A4 (include A4).
+        //TODO add bass clef case (changing  octave).
+        //Same in CalculateLowerStaffRatios()
+        int noteCounter = (int)Notes.NOTE_C - 1;
+        int octaveCounter = (int)Octaves.OCTAVE_3;
+
+        //From note A4 to upmost.
+        for (int i = 0; i < 7; i++)
+        {
+            Notes note;
+
+            //Do not calculate ratios for black keys.
+            do
+            {
+                noteCounter++;
+
+                if (noteCounter >= (int)Notes.LAST_ELEMENT)
+                {
+                    noteCounter = 0;
+                    if (octaveCounter >= (int)Octaves.LAST_ELEMENT)
+                    {
+                        octaveCounter = 0;
+                    }
+                    else
+                    {
+                        octaveCounter++;
+                    }
+                }
+
+                note = (Notes)noteCounter;
+            } while (note == Notes.NOTE_CSH ||
+                    note == Notes.NOTE_DSH ||
+                    note == Notes.NOTE_FSH ||
+                    note == Notes.NOTE_GSH ||
+                    note == Notes.NOTE_ASH);
+
+            //Add ratio to list.
+            _ratios.Add(((Notes)noteCounter, (Octaves)octaveCounter, RATIO * i));
+        }
+    }
+    private void CalculateLowerBassStaffRatios()
+    {
+        //Start from A4 (exclude A4).
+        int noteCounter = (int)Notes.NOTE_C;
+        int octaveCounter = (int)Octaves.OCTAVE_3;
+
+        //From lower notes up to A4 (without A4).
+        for (int i = -1; i >= -8; i--)
+        {
+            Notes note;
+
+            //Do not calculate ratios for black keys.
+            do
+            {
+                noteCounter--;
+
+                if (noteCounter < 0)
+                {
+                    noteCounter = (int)Notes.LAST_ELEMENT - 1;
+                    octaveCounter--;
+
+                    if (octaveCounter < 0)
+                    {
+                        octaveCounter = (int)Octaves.LAST_ELEMENT - 1;
+                    }
+                }
+
+                note = (Notes)noteCounter;
+            } while (note == Notes.NOTE_CSH ||
+                    note == Notes.NOTE_DSH ||
+                    note == Notes.NOTE_FSH ||
+                    note == Notes.NOTE_GSH ||
+                    note == Notes.NOTE_ASH);
+
+            //Add ratio to the list.
+            _ratios.Add(((Notes)noteCounter, (Octaves)octaveCounter, RATIO * i));
+        }
+    }
     /// <summary>
     /// Event handler for the Key.Clicked event. 
     /// In this handler, the currently displayed note
