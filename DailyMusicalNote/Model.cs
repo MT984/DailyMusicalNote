@@ -56,20 +56,61 @@ namespace DailyMusicalNote
         HARD
     }
 
+    // Because of the parallelism of keys (for example, D major and B minor
+    // use the same "notes"/"keys"), only the major keys are listed.
+    public enum MusicKeys
+    {
+        //Here order of enums is importat.
+        //It follows music theory and the circle of fifths.
+        //Do not change order.
+        MUSIC_KEY_C,
+        MUSIC_KEY_G,
+        MUSIC_KEY_D,
+        MUSIC_KEY_A,
+        MUSIC_KEY_E,
+        MUSIC_KEY_B,
+        MUSIC_KEY_FSH,
+        MUSIC_KEY_CSH,
+        MUSIC_KEY_F,
+        MUSIC_KEY_BB,
+        MUSIC_KEY_EB,
+        MUSIC_KEY_AB,
+        MUSIC_KEY_DB,
+        MUSIC_KEY_GB,
+        MUSIC_KEY_CB,
+        LAST_ELEMENT
+    }
+
     public struct RandomNote
     {
         public Notes Note;
         public Octaves Octave;
         public Clefs Clef;
+        public MusicKeys MusicKey;
     }
 
     class Model
     {
         private Difficulty _difficulty = Difficulty.EASY; //Easy is default mode.
         private PriorityQueue<RandomNote, int> _randomNotes = new();
+        private Dictionary<MusicKeys, List<Notes>> _listOfNotesToSharp = new();
         private RandomNote _currentlyDisplayingNote;
         private Stopwatch _stopwatch = new();
         private string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "save.db");
+
+        //SharpsOrder and FlatsOrder follows from music theory and the circle of fifths.
+        private static readonly Notes[] SharpsOrder = {
+            Notes.NOTE_F, Notes.NOTE_C,
+            Notes.NOTE_G, Notes.NOTE_D,
+            Notes.NOTE_A, Notes.NOTE_E,
+            Notes.NOTE_B };
+
+        private static readonly Notes[] FlatsOrder = {
+            Notes.NOTE_B, Notes.NOTE_E,
+            Notes.NOTE_A, Notes.NOTE_D,
+            Notes.NOTE_G, Notes.NOTE_C,
+            Notes.NOTE_F };
+
         public RandomNote NextNote
         {
             get
@@ -86,6 +127,7 @@ namespace DailyMusicalNote
                     buff.Note = Notes.LAST_ELEMENT;
                     buff.Octave = Octaves.LAST_ELEMENT;
                     buff.Clef = Clefs.LAST_ELEMENT;
+                    buff.MusicKey = MusicKeys.LAST_ELEMENT;
 
                     _currentlyDisplayingNote = buff;
                 }
@@ -106,6 +148,56 @@ namespace DailyMusicalNote
         public Model()
         {
             Debug.WriteLine("Model() constructor");
+            GenerateListOfNotesToSharp();
+        }
+
+        /// <summary>
+        /// Generates a list of notes that should be sharped.
+        /// </summary>
+        private void GenerateListOfNotesToSharp()
+        {
+            //The number of sharps in major keys according to the circle of fifths.
+            Dictionary<MusicKeys, int> sharpsCount = new()
+            {
+                { MusicKeys.MUSIC_KEY_C, 0 },
+                { MusicKeys.MUSIC_KEY_G, 1 },
+                { MusicKeys.MUSIC_KEY_D, 2 },
+                { MusicKeys.MUSIC_KEY_A, 3 },
+                { MusicKeys.MUSIC_KEY_E, 4 },
+                { MusicKeys.MUSIC_KEY_B, 5 },
+                { MusicKeys.MUSIC_KEY_FSH, 6 },
+                { MusicKeys.MUSIC_KEY_CSH, 7 }
+            };
+
+            //The number of flats in major keys according to the circle of fifths.
+            Dictionary<MusicKeys, int> flatsCount = new()
+            {
+                { MusicKeys.MUSIC_KEY_F, 1 },
+                { MusicKeys.MUSIC_KEY_BB, 2 },
+                { MusicKeys.MUSIC_KEY_EB, 3 },
+                { MusicKeys.MUSIC_KEY_AB, 4 },
+                { MusicKeys.MUSIC_KEY_DB, 5 },
+                { MusicKeys.MUSIC_KEY_GB, 6 },
+                { MusicKeys.MUSIC_KEY_CB, 7 }
+            };
+
+            //Generating lists for sharp keys.
+            foreach (var s in sharpsCount)
+            {
+                var notes = new List<Notes>();
+                for (int i = 0; i < s.Value; i++)
+                    notes.Add(SharpsOrder[i]);
+                _listOfNotesToSharp[s.Key] = notes;
+            }
+
+            //Generating lists for flat keys.
+            foreach (var f in flatsCount)
+            {
+                var notes = new List<Notes>();
+                for (int i = 0; i < f.Value; i++)
+                    notes.Add(FlatsOrder[i]);
+                _listOfNotesToSharp[f.Key] = notes;
+            }
         }
 
         /// <summary>
@@ -173,6 +265,7 @@ class Program
              */
             Random random = new Random();
             //TODO seems like not random
+            //TODO clean code
             _randomNotes.Clear();
 
             for (int i = 0; i < notesNumber; i++)
@@ -180,6 +273,7 @@ class Program
                 int note = 0;
                 int octave = 0;
                 int clef = 0;
+                int musicKey = (int)MusicKeys.LAST_ELEMENT;
 
                 switch (_difficulty)
                 {
@@ -202,16 +296,44 @@ class Program
 
                         clef = random.Next(0, (int)Clefs.LAST_ELEMENT);
 
-                        if(clef == (int)Clefs.CLEF_TREBLE)
-                            octave = random.Next((int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
+                        if (clef == (int)Clefs.CLEF_TREBLE)
+                            octave = random.Next(
+                                (int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
 
                         if (clef == (int)Clefs.CLEF_BASS)
-                            octave = random.Next((int)Octaves.OCTAVE_2, (int)Octaves.OCTAVE_4);
+                            octave = random.Next(
+                                (int)Octaves.OCTAVE_2, (int)Octaves.OCTAVE_4);
 
                         break;
 
                     case Difficulty.HARD:
-                        //TODO Implement hard difficulty.
+                        do
+                        {
+                            note = random.Next(0, (int)Notes.LAST_ELEMENT);
+                        } while (IsSharp((Notes)note));
+
+                        musicKey = random.Next(0, (int)MusicKeys.LAST_ELEMENT);
+
+                        List<Notes> notesToSharp = _listOfNotesToSharp[(MusicKeys)musicKey];
+
+                        if (notesToSharp.Contains((Notes)note) &&
+                           musicKey < (int)MusicKeys.MUSIC_KEY_F)
+                        {
+                            note++;
+                            if (note >= (int)Notes.LAST_ELEMENT)
+                                note = 0;
+                        }
+                        else if (notesToSharp.Contains((Notes)note))
+                        {
+                            note--;
+                            if (note < 0)
+                                note = (int)Notes.LAST_ELEMENT - 1;
+                        }
+
+                        octave = random.Next(
+                            (int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
+
+                        clef = (int)Clefs.CLEF_TREBLE;
                         break;
                 }
 
@@ -219,9 +341,10 @@ class Program
                 buff.Note = (Notes)note;
                 buff.Octave = (Octaves)octave;
                 buff.Clef = (Clefs)clef;
+                buff.MusicKey = (MusicKeys)musicKey;
 
                 Debug.WriteLine($"Picked {i} note:" +
-                    $"{buff.Note}, {buff.Octave}, {buff.Clef}");
+                    $"{buff.Note}, {buff.Octave}, {buff.Clef}, {buff.MusicKey}");
 
                 //A lower number means a higher priority. Default=100
                 _randomNotes.Enqueue(buff, 100);
@@ -319,11 +442,11 @@ class Program
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("The result is not saved: "+ex.Message);
+                Debug.WriteLine("The result is not saved: " + ex.Message);
 
                 await Application.Current.MainPage.DisplayAlert(
                     Resources.Lang.langResources.labelSaveErrorTitle,
-                    Resources.Lang.langResources.labelSaveErrorContent+ex.Message, "OK");
+                    Resources.Lang.langResources.labelSaveErrorContent + ex.Message, "OK");
             }
         }
 
@@ -333,7 +456,7 @@ class Program
         /// <returns>The list of <see cref="Save"/>
         /// objects that was read from the file.</returns>
         public List<Save> GetSavedHistory()
-        {   
+        {
             using var db = new AppDbContext();
 
             try
