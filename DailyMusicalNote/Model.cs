@@ -1,7 +1,4 @@
 ﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System;
 
 namespace DailyMusicalNote
 {

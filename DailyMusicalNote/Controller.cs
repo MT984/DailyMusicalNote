@@ -200,6 +200,12 @@ namespace DailyMusicalNote
             }
         }
 
+        /// <summary>
+        /// Event handler for the OnHistoryViewLoaded event.
+        /// In this handler the result is saveing to the history.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void OnHistoryViewLoaded(object? sender, EventArgs e)
         {
             List<Save> saveList = _model.GetSavedHistory();

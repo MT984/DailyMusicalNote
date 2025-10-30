@@ -44,7 +44,7 @@ public partial class GameView : ContentPage
         {
             //Set clef.
             //TODO note.Clef is probably useful, it can be obtained from note.Octave
-            //TODO Unnecessary to regenerate the keyboard for every new note
+            //TODO Unnecessary to regenerate the keyboard for every new note - the game is lagging
             switch (note.Clef)
             {
                 case Clefs.CLEF_BASS:
@@ -165,6 +165,8 @@ public partial class GameView : ContentPage
     {
         _ratios.Clear();
 
+
+        //TODO minimalize below
         CalculateUpperClefStaffRatios();
         CalculateLowerClefStaffRatios();
 
@@ -250,7 +252,7 @@ public partial class GameView : ContentPage
     }
 
     /// <summary>
-    /// Calcualtes a ratios for the upper side of the staff.
+    /// Calcualtes a ratios for the upper side of the staff in the clef section.
     /// </summary>
     private void CalculateUpperClefStaffRatios()
     {
@@ -296,7 +298,7 @@ public partial class GameView : ContentPage
     }
 
     /// <summary>
-    /// Calcualtes a ratios for the lower side of the staff.
+    /// Calcualtes a ratios for the lower side of the staff in the clef section.
     /// </summary>
     private void CalculateLowerClefStaffRatios()
     {
@@ -337,6 +339,9 @@ public partial class GameView : ContentPage
         }
     }
 
+    /// <summary>
+    /// Calcualtes a ratios for the upper side of the staff in the bass section.
+    /// </summary>
     private void CalculateUpperBassStaffRatios()
     {
         //Start from A4 (include A4).
@@ -379,6 +384,10 @@ public partial class GameView : ContentPage
             _ratios.Add(((Notes)noteCounter, (Octaves)octaveCounter, RATIO * i));
         }
     }
+
+    /// <summary>
+    /// Calcualtes a ratios for the lower side of the staff in the bass section.
+    /// </summary>
     private void CalculateLowerBassStaffRatios()
     {
         //Start from A4 (exclude A4).
