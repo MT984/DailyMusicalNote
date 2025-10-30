@@ -123,7 +123,8 @@ namespace DailyMusicalNote
 
             Debug.WriteLine($"OnKeyClicked handler." +
                 $" Clicked on: {key.Note}, {key.Octave}." +
-                $" Current note: {_model.CurrentlyDisplayingNote.Note}, {_model.CurrentlyDisplayingNote.Octave}.");
+                $" Current note: {_model.CurrentlyDisplayingNote.Note}, {_model.CurrentlyDisplayingNote.Octave} in " +
+                $"{_model.CurrentlyDisplayingNote.MusicKey}.");
 
             if (_model.CheckResult(key))
             {

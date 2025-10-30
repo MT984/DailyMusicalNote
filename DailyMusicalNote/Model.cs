@@ -84,6 +84,7 @@ namespace DailyMusicalNote
     public struct RandomNote
     {
         public Notes Note;
+        public Notes BaseNote;
         public Octaves Octave;
         public Clefs Clef;
         public MusicKeys MusicKey;
@@ -271,6 +272,7 @@ class Program
             for (int i = 0; i < notesNumber; i++)
             {
                 int note = 0;
+                int baseNote = 0;
                 int octave = 0;
                 int clef = 0;
                 int musicKey = (int)MusicKeys.LAST_ELEMENT;
@@ -314,22 +316,34 @@ class Program
 
                         musicKey = random.Next(0, (int)MusicKeys.LAST_ELEMENT);
 
-                        List<Notes> notesToSharp = _listOfNotesToSharp[(MusicKeys)musicKey];
+                        List<Notes> notesToSharp =
+                            _listOfNotesToSharp[(MusicKeys)musicKey];
 
+                        baseNote = note;
+
+                        //TODO protect when octave<-1 or octave>LAST_ELEMENT
                         if (notesToSharp.Contains((Notes)note) &&
                            musicKey < (int)MusicKeys.MUSIC_KEY_F)
                         {
                             note++;
                             if (note >= (int)Notes.LAST_ELEMENT)
+                            {
                                 note = 0;
+                                octave++;
+                            }
                         }
                         else if (notesToSharp.Contains((Notes)note))
                         {
                             note--;
                             if (note < 0)
+                            {
                                 note = (int)Notes.LAST_ELEMENT - 1;
+                                octave--;
+                            }
                         }
 
+                        //Only treble.
+                        //TODO implement bass
                         octave = random.Next(
                             (int)Octaves.OCTAVE_4, (int)Octaves.OCTAVE_6);
 
@@ -342,9 +356,10 @@ class Program
                 buff.Octave = (Octaves)octave;
                 buff.Clef = (Clefs)clef;
                 buff.MusicKey = (MusicKeys)musicKey;
+                buff.BaseNote = (Notes)baseNote;
 
                 Debug.WriteLine($"Picked {i} note:" +
-                    $"{buff.Note}, {buff.Octave}, {buff.Clef}, {buff.MusicKey}");
+                    $"{buff.Note} ({buff.BaseNote}), {buff.Octave}, {buff.Clef}, {buff.MusicKey}");
 
                 //A lower number means a higher priority. Default=100
                 _randomNotes.Enqueue(buff, 100);

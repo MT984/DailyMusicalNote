@@ -37,7 +37,8 @@ public partial class GameView : ContentPage
     {
         //TODO clean all code below
 
-        Debug.WriteLine($"Displaying note: {note.Note}, {note.Octave} in clef: {note.Clef}");
+        Debug.WriteLine($"Displaying note: {note.Note}, {note.Octave}" +
+                        $" in clef: {note.Clef}. Key: {note.MusicKey}");
 
         //Run on UI thread.
         Staff.Dispatcher.Dispatch(() =>
@@ -66,7 +67,7 @@ public partial class GameView : ContentPage
             //{
                 //Get ratio.
                 var result = _ratios.FirstOrDefault(x =>
-                                                 x.Item1 == note.Note &&
+                                                 x.Item1 == note.BaseNote &&
                                                  x.Item2 == note.Octave);
 
                 if (result != default)
@@ -104,6 +105,8 @@ public partial class GameView : ContentPage
             //On start NoteImage.IsVisible = false.
             //It prevents a "jump" of the note when the GUI starts.
             NoteImage.IsVisible = true;
+
+            //TODO show music keys
         });
     }
 
