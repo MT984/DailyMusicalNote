@@ -37,6 +37,18 @@
                        WidthRequest="40"
                        HorizontalTextAlignment="End"/>
 
+                <Label x:Name="PauseLabel"
+                       Text="&#x275A;&#x275A;"
+                       TextColor="{StaticResource White}"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       WidthRequest="50"
+                       Margin="550,0,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PauseOnClick" />
+                    </Label.GestureRecognizers>
+                </Label>
+
             </HorizontalStackLayout>
         </Frame>
         <Grid

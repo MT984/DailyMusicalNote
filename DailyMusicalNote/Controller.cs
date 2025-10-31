@@ -33,6 +33,9 @@ namespace DailyMusicalNote
             _difficultyView.ButtonStartGameClicked += OnButtonStartGameClicked;
             _gameView.KeyClicked += OnKeyClicked;
             _gameView.GameOverResult += OnGameOverResult;
+            _gameView.PauseClicked += OnPauseClicked;
+            _gameView.GameEndClicked += OnGameEndClicked;
+            _gameView.GameResumeClicked += OnGameResumeClicked;
             _historyView.Loaded += OnHistoryViewLoaded;
             _historyView.ButtonClearClickedEvent += OnButtonClearClicked;
             _historyView.ButtonReturnClickedEvent += OnButtonReturnClicked;
@@ -241,6 +244,38 @@ namespace DailyMusicalNote
                     _mainPage.Navigation.RemovePage(_historyView);
                 }
             }
+        }
+
+        /// <summary>
+        /// Stops the timer in the model.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnPauseClicked(object? sender, EventArgs e)
+        {
+            _model.StopTimer();
+        }
+
+        /// <summary>
+        /// Stops the timer in the model and closes a gameView.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnGameEndClicked(object? sender, EventArgs e)
+        {
+            _model.StopTimer();
+            if (_mainPage.Navigation.NavigationStack.Contains(_gameView))
+                _mainPage.Navigation.RemovePage(_gameView);
+        }
+
+        /// <summary>
+        /// Resumes the timer in the model.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnGameResumeClicked(object? sender, EventArgs e)
+        {
+            _model.ResumeTimer();
         }
 
         #endregion

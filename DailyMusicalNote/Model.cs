@@ -223,9 +223,17 @@ namespace DailyMusicalNote
         /// <summary>
         /// Stops the timer.
         /// </summary>
-        private void StopTimer()
+        public void StopTimer()
         {
             _stopwatch.Stop();
+        }
+
+        /// <summary>
+        /// Resumes the timer without reset measured time.
+        /// </summary>
+        public void ResumeTimer()
+        {
+            _stopwatch.Start();
         }
 
         /// <summary>

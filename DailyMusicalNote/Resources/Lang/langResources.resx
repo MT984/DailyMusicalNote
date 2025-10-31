@@ -169,6 +169,18 @@
     <value>Wrong number</value>
     <comment>Shows in the alert when the given number of notes is incorrect. This is a title.</comment>
   </data>
+  <data name="gameAlertPause" xml:space="preserve">
+    <value>Game is paused.</value>
+    <comment>Shows in the game view when the game is paused.</comment>
+  </data>
+  <data name="gameAlertResume" xml:space="preserve">
+    <value>Resume</value>
+    <comment>Shows in the game view when the game is paused. This describes a resume option.</comment>
+  </data>
+  <data name="gameAlertReturn" xml:space="preserve">
+    <value>Return to main menu</value>
+    <comment>Shows in the game view when the game is paused. This describes a return option.</comment>
+  </data>
   <data name="historyAlertContent" xml:space="preserve">
     <value>Are you sure you want to clear history?</value>
     <comment>Shows in the alert when somebody wants to clear history. This is a content.</comment>

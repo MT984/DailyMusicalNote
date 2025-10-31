@@ -15,6 +15,9 @@ public partial class GameView : ContentPage
 {
     public event EventHandler? KeyClicked;
     public event EventHandler<GameOverPopup.PopupResult>? GameOverResult;
+    public event EventHandler? PauseClicked;
+    public event EventHandler? GameResumeClicked;
+    public event EventHandler? GameEndClicked;
 
     private List<(Notes, Octaves, double)> _ratios = new();
     private const double RATIO = 8.7 / (19440.0 / 99.0); //Ratio of y-position.
@@ -493,5 +496,26 @@ public partial class GameView : ContentPage
     public void UpdateNotesCounter(int currentNumber, int maxNumber)
     {
         NotesLabel.Text = $"{currentNumber}/{maxNumber}";
+    }
+
+    /// <summary>
+    /// Displays an alert with the resume option and the return to main menu option.
+    /// </summary>
+    /// <param name="sender">The object that triggered the event.</param>
+    /// <param name="e">Event arguments.</param>
+    private async void PauseOnClick(object sender, EventArgs e)
+    {
+        PauseClicked?.Invoke(this, e);
+        
+        bool answer = await
+            Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert(
+            "",
+            DailyMusicalNote.Resources.Lang.langResources.gameAlertPause,
+            DailyMusicalNote.Resources.Lang.langResources.gameAlertReturn,
+            DailyMusicalNote.Resources.Lang.langResources.gameAlertResume
+        );
+
+        EventHandler? eventHandler = answer ? GameEndClicked : GameResumeClicked;
+        eventHandler?.Invoke(this, e);
     }
 }

@@ -178,6 +178,33 @@ namespace DailyMusicalNote.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game is paused..
+        /// </summary>
+        internal static string gameAlertPause {
+            get {
+                return ResourceManager.GetString("gameAlertPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        internal static string gameAlertResume {
+            get {
+                return ResourceManager.GetString("gameAlertResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return to main menu.
+        /// </summary>
+        internal static string gameAlertReturn {
+            get {
+                return ResourceManager.GetString("gameAlertReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to clear history?.
         /// </summary>
         internal static string historyAlertContent {
