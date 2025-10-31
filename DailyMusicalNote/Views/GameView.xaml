@@ -70,7 +70,12 @@
                    WidthRequest="550"
                    Margin="-200,20,20,20"
                    Aspect="AspectFit" />
-            
+
+            <Image Source="sharp.png"
+                   WidthRequest="550"
+                   Margin="-100,20,20,20"
+                   Aspect="AspectFit" />
+
             <Image Source="treble_clef.png"
                    WidthRequest="550"
                    Margin="-400,20,20,20"
