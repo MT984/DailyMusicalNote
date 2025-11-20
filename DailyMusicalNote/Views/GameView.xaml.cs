@@ -70,7 +70,7 @@ public partial class GameView : ContentPage
             //{
                 //Get ratio.
                 var result = _ratios.FirstOrDefault(x =>
-                                                 x.Item1 == note.BaseNote &&
+                                                 x.Item1 == note.Note &&
                                                  x.Item2 == note.Octave);
 
                 if (result != default)
