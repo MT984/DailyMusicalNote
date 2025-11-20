@@ -68,13 +68,14 @@
             
             <Image Source="time_sign.png"
                    WidthRequest="550"
-                   Margin="-200,20,20,20"
-                   Aspect="AspectFit" />
+                   Margin="0,20,20,20"
+                   Aspect="AspectFit"
+                   x:Name="TimeSignImage" />
 
-            <Image Source="sharp.png"
+            <!--<Image Source="sharp.png"
                    WidthRequest="550"
                    Margin="-100,20,20,20"
-                   Aspect="AspectFit" />
+                   Aspect="AspectFit" />-->
 
             <Image Source="treble_clef.png"
                    WidthRequest="550"

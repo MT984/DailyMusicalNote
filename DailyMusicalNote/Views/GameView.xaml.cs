@@ -20,6 +20,7 @@ public partial class GameView : ContentPage
     public event EventHandler? GameEndClicked;
 
     private List<(Notes, Octaves, double)> _ratios = new();
+    private Dictionary<MusicKeys, string> _imageNames;
     private const double RATIO = 8.7 / (19440.0 / 99.0); //Ratio of y-position.
     private const int KEYBOARD_SIZE = 28; //Size in keys (white and black).
 
@@ -29,6 +30,7 @@ public partial class GameView : ContentPage
     public GameView()
     {
         InitializeComponent();
+        AddMusicKeys();
     }
 
     /// <summary>
@@ -68,9 +70,16 @@ public partial class GameView : ContentPage
             //Treble clef
             //if (note.Octave >= Octaves.OCTAVE_4 && note.Octave <= Octaves.OCTAVE_6)
             //{
-                //Get ratio.
+            //Get ratio.
+                Notes compareNote = note.Note;
+
+                if(note.MusicKey != MusicKeys.LAST_ELEMENT)
+                {
+                    compareNote = note.BaseNote;
+                }
+
                 var result = _ratios.FirstOrDefault(x =>
-                                                 x.Item1 == note.Note &&
+                                                 x.Item1 == compareNote &&
                                                  x.Item2 == note.Octave);
 
                 if (result != default)
@@ -109,7 +118,31 @@ public partial class GameView : ContentPage
             //It prevents a "jump" of the note when the GUI starts.
             NoteImage.IsVisible = true;
 
-            //TODO show music keys
+            foreach (var child in Staff.Children)
+            {
+                if (child is Image img)
+                {
+                    if (!string.IsNullOrEmpty(img.AutomationId) &&
+                        img.AutomationId.StartsWith("key_"))
+                    {
+                        img.IsVisible = false;
+                    }
+                }
+            }
+
+            if (note.MusicKey != MusicKeys.LAST_ELEMENT)
+            {
+                TimeSignImage.Margin = new Thickness(0, 20, 20, 20);
+
+                Staff.Children
+                    .OfType<Image>()
+                    .FirstOrDefault(x => x.AutomationId == "key_" + _imageNames[note.MusicKey])
+                    ?.SetValue(VisualElement.IsVisibleProperty, true);
+            }
+            else
+            {
+                TimeSignImage.Margin = new Thickness(-200, 20, 20, 20);
+            }
         });
     }
 
@@ -517,5 +550,38 @@ public partial class GameView : ContentPage
 
         EventHandler? eventHandler = answer ? GameEndClicked : GameResumeClicked;
         eventHandler?.Invoke(this, e);
+    }
+
+    private void AddMusicKeys()
+    {
+        string[] names = {"c", "g",  "d",  "a", "e", "b", "fsh",
+            "csh", "f",   "bb", "eb",  "ab", "db", "gb", "cb" };
+
+        var keys = Enum.GetValues<MusicKeys>();
+
+        _imageNames = new Dictionary<MusicKeys, string>();
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            _imageNames[keys[i]] = names[i];
+        }
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            if (names[i] == "c")
+                continue;
+
+            var img = new Image
+            {
+                AutomationId = "key_" + names[i],
+                Source = ImageSource.FromFile("key_" + names[i]),
+                WidthRequest = 550,
+                Margin = new Thickness(-200, 20, 20, 20),
+                Aspect = Aspect.AspectFit,
+                IsVisible = false,
+            };
+
+            Staff.Children.Add(img);
+        }
     }
 }
